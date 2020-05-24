@@ -1,0 +1,7 @@
+console-menu==0.6.0
+prompt-toolkit==1.0.14
+Pygments==2.6.1
+PyInquirer==1.0.3
+regex==2020.4.4
+six==1.14.0
+wcwidth==0.1.9
