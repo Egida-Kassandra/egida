@@ -1,5 +1,6 @@
-from src.common.playbook import Playbook
+from src.menu.console import Console
+
 
 def menu(args):
-    playbook = Playbook("Menu", tags=["rule_2.1.1", "rule_2.1.2"])
-    playbook.run()
+    console = Console()
+    console.show_menu()
