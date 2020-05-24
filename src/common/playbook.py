@@ -16,7 +16,7 @@ class Playbook:
         if len(self.tags) == 0:
             return ""
         else:
-            tags_str = '--tags "' + ','.join(self.tags) + '"'
+            tags_str = ' --tags "' + ','.join(self.tags) + '"'
             return tags_str
 
     def run(self):
@@ -26,5 +26,5 @@ class Playbook:
         path = os.path.join(cur_path, "playbook-custom.yml")
         print(path)
         # command_str = 'ansible-playbook ' + path + self.get_str_tags()
-        command_str = 'cat ' + path + self.get_str_tags()
+        command_str = 'echo ' + path + self.get_str_tags()
         run_command(command_str)
