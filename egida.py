@@ -1,8 +1,8 @@
 import argparse
 
-from egida.menu import menu
-from egida.dsl import compile
-from egida.config import config
+from src.menu import menu
+from src.dsl import compile
+from src.config import config
 
 
 # ========  Mode  ===================
