@@ -12,6 +12,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/
 
 # Generated files
 .idea/**/contentModel.xml
@@ -108,6 +109,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+venv/
 lib64/
 parts/
 sdist/

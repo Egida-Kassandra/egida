@@ -1,4 +1,4 @@
-# egida-role-cis
+# egida
 
 <!-- PROJECT SHIELDS -->
 [![EGIDA VERSION](https://img.shields.io/badge/egida-v0.0.1-blue?style=for-the-badge&logo=ansible&color=ff69b4)](https://github.com/antonioalfa22/egida)
