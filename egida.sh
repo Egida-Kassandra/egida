@@ -11,4 +11,4 @@
 set -e
 BASEDIR=$(dirname "$0")
 
-python "$BASEDIR/egida" "$@"
+python3 "$BASEDIR/egida" "$@"
