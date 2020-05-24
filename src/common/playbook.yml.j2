@@ -1,0 +1,12 @@
+---
+
+- name: Harden Server
+  hosts:
+    {{hosts}}
+  connection: local
+  become: yes
+  vars:
+    {{vars}}
+  
+  roles:
+    - egida-role-cis
