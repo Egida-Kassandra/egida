@@ -53,4 +53,5 @@ def show_menu():
         }
     ]
     answers = prompt(questions)
-    return answers['sections']
+    sections = ['section_{}'.format(x.split('-')[0]) for x in answers['sections']]
+    return sections
