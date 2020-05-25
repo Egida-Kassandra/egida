@@ -26,5 +26,5 @@ class Playbook:
         path = os.path.join(cur_path, "playbook-custom.yml")
         print(path)
         command_str = 'ansible-playbook ' + path + self.get_str_tags()
-        print(command_str)
-        #run_command(command_str)
+        # print(command_str)
+        run_command(command_str)
