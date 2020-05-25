@@ -3,7 +3,7 @@ from consolemenu.items import *
 from consolemenu.format import *
 from consolemenu.menu_component import Dimension
 
-import src.menu.cis as cis
+from src.menu.cis import CISConsole
 
 
 class Console:
@@ -18,7 +18,7 @@ class Console:
         menu_format.show_prologue_bottom_border(True)
 
         # Create the root menu
-        menu = ConsoleMenu("EGIDA", prologue_text=("Subtitle"))
+        menu = ConsoleMenu("EGIDA", prologue_text="Subtitle")
         menu.formatter = menu_format
         self.set_menu_items(menu)
 
@@ -34,7 +34,7 @@ class Console:
         exec('self.{}()'.format(name))
 
     def cis_benchmarks(self):
-        cis.CISConsole()
+        CISConsole()
 
     def lamp(self):
         print("Lamp")
