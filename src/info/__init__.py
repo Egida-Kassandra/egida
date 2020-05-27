@@ -42,4 +42,4 @@ def info_worker(host):
 
 
 def knock(host, ports):
-    run_command('knock ' + str(host) + ' '.join(str(port) for port in ports))
+    run_command('knock ' + str(host) + ' ' +' '.join(str(port) for port in ports))
