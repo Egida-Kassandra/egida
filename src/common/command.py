@@ -4,6 +4,7 @@ from subprocess import Popen
 
 
 def run_command(command):
+    print(command)
     process = Popen(shlex.split(command), stdout=subprocess.PIPE, universal_newlines=True)
     while True:
         output = process.stdout.readline()
