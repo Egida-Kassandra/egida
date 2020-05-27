@@ -1,6 +1,6 @@
 from src.menu.console import Console
 
 
-def menu(args):
+def menu():
     console = Console()
     console.show_menu()
