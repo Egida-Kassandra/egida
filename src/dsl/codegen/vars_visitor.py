@@ -1,4 +1,4 @@
-from src.dsl import AspidaVisitor
+from src.dsl.visitor.aspida_visitor import AspidaVisitor
 
 
 class VarsVisitor(AspidaVisitor):

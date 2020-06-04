@@ -3,8 +3,7 @@ from antlr4 import *
 from src.dsl.listeners.aspida_listener import AspidaListener
 from src.dsl.parser.aspida_lexer import AspidaLexer
 from src.dsl.parser.aspida_parser import AspidaParser
-from src.dsl.visitor.aspida_visitor import AspidaVisitor
-from src.dsl.visitor.vars_visitor import VarsVisitor
+from src.dsl.codegen import run_file
 
 
 def compile(args):
@@ -25,8 +24,5 @@ def parse(filename):
     walker = ParseTreeWalker()
     listener = AspidaListener()
     walker.walk(listener, tree)
-    # Visitor
-    visitor = VarsVisitor()
-    visitor.visit(tree)
-    # Vars
-    print(visitor.vars)
+    # Codegen
+    run_file(tree)
