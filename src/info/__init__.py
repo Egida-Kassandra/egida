@@ -20,7 +20,7 @@ def info(args):
 def audit_worker(host):
     api = WorkerAPIClient(host=host)
     try:
-        print("Host: ", host, ", Score: ", api.get_lynis_score())
+        print("Host: ", host, ", Lynis Score: ", api.get_lynis_score())
     except:
         print("Error on connect to host: ", host)
 
@@ -42,4 +42,4 @@ def info_worker(host):
 
 
 def knock(host, ports):
-    run_command('knock ' + str(host) + ' ' +' '.join(str(port) for port in ports))
+    run_command('knock ' + str(host) + ' ' + ' '.join(str(port) for port in ports))

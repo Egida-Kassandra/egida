@@ -1,0 +1,16 @@
+MAIN : {
+    name: "Prueba 1";
+    connection: SSH-PASSWORD;
+    description: "Prueba de funcionamiento";
+}
+
+HOSTS : [127.0.0.1, 192.178.9.12]
+
+TASKS : {
+    points : ["1.1", "1.2"];
+    exclusions : ["1.3"];
+}
+
+VARS : {
+    "user_ssh": "antonio";
+}
