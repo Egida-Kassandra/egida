@@ -28,3 +28,5 @@ def parse(filename):
     # Visitor
     visitor = VarsVisitor()
     visitor.visit(tree)
+    # Vars
+    print(visitor.vars)
