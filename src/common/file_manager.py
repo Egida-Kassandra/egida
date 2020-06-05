@@ -46,7 +46,7 @@ class FileManager:
                 self.vars.append('    {}'.format(line))
 
     def read_hosts_files(self):
-        with open(r'custom/hosts_{}'.format(self.vars_file)) as host_file:
+        with open(r'custom/hosts_{}'.format(self.hosts_file)) as host_file:
             for line in host_file.readlines():
                 self.vars.append('- {}'.format(line))
 
