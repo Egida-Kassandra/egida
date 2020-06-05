@@ -48,7 +48,7 @@ class FileManager:
     def read_hosts_files(self):
         with open(r'custom/hosts_{}'.format(self.hosts_file)) as host_file:
             for line in host_file.readlines():
-                self.hosts.append('- {}'.format(line))
+                self.hosts.append('- {}\n'.format(line))
 
 
     def write_playbook(self):
@@ -56,7 +56,7 @@ class FileManager:
         with open(os.path.join(cur_path, "playbook-custom.yml"), 'w+') as file:
             with open(os.path.join(cur_path, 'playbook.yml.j2'), 'r') as template:
                 t = Template(template.read())
-                file.write(t.render(vars=''.join(self.vars), hosts=self.hosts, connection='ssh'))
+                file.write(t.render(vars=''.join(self.vars), hosts=''.join(self.hosts), connection='ssh'))
 
     def create_vars_and_hosts(self):
         self.scan_custom_dir()
