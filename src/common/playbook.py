@@ -24,7 +24,9 @@ class Playbook:
         fm.create_vars_and_hosts()
         cur_path = os.path.abspath(os.path.dirname(__file__))
         path = os.path.join(cur_path, "playbook-custom.yml")
-        print(path)
         command_str = 'ansible-playbook ' + path + self.get_str_tags()
-        # print(command_str)
         run_command(command_str)
+
+
+    def run_aspida(self, aspida):
+        pass
