@@ -1,8 +1,8 @@
 def config(args):
     if args.group is not None:
         with open("/etc/ansible/hosts", "w") as f:
-            f.write("[{}]".format(args.group))
+            f.write("[{}]\n".format(args.group))
             for host in args.hosts:
-                f.write("{} ansible_ssh_user=root".format(host))
+                f.write("{} ansible_ssh_user=root\n".format(host))
         with open("src/common/hosts", "w") as f:
             f.write(args.group)
