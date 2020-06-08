@@ -21,3 +21,7 @@ class Aspida:
         self.controls = controls
         self.exclusions = exclusions
         self.vars = vars
+
+
+    def run_playbook(self):
+        pass
