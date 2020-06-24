@@ -37,7 +37,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-About the project
+The Egida project is a server orchestration system that allows to perform and deploy security configurations 
+(custom control lists) over a machine infrastructure. These security configurations can shield and protect those 
+servers by implementing the desired security measures depending on the server profile. Controls are sourced from the 
+[CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/), and we also need to obtain system information about each 
+of the deployed servers to ensure proper deployment.
 
 <!-- GETTING STARTED -->
 ## Getting Started
