@@ -8,6 +8,7 @@ HOSTS : [127.0.0.1, 192.178.9.12]
 
 TASKS : {
     points : ["1.1", "1.2"];
+    sections: ["1.1"];
     exclusions : ["1.3"];
 }
 

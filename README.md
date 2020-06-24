@@ -52,7 +52,7 @@ Getting Started
 
 ### Installation
 
-1. Download the source from [here](https://github.com/antonioalfa22/egida-role-cis/releases).
+1. Download the source from [here](https://github.com/antonioalfa22/egida/releases).
 
 
 <!-- LICENSE -->
