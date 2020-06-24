@@ -15,7 +15,7 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/antonioalfa22/egida"><strong>Explore the docs »</strong></a>
+    <a href="https://antonioalfa22.github.io/egida"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/antonioalfa22/egida">View Source</a>
