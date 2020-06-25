@@ -189,11 +189,13 @@
 servers by implementing the desired security measures depending on the server profile. Controls are sourced from the 
 <a href="https://www.cisecurity.org/cis-benchmarks/">CIS Benchmarks</a>, and we also need to obtain system information about each 
 of the deployed servers to ensure proper deployment.</p>
-<p>To achieve that, Egida is built using a microservices-based architecture composed of the following three modules:
-- <strong>egida</strong>: This is the main module, in charge of providing the communication interfaces with the user, as well as the 
+<p>To achieve that, Egida is built using a microservices-based architecture composed of the following three modules:</p>
+<ul>
+<li>
+<p><strong>egida</strong>: This is the main module, in charge of providing the communication interfaces with the user, as well as the 
          process of the specific domain language called Aspida. Using this module, the user can define 
          the different profiles to work with and the actions to be performed.</p>
-<ul>
+</li>
 <li>
 <p><strong>egida-roles</strong>: This module contains the definition of the Ansible roles that contains the actions corresponding to 
         the security controls that are defined for each profile that a machine may have assigned. These actions can be 
@@ -319,5 +321,5 @@ of the deployed servers to ensure proper deployment.</p>
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-06-25 08:17:17.349625+00:00
+Build Date UTC : 2020-06-25 08:18:03.874597+00:00
 -->
