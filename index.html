@@ -52,13 +52,43 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#about-the-project">About the Project</a>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a>
+    <li class="toctree-l3"><a class="reference internal" href="#download-and-install">Download and install</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#environment-setup">Environment SetUp</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#add-host">Add Host</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hardening">Hardening</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#all-cis-benchmarks">All CIS Benchmarks</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cis-points">CIS Points</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cis-sections">CIS Sections</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cis-controls">CIS Controls</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-info">Getting Info</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lynis-score">Lynis Score</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#machine-info">Machine Info</a>
     </li>
         </ul>
     </li>
@@ -131,39 +161,103 @@
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
-<li><a href="#about-the-project">About the Project</a></li>
-<li><a href="#getting-started">Getting Started</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#overview">Overview</a></li>
 <li><a href="#installation">Installation</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#download-and-install">Download and install</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#environment-setup">Environment SetUp</a></li>
+<li><a href="#add-host">Add Host</a></li>
+<li><a href="#variables">Variables</a></li>
+<li><a href="#hardening">Hardening</a></li>
+<li><a href="#all-cis-benchmarks">All CIS Benchmarks</a></li>
+<li><a href="#cis-points">CIS Points</a></li>
+<li><a href="#cis-sections">CIS Sections</a></li>
+<li><a href="#cis-controls">CIS Controls</a></li>
+<li><a href="#getting-info">Getting Info</a></li>
+<li><a href="#lynis-score">Lynis Score</a></li>
+<li><a href="#machine-info">Machine Info</a></li>
 <li><a href="#license">License</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
-<!-- ABOUT THE PROJECT -->
+<!-- Overview -->
 
-<h2 id="about-the-project">About the Project</h2>
+<hr />
+<h2 id="overview">Overview</h2>
 <p>The Egida project is a server orchestration system that allows to perform and deploy security configurations 
 (custom control lists) over a machine infrastructure. These security configurations can shield and protect those 
 servers by implementing the desired security measures depending on the server profile. Controls are sourced from the 
 <a href="https://www.cisecurity.org/cis-benchmarks/">CIS Benchmarks</a>, and we also need to obtain system information about each 
 of the deployed servers to ensure proper deployment.</p>
-<!-- GETTING STARTED -->
+<p>To achieve that, Egida is built using a microservices-based architecture composed of the following three modules:
+- <strong>egida</strong>: This is the main module, in charge of providing the communication interfaces with the user, as well as the 
+         process of the specific domain language called Aspida. Using this module, the user can define 
+         the different profiles to work with and the actions to be performed.</p>
+<ul>
+<li>
+<p><strong>egida-roles</strong>: This module contains the definition of the Ansible roles that contains the actions corresponding to 
+        the security controls that are defined for each profile that a machine may have assigned. These actions can be 
+        either hardening operations (CIS Benchmarks) or setup actions to prepare that machine so it can be 
+        used correctly by Egida.</p>
+</li>
+<li>
+<p><strong>egida-api</strong>: The functionality of this module is to provide information of each machine to be used by Egida. 
+        This information can be varied: the services that are currently running, the operating system version or the 
+        score obtained with the <a href="https://cisofy.com/lynis/">Lynis</a> tool… any kind of information that we determine it is 
+        interesting to better deploy any security control. </p>
+</li>
+</ul>
+<p><img alt="Egida Network" src="img/esquema.png" /></p>
+<!-- Installation -->
 
+<hr />
+<h2 id="installation">Installation</h2>
+<p>Installation</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Prerrequisites</p>
+<h3 id="download-and-install">Download and install</h3>
+<p>Download and install</p>
+<!-- Getting Started -->
+
+<hr />
 <h2 id="getting-started">Getting Started</h2>
 <p>Getting Started</p>
-<h3 id="prerequisites">Prerequisites</h3>
-<ol>
-<li>Ansible</li>
-</ol>
-<h3 id="installation">Installation</h3>
-<ol>
-<li>Download the source from <a href="https://github.com/antonioalfa22/egida/releases">here</a>.</li>
-</ol>
+<h3 id="environment-setup">Environment SetUp</h3>
+<p>Environment SetUp</p>
+<h3 id="add-host">Add Host</h3>
+<p>Add Host</p>
+<h3 id="variables">Variables</h3>
+<p>Variables</p>
+<!-- Hardening -->
+
+<hr />
+<h2 id="hardening">Hardening</h2>
+<p>Hardening</p>
+<h3 id="all-cis-benchmarks">All CIS Benchmarks</h3>
+<p>All</p>
+<h3 id="cis-points">CIS Points</h3>
+<p>CIS Points</p>
+<h3 id="cis-sections">CIS Sections</h3>
+<p>CIS Sections</p>
+<h3 id="cis-controls">CIS Controls</h3>
+<p>CIS Controls</p>
+<!-- Getting info -->
+
+<hr />
+<h2 id="getting-info">Getting Info</h2>
+<p>Getting Info</p>
+<h3 id="lynis-score">Lynis Score</h3>
+<p>Lynis Score</p>
+<h3 id="machine-info">Machine Info</h3>
+<p>Machine Info</p>
 <!-- LICENSE -->
 
+<hr />
 <h2 id="license">License</h2>
 <p>Distributed under the Apache 2.0 License. See <code>LICENSE</code> for more information.</p>
 <!-- CONTACT -->
 
+<hr />
 <h2 id="contact">Contact</h2>
 <p>Authors:</p>
 <ul>
@@ -225,5 +319,5 @@ of the deployed servers to ensure proper deployment.</p>
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-06-24 09:20:40.643069+00:00
+Build Date UTC : 2020-06-25 08:17:17.349625+00:00
 -->
