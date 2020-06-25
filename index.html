@@ -214,9 +214,33 @@ of the deployed servers to ensure proper deployment.</p>
 
 <hr />
 <h2 id="installation">Installation</h2>
-<p>Installation</p>
 <h3 id="prerequisites">Prerequisites</h3>
-<p>Prerrequisites</p>
+<p>Egida v1.0.0 requires the following software to be installed on the master node:</p>
+<blockquote>
+<p>Currently, Egida v1.0.0 needs an Ubuntu 18.04 LTS OS.</p>
+</blockquote>
+<ul>
+<li><strong>Ansible &gt;2.8</strong>: <a href="https://docs.ansible.com/ansible/latest/installation_guide/index.html">Install Ansible</a></li>
+</ul>
+<pre><code class="commandline">sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+</code></pre>
+
+<ul>
+<li><strong>Python 3.x</strong>: <a href="https://www.python.org/downloads/">Install Python 3</a></li>
+</ul>
+<pre><code class="commandline">sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.7
+</code></pre>
+
+<blockquote>
+<p>At this point, Python 3.7 is installed on your Ubuntu system and ready to be used. You can verify it by typing
+<code>python3.7 --version</code></p>
+</blockquote>
 <h3 id="download-and-install">Download and install</h3>
 <p>Download and install</p>
 <!-- Getting Started -->
@@ -321,5 +345,5 @@ of the deployed servers to ensure proper deployment.</p>
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-06-25 08:18:03.874597+00:00
+Build Date UTC : 2020-06-25 08:42:09.702844+00:00
 -->
