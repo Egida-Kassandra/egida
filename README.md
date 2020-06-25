@@ -29,15 +29,28 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [About the Project](#about-the-project)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+* [Overview](#overview)
+* [Installation](https://antonioalfa22.github.io/egida/#installation)
+  * [Prerequisites](https://antonioalfa22.github.io/egida/#prerequisites)
+  * [Download and install](https://antonioalfa22.github.io/egida/#download-and-install)
+* [Getting Started](https://antonioalfa22.github.io/egida/#getting-started)
+  * [Environment SetUp](https://antonioalfa22.github.io/egida/#environment-setup)
+  * [Add Host](https://antonioalfa22.github.io/egida/#add-host)
+  * [Variables](https://antonioalfa22.github.io/egida/#variables)
+* [Hardening](https://antonioalfa22.github.io/egida/#hardening)
+  * [All CIS Benchmarks](https://antonioalfa22.github.io/egida/#all-cis-benchmarks)
+  * [CIS Points](https://antonioalfa22.github.io/egida/#cis-points)
+  * [CIS Sections](https://antonioalfa22.github.io/egida/#cis-sections)
+  * [CIS Controls](https://antonioalfa22.github.io/egida/#cis-controls)
+* [Getting Info](https://antonioalfa22.github.io/egida/#getting-info)
+  * [Lynis Score](https://antonioalfa22.github.io/egida/#lynis-score)
+  * [Machine Info](https://antonioalfa22.github.io/egida/#machine-info)
 * [License](#license)
 * [Contact](#contact)
 
-<!-- ABOUT THE PROJECT -->
-## About the Project
+<!-- Overview -->
+---
+## Overview
 
 The Egida project is a server orchestration system that allows to perform and deploy security configurations 
 (custom control lists) over a machine infrastructure. These security configurations can shield and protect those 
@@ -45,19 +58,25 @@ servers by implementing the desired security measures depending on the server pr
 [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/), and we also need to obtain system information about each 
 of the deployed servers to ensure proper deployment.
 
-<!-- GETTING STARTED -->
-## Getting Started
+To achieve that, Egida is built using a microservices-based architecture composed of the following three modules:
 
-Getting Started
 
-### Prerequisites
+- **egida**: This is the main module, in charge of providing the communication interfaces with the user, as well as the 
+         process of the specific domain language called Aspida. Using this module, the user can define 
+         the different profiles to work with and the actions to be performed.
+         
+- **egida-roles**: This module contains the definition of the Ansible roles that contains the actions corresponding to 
+        the security controls that are defined for each profile that a machine may have assigned. These actions can be 
+        either hardening operations (CIS Benchmarks) or setup actions to prepare that machine so it can be 
+        used correctly by Egida.
+        
+- **egida-api**: The functionality of this module is to provide information of each machine to be used by Egida. 
+        This information can be varied: the services that are currently running, the operating system version or the 
+        score obtained with the [Lynis](https://cisofy.com/lynis/) tool… any kind of information that we determine it is 
+        interesting to better deploy any security control. 
 
-1. Ansible
 
-### Installation
-
-1. Download the source from [here](https://github.com/antonioalfa22/egida/releases).
-
+![Egida Network](img/esquema.png)
 
 <!-- LICENSE -->
 ## License
