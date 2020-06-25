@@ -1,7 +1,7 @@
 import os
 
-from src.common.command import run_command
-from src.common.file_manager import FileManager
+from egida.common.command import run_command
+from egida.common.file_manager import FileManager
 
 
 class Playbook:

@@ -1,9 +1,9 @@
 import argparse
 
-from src.menu import menu
-from src.dsl import compile
-from src.config import config
-from src.info import info
+from egida.menu import menu
+from egida.dsl import compile
+from egida.config import config
+from egida.info import info
 
 
 # ========  Mode  ===================
@@ -23,7 +23,8 @@ def parse_args():
     return args
 
 
-def main(args) -> None:
+def main() -> None:
+    args = parse_args()
     if args.mode == "menu":
         menu()
     elif args.mode == "compile":
@@ -36,5 +37,3 @@ def main(args) -> None:
         invalid_args()
 
 
-if __name__ == "__main__":
-    main(parse_args())

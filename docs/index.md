@@ -80,11 +80,31 @@ To achieve that, Egida is built using a microservices-based architecture compose
 ---
 ## Installation
 
-Installation
-
 ### Prerequisites
 
-Prerrequisites
+Egida v1.0.0 requires the following software to be installed on the master node:
+
+> Currently, Egida v1.0.0 needs an Ubuntu 18.04 LTS OS.
+
+- **Ansible >2.8**: [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
+
+```commandline
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+```
+
+- **Python 3.x**: [Install Python 3](https://www.python.org/downloads/)
+```commandline
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.7
+```
+
+> At this point, Python 3.7 is installed on your Ubuntu system and ready to be used. You can verify it by typing
+> `python3.7 --version`
 
 ### Download and install
 

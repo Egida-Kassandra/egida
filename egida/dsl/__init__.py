@@ -1,9 +1,9 @@
 from antlr4 import *
 
-from src.dsl.listeners.aspida_listener import AspidaListener
-from src.dsl.parser.aspida_lexer import AspidaLexer
-from src.dsl.parser.aspida_parser import AspidaParser
-from src.dsl.codegen import run_file
+from egida.dsl.listeners.aspida_listener import AspidaListener
+from egida.dsl.parser.aspida_lexer import AspidaLexer
+from egida.dsl.parser.aspida_parser import AspidaParser
+from egida.dsl.codegen import run_file
 
 
 def compile(args):

@@ -1,5 +1,5 @@
-from src.info.worker_api_client import WorkerAPIClient
-from src.common.command import run_command
+from egida.info.worker_api_client import WorkerAPIClient
+from egida.common.command import run_command
 from multiprocessing import Pool
 
 

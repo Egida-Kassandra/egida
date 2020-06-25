@@ -1,6 +1,6 @@
 # Generated from aspida.g4 by ANTLR 4.8
 from antlr4 import *
-from src.dsl.parser.aspida_parser import AspidaParser
+from egida.dsl.parser.aspida_parser import AspidaParser
 
 # This class defines a complete generic visitor for a parse tree produced by aspidaParser.
 

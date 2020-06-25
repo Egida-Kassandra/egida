@@ -4,5 +4,5 @@ def config(args):
             f.write("[{}]\n".format(args.group))
             for host in args.hosts:
                 f.write("{} ansible_ssh_user=root\n".format(host))
-        with open("src/common/hosts", "w") as f:
+        with open("egida/common/hosts", "w") as f:
             f.write(args.group)

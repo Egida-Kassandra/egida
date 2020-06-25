@@ -1,7 +1,7 @@
 from PyInquirer import prompt
 from consolemenu import *
-from src.menu.cis import sections, controls, all, points
-from src.common.playbook import Playbook
+from egida.menu.cis import sections, controls, all, points
+from egida.common.playbook import Playbook
 
 
 class CISConsole:

@@ -3,7 +3,7 @@ from consolemenu.items import *
 from consolemenu.format import *
 from consolemenu.menu_component import Dimension
 
-from src.menu.cis import CISConsole
+from egida.menu.cis import CISConsole
 
 
 class Console:

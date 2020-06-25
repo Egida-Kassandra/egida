@@ -1,5 +1,5 @@
-from src.dsl.codegen.aspida import Aspida
-from src.dsl.codegen.vars_visitor import VarsVisitor
+from egida.dsl.codegen.aspida import Aspida
+from egida.dsl.codegen.vars_visitor import VarsVisitor
 
 def run_file(tree):
     # Visitor

@@ -1,4 +1,4 @@
-from src.menu.console import Console
+from egida.menu.console import Console
 
 
 def menu():

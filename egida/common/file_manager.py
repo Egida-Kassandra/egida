@@ -13,7 +13,7 @@ class FileManager:
         self.hosts = ''
 
     def scan_custom_dir(self):
-        with os.scandir('custom/') as entries:
+        with os.scandir('egida/custom/') as entries:
             var_files = [x.name.split('_')[1] for x in entries if x.name.split('_')[0] == 'vars']
             questions = [
                 {
@@ -27,7 +27,7 @@ class FileManager:
             answers = prompt(questions)
             self.vars_file = answers['vars_file']
         hosts_groups = []
-        with open(r'src/common/hosts') as host_file:
+        with open(r'egida/common/hosts') as host_file:
             for line in host_file.readlines():
                 hosts_groups.append(line)
         questions = [
@@ -43,7 +43,7 @@ class FileManager:
         self.hosts = '- {}'.format(answers['hosts'])
 
     def read_vars_files(self):
-        with open(r'custom/vars_{}'.format(self.vars_file)) as var_file:
+        with open(r'egida/custom/vars_{}'.format(self.vars_file)) as var_file:
             for line in var_file.readlines():
                 self.vars.append('    {}'.format(line))
 
