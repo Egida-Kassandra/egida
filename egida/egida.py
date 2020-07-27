@@ -5,6 +5,9 @@ from egida.dsl import compile
 from egida.config import config
 from egida.info import info
 
+# ========  Vars  ===================
+connection_mode = "local"
+
 
 # ========  Mode  ===================
 def invalid_args():
@@ -17,14 +20,16 @@ def parse_args():
     parser.add_argument("mode", help="EGIDA Mode [menu | compile | config | info]")
     parser.add_argument("--file", help="ASPIDA file")
     parser.add_argument("-g", "--group", help="Host group")
-    parser.add_argument('-H','--hosts', nargs='+', help='List of hosts, ej: 192.128.2.1 localhost 129.1.1.1')
+    parser.add_argument("-c", "--connection", help="Connection type (default local): local | ssh")
     parser.add_argument('-a', '--audit', help='Audit hosts with lynis', default=False, action='store_true')
     args = parser.parse_args()
     return args
 
 
-def main() -> None:
+def main():
     args = parse_args()
+    global connection_mode
+    connection_mode = args.connection if args.connection is "ssh" else "local"
     if args.mode == "menu":
         menu()
     elif args.mode == "compile":
@@ -35,5 +40,3 @@ def main() -> None:
         info(args)
     else:
         invalid_args()
-
-

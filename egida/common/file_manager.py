@@ -1,6 +1,7 @@
 import os
 from PyInquirer import prompt
 from jinja2 import Template
+from egida.egida import connection_mode
 
 
 class FileManager:
@@ -52,7 +53,7 @@ class FileManager:
         with open(os.path.join(cur_path, "playbook-custom.yml"), 'w+') as file:
             with open(os.path.join(cur_path, 'playbook.yml.j2'), 'r') as template:
                 t = Template(template.read())
-                file.write(t.render(vars=''.join(self.vars), hosts=self.hosts, connection='ssh'))
+                file.write(t.render(vars=''.join(self.vars), hosts=self.hosts, connection=connection_mode))
 
     def create_vars_and_hosts(self):
         self.scan_custom_dir()
