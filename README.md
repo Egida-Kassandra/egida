@@ -22,7 +22,7 @@
     ·
     <a href="https://github.com/antonioalfa22/egida/issues">Report Bug</a>
     ·
-    <a href="https://github.com/antonioalfa22/egida/issues">Request Feature</a>
+    <a href="https://pypi.org/project/egida">PyPI Project</a>
   </p>
 </div>
 
