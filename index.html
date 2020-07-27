@@ -235,14 +235,26 @@ sudo apt install ansible
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt install python3.7
+sudo apt install python3-pip
 </code></pre>
 
 <blockquote>
 <p>At this point, Python 3.7 is installed on your Ubuntu system and ready to be used. You can verify it by typing
 <code>python3.7 --version</code></p>
 </blockquote>
+<ul>
+<li><strong>unzip</strong>: Install Unzip</li>
+</ul>
+<pre><code class="commandline">sudo apt install unzip
+</code></pre>
+
 <h3 id="download-and-install">Download and install</h3>
-<p>Download and install</p>
+<p>In order to install the Egida core you have to follow the instructions below.</p>
+<pre><code class="commandline">wget https://github.com/antonioalfa22/egida/releases/download/1.0.3/install.sh
+sudo chmod +x install.sh
+sudo ./install.sh
+</code></pre>
+
 <!-- Getting Started -->
 
 <hr />
@@ -345,5 +357,5 @@ sudo apt install python3.7
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-06-25 08:42:09.702844+00:00
+Build Date UTC : 2020-07-27 12:54:33.345003+00:00
 -->
