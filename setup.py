@@ -16,7 +16,7 @@ setup(
     license = "MIT",
     url = "https://antonioalfa22.github.io/egida/",
     download_url = "https://github.com/antonioalfa22/egida/releases/tag/1.0.1",
-    packages=find_packages('egida'),
+    packages=find_packages(include=['egida', 'egida.*']),
     entry_points = {
         'console_scripts' : ['egida = egida.egida:main']
     }
