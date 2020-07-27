@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 set -e
 
 # ==============> Download & install egida-role-cis
@@ -11,7 +10,7 @@ rm egida-role-cis.zip
 # ==============> Download & install egida
 wget https://github.com/antonioalfa22/egida/releases/download/1.0.3/egida.zip
 unzip egida.zip
-cd egida
+cd egida-master
 
 # Install requirements
 pip3 install -r requirements.txt
