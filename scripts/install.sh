@@ -4,12 +4,12 @@
 set -e
 
 # ==============> Download & install egida-role-cis
-curl -o https://github.com/antonioalfa22/egida-role-cis/releases/download/1.0.3/egida-role-cis.zip
+wget https://github.com/antonioalfa22/egida-role-cis/releases/download/1.0.3/egida-role-cis.zip
 unzip egida-role-cis.zip -d /etc/ansible/roles
 rm egida-role-cis.zip
 
 # ==============> Download & install egida
-curl -o https://github.com/antonioalfa22/egida/releases/download/1.0.3/egida.zip
+wget https://github.com/antonioalfa22/egida/releases/download/1.0.3/egida.zip
 unzip egida.zip
 cd egida
 
