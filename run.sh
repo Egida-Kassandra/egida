@@ -13,5 +13,8 @@ mkdir /etc/egida/custom
 mkdir /etc/egida/common
 
 # Move egida files
-mv ./etc/common /etc/egida/common
-mv ./etc/custom /etc/egida/custom
+mv ./etc/common /etc/egida/
+mv ./etc/custom /etc/egida/
+
+# Install egida
+python3 setup.py install

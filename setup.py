@@ -1,6 +1,4 @@
-import os
 from setuptools import setup, find_packages
-from egida import egida
 
 from os import path
 this_directory = path.abspath(path.dirname(__file__))
@@ -21,11 +19,5 @@ setup(
     packages=find_packages('egida'),
     entry_points = {
         'console_scripts' : ['egida = egida.egida:main']
-    },
-    package_data={'egida': [
-        'common/hosts',
-        'common/playbook.yml.j2',
-        'common/playbook-custom.yml',
-        'custom/vars_template.yml'
-    ]}
+    }
 )
