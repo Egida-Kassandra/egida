@@ -4,9 +4,7 @@ from egida.menu import menu
 from egida.dsl import compile
 from egida.config import config
 from egida.info import info
-
-# ========  Vars  ===================
-connection_mode = "local"
+from egida.common import set_connection_mode
 
 
 # ========  Mode  ===================
@@ -25,13 +23,10 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-def get_connection_mode():
-    return connection_mode
-
 def main():
     args = parse_args()
-    global connection_mode
     connection_mode = args.connection if args.connection is "ssh" else "local"
+    set_connection_mode(connection_mode)
     if args.mode == "menu":
         menu()
     elif args.mode == "compile":

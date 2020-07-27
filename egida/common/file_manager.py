@@ -1,7 +1,7 @@
 import os
 from PyInquirer import prompt
 from jinja2 import Template
-from egida.egida import get_connection_mode
+from egida.common import get_connection_mode
 
 
 class FileManager:
