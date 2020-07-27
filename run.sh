@@ -2,6 +2,10 @@
 
 set -e
 
+# Get role cis
+git clone https://github.com/antonioalfa22/egida-role-cis
+mv egida-role-cis /etc/ansible/roles
+
 # Install requirements
 pip3 install -r requirements.txt
 
@@ -13,7 +17,6 @@ mkdir /etc/egida/custom
 mkdir /etc/egida/common
 
 # Move egida files
-mv ./common /etc/egida/
 mv ./custom /etc/egida/
 
 # Install egida
