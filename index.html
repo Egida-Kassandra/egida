@@ -66,7 +66,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#environment-setup">Environment SetUp</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#add-host">Add Host</a>
+    <li class="toctree-l3"><a class="reference internal" href="#hosts">Hosts</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a>
     </li>
@@ -259,11 +259,18 @@ sudo ./install.sh
 
 <hr />
 <h2 id="getting-started">Getting Started</h2>
-<p>Getting Started</p>
+<p>Once Egida has been successfully installed, you must follow the following steps in order to run it correctly:</p>
 <h3 id="environment-setup">Environment SetUp</h3>
-<p>Environment SetUp</p>
-<h3 id="add-host">Add Host</h3>
-<p>Add Host</p>
+<p>The preparation of the environment is necessary to customize the execution of Egida to your restrictions.</p>
+<h3 id="hosts">Hosts</h3>
+<p><strong>Add hosts group</strong>: To add a new hosts group you have to follow these steps:</p>
+<pre><code class="commandline">sudo egida config -g [Group Name] --hosts [Host1 Host2 ... HostN]
+</code></pre>
+
+<blockquote>
+<p><strong>Example</strong>: <code>sudo egida config -g servers --hosts localhost 192.168.0.11 192.168.0.12</code></p>
+<p>Currently, editing groups is not implemented, if you want to add or remove hosts to a group you must edit the hosts file located in /etc/ansible/hosts</p>
+</blockquote>
 <h3 id="variables">Variables</h3>
 <p>Variables</p>
 <!-- Hardening -->
@@ -357,5 +364,5 @@ sudo ./install.sh
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-07-27 12:54:33.345003+00:00
+Build Date UTC : 2020-07-28 07:57:11.415465+00:00
 -->
