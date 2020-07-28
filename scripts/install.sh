@@ -34,3 +34,8 @@ mv ./custom /etc/egida/
 
 # Install egida
 python3 setup.py install
+
+# Clear install
+cd ..
+rm -rf egida-master
+rm egida.zip
