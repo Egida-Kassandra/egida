@@ -27,8 +27,8 @@ class Console:
 
     def set_menu_items(self, menu):
         menu.append_item(FunctionItem("CIS Benchmarks", self.action, args=['cis_benchmarks']))
-        menu.append_item(FunctionItem("LAMP", self.action, args=['lamp']))
-        menu.append_item(FunctionItem("LEMP", self.action, args=['lemp']))
+        menu.append_item(FunctionItem("LAMP (soon)", self.action, args=['lamp']))
+        menu.append_item(FunctionItem("LEMP (soon)", self.action, args=['lemp']))
 
     def action(self, name):
         exec('self.{}()'.format(name))

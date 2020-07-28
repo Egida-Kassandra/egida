@@ -101,28 +101,49 @@ sudo apt update
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt install python3.7
+sudo apt install python3-pip
 ```
 
 > At this point, Python 3.7 is installed on your Ubuntu system and ready to be used. You can verify it by typing
 > `python3.7 --version`
 
+- **unzip**: Install Unzip
+```commandline
+sudo apt install unzip
+```
+
 ### Download and install
 
-Download and install
+In order to install the Egida core you have to follow the instructions below.
+
+```commandline
+wget https://github.com/antonioalfa22/egida/releases/download/1.0.3/install.sh
+sudo chmod +x install.sh
+sudo ./install.sh
+```
+
 
 <!-- Getting Started -->
 ---
 ## Getting Started
 
-Getting Started
+Once Egida has been successfully installed, you must follow the following steps in order to run it correctly:
 
 ### Environment SetUp
 
-Environment SetUp
+The preparation of the environment is necessary to customize the execution of Egida to your restrictions.
 
-### Add Host
+### Hosts
 
-Add Host
+**Add hosts group**: To add a new hosts group you have to follow these steps:
+
+```commandline
+sudo egida config -g [Group Name] --hosts [Host1 Host2 ... HostN]
+```
+
+> **Example**: `sudo egida config -g servers --hosts localhost 192.168.0.11 192.168.0.12`
+
+> Currently, editing groups is not implemented, if you want to add or remove hosts to a group you must edit the hosts file located in /etc/ansible/hosts
 
 ### Variables
 
