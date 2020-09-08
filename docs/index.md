@@ -263,11 +263,11 @@ The option using a DSL (Domain Specific Language) is under development.
 To start using Egida you must run it as follows:
 
 ```shell script
-sudo egida [-h] [--file FILE] [-g GROUP] [-c CONNECTION] [-H HOSTS [HOSTS ...]] [-a] mode
+sudo egida [-h] [--file FILE] [-g GROUP] [-c CONNECTION] [-H HOSTS ...] [-a] mode
 ```
 
 **Positional arguments:**
-- _mode:_ EGIDA Mode [menu | compile | config | info]
+- _mode:_ EGIDA Mode \[menu | compile | config | info\]
 
 **Optional arguments:**
 - **_-h, --help_**: Show help
