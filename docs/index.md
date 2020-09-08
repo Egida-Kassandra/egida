@@ -299,13 +299,13 @@ You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to inver
 ![Egida CIS Sections](img/cissections.png)
 
 This option will perform all the selected sections of the CIS Benchmarks.
-You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.
+You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
 
 ### CIS Controls
 ![Egida CIS Controls](img/ciscontrols.png)
 
 This option will perform all the selected controls of the CIS Benchmarks.
-You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.
+You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
 
 ### Hosts and Templates
 ![Egida Hosts and Templates](img/hoststemplates.png)
