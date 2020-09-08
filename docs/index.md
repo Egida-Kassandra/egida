@@ -293,7 +293,7 @@ in the variables _cis_level_1_exclusions_ and _cis_level_2_exclusions_ defined i
 ![Egida CIS Points](img/cispoints.png)
 
 This option will perform all the selected points of the CIS Benchmarks.
-You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.
+You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
 
 ### CIS Sections
 ![Egida CIS Sections](img/cissections.png)
