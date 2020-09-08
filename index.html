@@ -65,10 +65,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#environment-setup">Environment SetUp</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#hosts">Hosts</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#hosts">Hosts</a>
+    <li class="toctree-l4"><a class="reference internal" href="#variables">Variables</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a>
+        </ul>
     </li>
         </ul>
     </li>
@@ -82,15 +84,11 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#cis-controls">CIS Controls</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hosts-and-templates">Hosts and Templates</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#getting-info">Getting Info</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#lynis-score">Lynis Score</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#machine-info">Machine Info</a>
-    </li>
-        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#license">License</a>
     </li>
@@ -217,7 +215,7 @@ of the deployed servers to ensure proper deployment.</p>
 <h3 id="prerequisites">Prerequisites</h3>
 <p>Egida v1.0.0 requires the following software to be installed on the master node:</p>
 <blockquote>
-<p>Currently, Egida v1.0.0 needs an Ubuntu 18.04 LTS OS.</p>
+<p>Currently, Egida v1.0.0 needs an Ubuntu &gt;=18.04 LTS OS.</p>
 </blockquote>
 <ul>
 <li><strong>Ansible &gt;2.8</strong>: <a href="https://docs.ansible.com/ansible/latest/installation_guide/index.html">Install Ansible</a></li>
@@ -262,16 +260,17 @@ sudo ./install.sh
 <p>Once Egida has been successfully installed, you must follow the following steps in order to run it correctly:</p>
 <h3 id="environment-setup">Environment SetUp</h3>
 <p>The preparation of the environment is necessary to customize the execution of Egida to your restrictions.</p>
-<h3 id="hosts">Hosts</h3>
+<h4 id="hosts">Hosts</h4>
 <p><strong>Add hosts group</strong>: To add a new hosts group you have to follow these steps:</p>
 <pre><code class="commandline">sudo egida config -g [Group Name] --hosts [Host1 Host2 ... HostN]
 </code></pre>
 
 <blockquote>
 <p><strong>Example</strong>: <code>sudo egida config -g servers --hosts localhost 192.168.0.11 192.168.0.12</code></p>
+<p><strong>Localhost Example</strong>: <code>sudo egida config -g servers --hosts localhost</code></p>
 <p>Currently, editing groups is not implemented, if you want to add or remove hosts to a group you must edit the hosts file located in /etc/ansible/hosts</p>
 </blockquote>
-<h3 id="variables">Variables</h3>
+<h4 id="variables">Variables</h4>
 <p>Many of the operations require data which, depending on the type of installation, can be variable (e.g. user names, passwords, etc.).</p>
 <p>To edit these variables there is a template located in <em>/etc/egida/custom/vars_template.yml</em></p>
 <p>Any YAML file whose name begins with <strong>vars_</strong> located in the <em>/etc/egida/custom</em> folder will be considered as a possible configuration of 
@@ -375,24 +374,54 @@ nameservers: [8.8.8.8, 8.8.4.4]
 
 <hr />
 <h2 id="hardening">Hardening</h2>
-<p>Hardening</p>
+<p>At this moment only the <strong>console menu</strong> hardening option is developed.
+The option using a DSL (Domain Specific Language) is under development.</p>
+<p>To start using Egida you must run it as follows:</p>
+<p>```shell script
+sudo egida [-h] [--file FILE] [-g GROUP] [-c CONNECTION] [-H HOSTS [HOSTS ...]] [-a] mode</p>
+<pre><code>
+**Positional arguments:**
+- _mode:_ EGIDA Mode [menu | compile | config | info]
+
+**Optional arguments:**
+- **_-h, --help_**: Show help
+- **_--file_**: Aspida (DSL) file (Not implemented yet)
+- **_-g GROUP, --group GROUP_**: Host group
+- **_-c CONNECTION, --connection CONNECTION_**: Connection type (default local): local | ssh
+- **_-a, --audit_**: Audit hosts with lynis (Needs egida-api-worker)
+
+**Localhost Example:**
+```shell script
+sudo egida menu
+</code></pre>
+
+<p><img alt="Egida Menu" src="img/egidamenu.png" />
+At this moment, only the CIS Benchmarks based hardening option is available, 
+but in future versions the option of LAMP and LEMP specialized hardening will be added.</p>
 <h3 id="all-cis-benchmarks">All CIS Benchmarks</h3>
-<p>All</p>
+<p>This option will perform all the controls of the CIS Benchmarks except those ones included 
+in the variables <em>cis_level_1_exclusions</em> and <em>cis_level_2_exclusions</em> defined in the variables file.</p>
 <h3 id="cis-points">CIS Points</h3>
-<p>CIS Points</p>
+<p><img alt="Egida CIS Points" src="img/cispoints.png" /></p>
+<p>This option will perform all the selected points of the CIS Benchmarks.
+You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.</p>
 <h3 id="cis-sections">CIS Sections</h3>
-<p>CIS Sections</p>
+<p><img alt="Egida CIS Sections" src="img/cissections.png" /></p>
+<p>This option will perform all the selected sections of the CIS Benchmarks.
+You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.</p>
 <h3 id="cis-controls">CIS Controls</h3>
-<p>CIS Controls</p>
+<p><img alt="Egida CIS Controls" src="img/ciscontrols.png" /></p>
+<p>This option will perform all the selected controls of the CIS Benchmarks.
+You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.</p>
+<h3 id="hosts-and-templates">Hosts and Templates</h3>
+<p><img alt="Egida Hosts and Templates" src="img/hoststemplates.png" /></p>
+<p>In this menu you can select which file of variables you want to use and which hosts group.</p>
+<p><strong>Once selected, the hardening options will begin.</strong></p>
 <!-- Getting info -->
 
 <hr />
 <h2 id="getting-info">Getting Info</h2>
-<p>Getting Info</p>
-<h3 id="lynis-score">Lynis Score</h3>
-<p>Lynis Score</p>
-<h3 id="machine-info">Machine Info</h3>
-<p>Machine Info</p>
+<p>Not implemented yet.</p>
 <!-- LICENSE -->
 
 <hr />
@@ -462,5 +491,5 @@ nameservers: [8.8.8.8, 8.8.4.4]
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-07-28 08:19:51.457568+00:00
+Build Date UTC : 2020-09-08 10:58:46.009178+00:00
 -->
