@@ -278,7 +278,7 @@ To start using Egida you must run it as follows:
 
 **Localhost Example:**
 
-`sudo egida menu`
+> sudo egida menu
 
 ![Egida Menu](img/egidamenu.png)
 At this moment, only the CIS Benchmarks based hardening option is available, 
