@@ -380,17 +380,20 @@ The option using a DSL (Domain Specific Language) is under development.</p>
 <blockquote>
 <p>sudo egida [-h] [--file FILE] [-g GROUP] [-c CONNECTION] [-H HOSTS ...] [-a] mode</p>
 </blockquote>
-<p><strong>Positional arguments:</strong>
-- <em>mode:</em> EGIDA Mode [menu | compile | config | info]</p>
-<p><strong>Optional arguments:</strong>
-- <strong><em>-h, --help</em></strong>: Show help
-- <strong><em>--file</em></strong>: Aspida (DSL) file (Not implemented yet)
-- <strong><em>-g GROUP, --group GROUP</em></strong>: Host group
-- <strong><em>-c CONNECTION, --connection CONNECTION</em></strong>: Connection type (default local): local | ssh
-- <strong><em>-a, --audit</em></strong>: Audit hosts with lynis (Needs egida-api-worker)</p>
-<p><strong>Localhost Example:</strong>
-<code>shell script
-sudo egida menu</code></p>
+<p><strong>Positional arguments:</strong></p>
+<ul>
+<li><em>mode:</em> EGIDA Mode [menu | compile | config | info]</li>
+</ul>
+<p><strong>Optional arguments:</strong></p>
+<ul>
+<li><strong><em>-h, --help</em></strong>: Show help</li>
+<li><strong><em>--file</em></strong>: Aspida (DSL) file (Not implemented yet)</li>
+<li><strong><em>-g GROUP, --group GROUP</em></strong>: Host group</li>
+<li><strong><em>-c CONNECTION, --connection CONNECTION</em></strong>: Connection type (default local): local | ssh</li>
+<li><strong><em>-a, --audit</em></strong>: Audit hosts with lynis (Needs egida-api-worker)</li>
+</ul>
+<p><strong>Localhost Example:</strong></p>
+<p><code>sudo egida menu</code></p>
 <p><img alt="Egida Menu" src="img/egidamenu.png" />
 At this moment, only the CIS Benchmarks based hardening option is available, 
 but in future versions the option of LAMP and LEMP specialized hardening will be added.</p>
@@ -487,5 +490,5 @@ You can use <em>up</em>, <em>down</em> to move, <em>space</em> to select, <em>a<
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-09-08 11:07:24.674931+00:00
+Build Date UTC : 2020-09-08 11:09:22.897236+00:00
 -->
