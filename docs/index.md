@@ -84,7 +84,7 @@ To achieve that, Egida is built using a microservices-based architecture compose
 
 Egida v1.0.0 requires the following software to be installed on the master node:
 
-> Currently, Egida v1.0.0 needs an Ubuntu 18.04 LTS OS.
+> Currently, Egida v1.0.0 needs an Ubuntu >=18.04 LTS OS.
 
 - **Ansible >2.8**: [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html)
 
@@ -133,7 +133,7 @@ Once Egida has been successfully installed, you must follow the following steps 
 
 The preparation of the environment is necessary to customize the execution of Egida to your restrictions.
 
-### Hosts
+#### Hosts
 
 **Add hosts group**: To add a new hosts group you have to follow these steps:
 
@@ -143,9 +143,11 @@ sudo egida config -g [Group Name] --hosts [Host1 Host2 ... HostN]
 
 > **Example**: `sudo egida config -g servers --hosts localhost 192.168.0.11 192.168.0.12`
 
+> **Localhost Example**: `sudo egida config -g servers --hosts localhost`
+
 > Currently, editing groups is not implemented, if you want to add or remove hosts to a group you must edit the hosts file located in /etc/ansible/hosts
 
-### Variables
+#### Variables
 
 Many of the operations require data which, depending on the type of installation, can be variable (e.g. user names, passwords, etc.).
 
@@ -255,32 +257,68 @@ nameservers: [8.8.8.8, 8.8.4.4]
 ---
 ## Hardening
 
-Hardening
+At this moment only the **console menu** hardening option is developed.
+The option using a DSL (Domain Specific Language) is under development.
+
+To start using Egida you must run it as follows:
+
+```shell script
+sudo egida [-h] [--file FILE] [-g GROUP] [-c CONNECTION] [-H HOSTS [HOSTS ...]] [-a] mode
+```
+
+**Positional arguments:**
+- _mode:_ EGIDA Mode [menu | compile | config | info]
+
+**Optional arguments:**
+- **_-h, --help_**: Show help
+- **_--file_**: Aspida (DSL) file (Not implemented yet)
+- **_-g GROUP, --group GROUP_**: Host group
+- **_-c CONNECTION, --connection CONNECTION_**: Connection type (default local): local | ssh
+- **_-a, --audit_**: Audit hosts with lynis (Needs egida-api-worker)
+
+**Localhost Example:**
+```shell script
+sudo egida menu
+```
+
+![Egida Menu](img/egidamenu.png)
+At this moment, only the CIS Benchmarks based hardening option is available, 
+but in future versions the option of LAMP and LEMP specialized hardening will be added.
 
 ### All CIS Benchmarks
-All
+This option will perform all the controls of the CIS Benchmarks except those ones included 
+in the variables _cis_level_1_exclusions_ and _cis_level_2_exclusions_ defined in the variables file.
 
 ### CIS Points
-CIS Points
+![Egida CIS Points](img/cispoints.png)
+
+This option will perform all the selected points of the CIS Benchmarks.
+You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.
 
 ### CIS Sections
-CIS Sections
+![Egida CIS Sections](img/cissections.png)
+
+This option will perform all the selected sections of the CIS Benchmarks.
+You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.
 
 ### CIS Controls
-CIS Controls
+![Egida CIS Controls](img/ciscontrols.png)
 
+This option will perform all the selected controls of the CIS Benchmarks.
+You can use <up>, <down> to move, <space> to select, <a> to toggle, <i> to invert.
+
+### Hosts and Templates
+![Egida Hosts and Templates](img/hoststemplates.png)
+
+In this menu you can select which file of variables you want to use and which hosts group.
+
+**Once selected, the hardening options will begin.**
 
 <!-- Getting info -->
 ---
 ## Getting Info
 
-Getting Info
-
-### Lynis Score
-Lynis Score
-
-### Machine Info
-Machine Info
+Not implemented yet.
 
 
 <!-- LICENSE -->
