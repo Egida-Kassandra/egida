@@ -377,24 +377,20 @@ nameservers: [8.8.8.8, 8.8.4.4]
 <p>At this moment only the <strong>console menu</strong> hardening option is developed.
 The option using a DSL (Domain Specific Language) is under development.</p>
 <p>To start using Egida you must run it as follows:</p>
-<p>```shell script
-sudo egida [-h] [--file FILE] [-g GROUP] [-c CONNECTION] [-H HOSTS ...] [-a] mode</p>
-<pre><code>
-**Positional arguments:**
-- _mode:_ EGIDA Mode \[menu | compile | config | info\]
-
-**Optional arguments:**
-- **_-h, --help_**: Show help
-- **_--file_**: Aspida (DSL) file (Not implemented yet)
-- **_-g GROUP, --group GROUP_**: Host group
-- **_-c CONNECTION, --connection CONNECTION_**: Connection type (default local): local | ssh
-- **_-a, --audit_**: Audit hosts with lynis (Needs egida-api-worker)
-
-**Localhost Example:**
-```shell script
-sudo egida menu
-</code></pre>
-
+<blockquote>
+<p>sudo egida [-h] [--file FILE] [-g GROUP] [-c CONNECTION] [-H HOSTS ...] [-a] mode</p>
+</blockquote>
+<p><strong>Positional arguments:</strong>
+- <em>mode:</em> EGIDA Mode [menu | compile | config | info]</p>
+<p><strong>Optional arguments:</strong>
+- <strong><em>-h, --help</em></strong>: Show help
+- <strong><em>--file</em></strong>: Aspida (DSL) file (Not implemented yet)
+- <strong><em>-g GROUP, --group GROUP</em></strong>: Host group
+- <strong><em>-c CONNECTION, --connection CONNECTION</em></strong>: Connection type (default local): local | ssh
+- <strong><em>-a, --audit</em></strong>: Audit hosts with lynis (Needs egida-api-worker)</p>
+<p><strong>Localhost Example:</strong>
+<code>shell script
+sudo egida menu</code></p>
 <p><img alt="Egida Menu" src="img/egidamenu.png" />
 At this moment, only the CIS Benchmarks based hardening option is available, 
 but in future versions the option of LAMP and LEMP specialized hardening will be added.</p>
@@ -491,5 +487,5 @@ You can use <em>up</em>, <em>down</em> to move, <em>space</em> to select, <em>a<
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2020-09-08 11:05:32.237658+00:00
+Build Date UTC : 2020-09-08 11:07:24.674931+00:00
 -->
