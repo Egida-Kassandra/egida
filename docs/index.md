@@ -265,9 +265,11 @@ To start using Egida you must run it as follows:
 > sudo egida \[-h\] \[--file FILE\] \[-g GROUP\] \[-c CONNECTION\] \[-H HOSTS ...\] \[-a\] mode
 
 **Positional arguments:**
+
 - _mode:_ EGIDA Mode \[menu | compile | config | info\]
 
 **Optional arguments:**
+
 - **_-h, --help_**: Show help
 - **_--file_**: Aspida (DSL) file (Not implemented yet)
 - **_-g GROUP, --group GROUP_**: Host group
@@ -275,9 +277,8 @@ To start using Egida you must run it as follows:
 - **_-a, --audit_**: Audit hosts with lynis (Needs egida-api-worker)
 
 **Localhost Example:**
-```shell script
-sudo egida menu
-```
+
+`sudo egida menu`
 
 ![Egida Menu](img/egidamenu.png)
 At this moment, only the CIS Benchmarks based hardening option is available, 
