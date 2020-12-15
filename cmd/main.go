@@ -23,6 +23,7 @@ func main() {
 		file := os.Args[2]
 		dsl.ParseFile(file)
 	} else if mode == "add-group" {
+		fmt.Println(hostslist,hostsgroup)
 		if hostsgroup != "" && hostslist != "" {
 			config.AddHostGroup(hostsgroup, hostslist)
 		} else {
