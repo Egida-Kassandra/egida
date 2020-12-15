@@ -38,7 +38,7 @@ func createFile() {
 	// RESPUESTAS
 	_ = survey.Ask(qs, &respuestas)
 	vars := collections.Map(io.ReadFile(respuestas.VarsFile), func(x string) string {
-		return "    "+x
+		return "    "+x+"\n"
 	}).([]string)
 	renderFile(vars, respuestas.HostsGroup)
 }
@@ -67,7 +67,7 @@ func getVarsAndHosts() ([]string, []string) {
 	varsroot := "/etc/egida/vars"
 	var varsfiles []string
 	err := filepath.Walk(varsroot, func(path string, info os.FileInfo, err error) error {
-		varsfiles = append(varsfiles, path)
+		if path != "/etc/egida/vars" { varsfiles = append(varsfiles, path) }
 		return nil
 	})
 	if err != nil { fmt.Println("Cant find /etc/egida/vars directory") }
