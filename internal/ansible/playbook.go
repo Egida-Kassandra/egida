@@ -55,7 +55,7 @@ func renderFile(vars []string, hosts string) {
 	tmpl, _ = tmpl.Parse(
 		"---\n" + "\n" + "- name: Harden Server\n"+
 			"  hosts:\n"+"    {{ .Hosts }}\n"+"  connection: {{ .Connection }}\n"+
-			"  become: yes\n"+ "  vars:\n"+"{{ .Vars }}\n"+"\n"+"  roles:\n"+
+			"  become: yes\n"+ "  vars:\n"+"{{ range .Vars }}{{ . }}{{ end }}\n"+"\n"+"  roles:\n"+
 			"    - egida-role-cis\n")
 	f, err := os.Create("/etc/egida/generated.yml")
 	if err != nil {
@@ -83,7 +83,7 @@ func crearMenu(varsfiles []string, hostslist []string) []*survey.Question {
 			Prompt: &survey.Select{
 				Message: "Which vars file do you want to use?",
 				Options: varsfiles,
-				Default: "CIS Benchmarks",
+				Default: "/etc/egida/vars/vars_template",
 			},
 		},
 		{
