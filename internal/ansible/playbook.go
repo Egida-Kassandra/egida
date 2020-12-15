@@ -38,6 +38,7 @@ func createFile() {
 	// RESPUESTAS
 	_ = survey.Ask(qs, &respuestas)
 	vars := collections.Map(io.ReadFile(respuestas.VarsFile), func(x string) string {
+		fmt.Println("    "+x+"\n")
 		return "    "+x+"\n"
 	}).([]string)
 	renderFile(vars, respuestas.HostsGroup)
@@ -54,8 +55,8 @@ func renderFile(vars []string, hosts string) {
 	tmpl, _ = tmpl.Parse(
 		"---\n" + "\n" + "- name: Harden Server\n"+
 			"  hosts:\n"+"    {{ .Hosts }}\n"+"  connection: {{ .Connection }}\n"+
-			"  become: yes\n"+ "  vars:\n"+"    {{ .Vars }}\n"+"\n"+"  roles:\n"+
-			"    - egida-role-cis")
+			"  become: yes\n"+ "  vars:\n"+"{{ .Vars }}\n"+"\n"+"  roles:\n"+
+			"    - egida-role-cis\n")
 	f, err := os.Create("/etc/egida/generated.yml")
 	if err != nil {
 		fmt.Println("Error creating playbook: "+err.Error())
