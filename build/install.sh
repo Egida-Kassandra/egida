@@ -14,12 +14,13 @@ unzip egida-role-setup.zip
 mv egida-role-setup-master /etc/ansible/roles/egida-role-setup
 rm egida-role-setup.zip
 
-# ==============> Download & install egida
-wget https://github.com/antonioalfa22/egida/releases/download/2.0.0/egida
-
-chmod +x egida
-mv egida /usr/local/bin/egida
-
 # Create egida vars location
 mkdir /etc/egida
 mkdir /etc/egida/vars
+
+# ==============> Download & install egida
+wget https://github.com/antonioalfa22/egida/releases/download/2.0.0/egida.zip
+unzip egida.zip
+chmod +x egida
+mv egida /usr/local/bin/egida
+mv vars_template.yml /etc/egida/vars/vars_template.yml

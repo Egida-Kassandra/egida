@@ -14,8 +14,8 @@ func main() {
 	var hostsgroup string
 	var hostslist string
 	flag.StringVar(&connection, "connection", "local", "Connection type (default local): local | ssh")
-	flag.StringVar(&hostsgroup, "g", "", "Host group")
-	flag.StringVar(&hostslist, "hosts", "", "List of hosts, ej: 192.128.2.1 localhost 129.1.1.1")
+	flag.StringVar(&hostsgroup, "group", "", "Host group")
+	flag.StringVar(&hostslist, "hosts", "", "List of hosts, ej: 192.128.2.1,localhost,129.1.1.1")
 	mode := os.Args[1]
 	if mode == "menu" {
 		menu.SelectHardeningMode()
@@ -26,7 +26,7 @@ func main() {
 		if hostsgroup != "" && hostslist != "" {
 			config.AddHostGroup(hostsgroup, hostslist)
 		} else {
-			fmt.Println("Command not found, Try: egida add-group -g example -hosts 192.128.2.1 localhost")
+			fmt.Println("Command not found, Try: egida add-group -group=example -hosts=192.128.2.1,localhost")
 		}
 	} else if mode == "info" {
 
