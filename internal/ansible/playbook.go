@@ -22,7 +22,7 @@ func CreatePlaybook(tags []string)  {
 
 func getVars(tags []string) string {
 	if len(tags) > 0 {
-		return " --tags \"" + "," + strings.Join(tags[:], ",")
+		return " --tags \"" + "," + strings.Join(tags[:], ",") + "\""
 	}
 	return ""
 }
