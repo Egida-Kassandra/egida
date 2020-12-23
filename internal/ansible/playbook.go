@@ -8,55 +8,46 @@ import (
 	"github.com/antonioalfa22/go-utils/io"
 	"os"
 	"path/filepath"
-	"strings"
 	"text/template"
 )
 
 func CreatePlaybook(tags []string)  {
-	createFile()
-	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml", getVars(tags))
+	createFile(tags)
+	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml")
 	if err != nil {
 		fmt.Println("Error on running playbook, Do you have Ansible installed?")
 	}
 }
 
-func getVars(tags []string) string {
-	if len(tags) > 0 {
-		return "--tags \"" + strings.Join(tags[:], ",") + "\""
-	}
-	return ""
-}
-
-func createFile() {
+func createFile(tags []string) {
 	varsfiles, hostlist := getVarsAndHosts()
 	qs := crearMenu(varsfiles, hostlist)
 	respuestas := struct {
 		VarsFile 	 string
 		HostsGroup   string
 	}{}
-	fmt.Println(respuestas.VarsFile)
 	// RESPUESTAS
 	_ = survey.Ask(qs, &respuestas)
 	vars := collections.Map(io.ReadFile(respuestas.VarsFile), func(x string) string {
-		fmt.Println("    "+x)
-		return "    "+x
+		return "    "+x+"\n"
 	}).([]string)
-	renderFile(vars, respuestas.HostsGroup)
+	renderFile(vars, respuestas.HostsGroup, tags)
 }
 
-func renderFile(vars []string, hosts string) {
+func renderFile(vars []string, hosts string, tags []string) {
 	type Options struct {
 		Hosts string
 		Connection string
 		Vars []string
+		Tags []string
 	}
-	options := Options{Hosts: hosts, Vars: vars, Connection: "local"}
+	options := Options{Hosts: hosts, Vars: vars, Connection: "local", Tags: tags}
 	tmpl := template.New("PlaybookTemplate")
 	tmpl, _ = tmpl.Parse(
 		"---\n" + "\n" + "- name: Harden Server\n"+
 			"  hosts:\n"+"    {{ .Hosts }}\n"+"  connection: {{ .Connection }}\n"+
 			"  become: yes\n"+ "  vars:\n"+"{{ range .Vars }}{{ . }}{{ end }}\n"+"\n"+"  roles:\n"+
-			"    - egida-role-cis\n")
+			"    - egida-role-cis\n" + "  tags:\n"+"{{ range .Tags }}{{ . }}{{ end }}\n")
 	f, err := os.Create("/etc/egida/generated.yml")
 	if err != nil {
 		fmt.Println("Error creating playbook: "+err.Error())
