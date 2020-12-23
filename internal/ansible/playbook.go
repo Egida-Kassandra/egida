@@ -14,6 +14,8 @@ import (
 
 func CreatePlaybook(tags []string)  {
 	createFile()
+	fmt.Println("ansible-playbook", "/etc/egida/generated.yml",
+		"--tags=\""+getTags(tags)+"\"")
 	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
 		"--tags=\""+getTags(tags)+"\"")
 	if err != nil {
