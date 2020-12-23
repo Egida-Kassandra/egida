@@ -22,7 +22,7 @@ func CreatePlaybook(tags []string)  {
 
 func getVars(tags []string) string {
 	if len(tags) > 0 {
-		return " --tags [" + "," + strings.Join(tags[:], ",") + "]"
+		return " --tags \"" + strings.Join(tags[:], ",") + "\""
 	}
 	return ""
 }
@@ -38,8 +38,8 @@ func createFile() {
 	// RESPUESTAS
 	_ = survey.Ask(qs, &respuestas)
 	vars := collections.Map(io.ReadFile(respuestas.VarsFile), func(x string) string {
-		fmt.Println("    "+x+"\n")
-		return "    "+x+"\n"
+		fmt.Println("    "+x)
+		return "    "+x
 	}).([]string)
 	renderFile(vars, respuestas.HostsGroup)
 }
@@ -83,7 +83,7 @@ func crearMenu(varsfiles []string, hostslist []string) []*survey.Question {
 			Prompt: &survey.Select{
 				Message: "Which vars file do you want to use?",
 				Options: varsfiles,
-				Default: "/etc/egida/vars/vars_template",
+				Default: "/etc/egida/vars/vars_template.yml",
 			},
 		},
 		{
