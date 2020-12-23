@@ -8,18 +8,24 @@ import (
 	"github.com/antonioalfa22/go-utils/io"
 	"os"
 	"path/filepath"
+	"strings"
 	"text/template"
 )
 
 func CreatePlaybook(tags []string)  {
-	createFile(tags)
-	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml")
+	createFile()
+	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
+		"--tags=\""+getTags(tags)+"\"")
 	if err != nil {
 		fmt.Println("Error on running playbook, Do you have Ansible installed?")
 	}
 }
 
-func createFile(tags []string) {
+func getTags(tags []string) string {
+	return strings.Join(tags[:], ",")
+}
+
+func createFile() {
 	varsfiles, hostlist := getVarsAndHosts()
 	qs := crearMenu(varsfiles, hostlist)
 	respuestas := struct {
@@ -31,17 +37,16 @@ func createFile(tags []string) {
 	vars := collections.Map(io.ReadFile(respuestas.VarsFile), func(x string) string {
 		return "    "+x+"\n"
 	}).([]string)
-	renderFile(vars, respuestas.HostsGroup, tags)
+	renderFile(vars, respuestas.HostsGroup)
 }
 
-func renderFile(vars []string, hosts string, tags []string) {
+func renderFile(vars []string, hosts string) {
 	type Options struct {
 		Hosts string
 		Connection string
 		Vars []string
-		Tags []string
 	}
-	options := Options{Hosts: hosts, Vars: vars, Connection: "local", Tags: tags}
+	options := Options{Hosts: hosts, Vars: vars, Connection: "local"}
 	tmpl := template.New("PlaybookTemplate")
 	tmpl, _ = tmpl.Parse(
 		"---\n" +
@@ -55,10 +60,7 @@ func renderFile(vars []string, hosts string, tags []string) {
 			"{{ range .Vars }}{{ . }}{{ end }}\n"+
 			"\n"+
 			"  roles:\n"+
-			"    - egida-role-cis\n"+
-			"  tags:\n"+
-			"{{ range .Tags }}    - {{ . }}\n"+
-			"{{ end }}\n")
+			"    - egida-role-cis\n")
 	f, err := os.Create("/etc/egida/generated.yml")
 	if err != nil {
 		fmt.Println("Error creating playbook: "+err.Error())
