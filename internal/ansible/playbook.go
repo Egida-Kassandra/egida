@@ -14,7 +14,7 @@ import (
 
 func CreatePlaybook(tags []string)  {
 	createFile()
-	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml " + getVars(tags))
+	err := command.RunCommandPrintOutput("ansible-playbook /etc/egida/generated.yml " + getVars(tags))
 	if err != nil {
 		fmt.Println("Error on running playbook, Do you have Ansible installed?")
 	}
