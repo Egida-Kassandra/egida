@@ -46,8 +46,8 @@ func renderFile(vars []string, hosts string, tags []string) {
 	tmpl, _ = tmpl.Parse(
 		"---\n" + "\n" + "- name: Harden Server\n"+
 			"  hosts:\n"+"    {{ .Hosts }}\n"+"  connection: {{ .Connection }}\n"+
-			"  become: yes\n"+ "  vars:\n"+"{{ range .Vars }}{{ . }}{{ end }}\n"+"\n"+"  roles:\n"+
-			"    - egida-role-cis\n" + "  tags:\n"+"{{ range .Tags }}{{ . }}{{ end }}\n")
+			"  become: yes\n"+ "  vars:\n"+"{{ range .Vars }{{ . }}{{ end }}\n"+"\n"+"  roles:\n"+
+			"    - egida-role-cis\n" + "  tags:\n"+"{{ range .Tags }}}    - {{ . }}\n{{ end }}\n")
 	f, err := os.Create("/etc/egida/generated.yml")
 	if err != nil {
 		fmt.Println("Error creating playbook: "+err.Error())
