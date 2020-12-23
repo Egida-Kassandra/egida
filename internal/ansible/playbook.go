@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/antonioalfa22/go-utils/collections"
+	"github.com/antonioalfa22/go-utils/command"
 	"github.com/antonioalfa22/go-utils/io"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strings"
 	"text/template"
@@ -14,12 +14,8 @@ import (
 
 func CreatePlaybook(tags []string)  {
 	createFile()
-	cmd := exec.Command("ansible-playbook", "/etc/egida/generated.yml",
-		"--tags=\""+getTags(tags)+"\"")
-	fmt.Println(cmd.String())
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	err := cmd.Run()
+	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
+		"--tags="+getTags(tags))
 	if err != nil {
 		fmt.Println("Error on running playbook, Do you have Ansible installed?")
 	}
