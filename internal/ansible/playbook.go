@@ -14,7 +14,7 @@ import (
 
 func CreatePlaybook(tags []string)  {
 	createFile()
-	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml", getVars(tags))
+	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml " + getVars(tags))
 	if err != nil {
 		fmt.Println("Error on running playbook, Do you have Ansible installed?")
 	}
@@ -22,7 +22,7 @@ func CreatePlaybook(tags []string)  {
 
 func getVars(tags []string) string {
 	if len(tags) > 0 {
-		return " --tags \"" + "," + strings.Join(tags[:], ",") + "\""
+		return " --tags [" + "," + strings.Join(tags[:], ",") + "]"
 	}
 	return ""
 }
@@ -91,7 +91,7 @@ func crearMenu(varsfiles []string, hostslist []string) []*survey.Question {
 			Prompt: &survey.Select{
 				Message: "Which hosts group do you want to use?",
 				Options: hostslist,
-				Default: "Select CIS Controls",
+				Default: "local",
 			},
 		},
 	}
