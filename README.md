@@ -1,9 +1,9 @@
-# egida
+# Egida
 
 <!-- PROJECT SHIELDS -->
-[![EGIDA VERSION](https://img.shields.io/badge/egida-v1.0.0-blue?style=for-the-badge&logo=ansible&color=ff69b4)](https://github.com/antonioalfa22/egida)
+[![EGIDA VERSION](https://img.shields.io/badge/egida-v2.0.0-blue?style=for-the-badge&logo=ansible&color=ff69b4)](https://github.com/antonioalfa22/egida)
 [![GitHub license](https://img.shields.io/badge/license-Apache-blue?style=for-the-badge)](https://github.com/antonioalfa22/egida/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/badge/release-v.1.0.0-yellowgreen?style=for-the-badge)](https://github.com/antonioalfa22/egida/releases)
+[![GitHub release](https://img.shields.io/badge/release-v.2.0.0-yellowgreen?style=for-the-badge)](https://github.com/antonioalfa22/egida/releases)
 
 <!-- PROJECT LOGO -->
 
@@ -17,12 +17,6 @@
     <br />
     <a href="https://antonioalfa22.github.io/egida"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/antonioalfa22/egida">View Source</a>
-    ·
-    <a href="https://github.com/antonioalfa22/egida/issues">Report Bug</a>
-    ·
-    <a href="https://pypi.org/project/egida">PyPI Project</a>
   </p>
 </div>
 
