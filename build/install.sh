@@ -21,9 +21,12 @@ mkdir /etc/egida/vars
 # ==============> Download & install egida
 wget https://github.com/antonioalfa22/egida/releases/download/2.0.0/egida.zip
 unzip egida.zip
+cd egida
 chmod +x egida
 mv egida /usr/local/bin/egida
 mv hostsgroups /etc/egida/hostsgroups
 mv vars_template.yml /etc/egida/vars/vars_template.yml
 echo "[local]" > /etc/ansible/hosts
 echo "localhost" >> /etc/ansible/hosts
+cd ..
+rm -rf egida
