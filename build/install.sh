@@ -2,7 +2,9 @@
 
 set -e
 
-mkdir /etc/ansible/roles
+mkdir -p /etc/ansible/roles
+
+apt install -y unzip
 
 # ==============> Download & install egida-role-cis
 wget https://github.com/antonioalfa22/egida-role-cis/releases/download/2.0.0/egida-role-cis.zip

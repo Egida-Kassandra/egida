@@ -17,16 +17,16 @@ func main() {
 	packages := flag.String("packages", "", "Packages info: all")
 	hardening := flag.String("hardscores", "", "Hardening scores info: lynis")
 	//connection := flag.String("connection", "local", "Connection type (default local): local | ssh")
-
+	if len(os.Args) <= 1 { invalidArgs() }
 	mode := os.Args[1]
 	if mode == "menu" {
 		setMenu()
 	} else if mode == "compile" {
 		setCompile()
 	} else if mode == "add-group" {
-		setAddGroup(hostsgroup, hostslist)
+		setAddGroup(*hostsgroup, *hostslist)
 	} else if mode == "info" {
-		setInfo(hostslist, services, packages, hardening)
+		setInfo(*hostslist, *services, *packages, *hardening)
 	} else {
 		invalidArgs()
 	}
@@ -47,17 +47,17 @@ func setCompile() {
 	dsl.ParseFile(file)
 }
 
-func setAddGroup(hostsgroup *string, hostslist *string) {
-	if *hostsgroup != "" && *hostslist != "" {
-		config.AddHostGroup(*hostsgroup, *hostslist)
+func setAddGroup(hostsgroup string, hostslist string) {
+	if hostsgroup != "" && hostslist != "" {
+		config.AddHostGroup(hostsgroup, hostslist)
 	} else {
 		fmt.Println("Command not found, Try: egida add-group -group=example -hosts=192.128.2.1,localhost")
 	}
 }
 
-func setInfo(hostslist *string, services *string, packages *string, hardening *string) {
-	if *hostslist != "" && checkInfoArgs(*services, *packages, *hardening){
-		info.GetWorkerInfo(*hostslist, *services, *packages, *hardening)
+func setInfo(hostslist string, services string, packages string, hardening string) {
+	if hostslist != "" && checkInfoArgs(services, packages, hardening){
+		info.GetWorkerInfo(hostslist, services, packages, hardening)
 	} else {
 		fmt.Println("Command not found, Try: egida info -services=running -packages=all -hardscore=lynis -hosts=192.128.2.1,localhost")
 	}
