@@ -2,6 +2,8 @@
 
 set -e
 
+mkdir /etc/ansible/roles
+
 # ==============> Download & install egida-role-cis
 wget https://github.com/antonioalfa22/egida-role-cis/releases/download/2.0.0/egida-role-cis.zip
 unzip egida-role-cis.zip
@@ -21,7 +23,7 @@ mkdir /etc/egida/vars
 # ==============> Download & install egida
 wget https://github.com/antonioalfa22/egida/releases/download/2.0.0/egida.zip
 unzip egida.zip
-cd egida
+cd build
 chmod +x egida
 mv egida /usr/local/bin/egida
 mv hostsgroups /etc/egida/hostsgroups
@@ -29,4 +31,5 @@ mv vars_template.yml /etc/egida/vars/vars_template.yml
 echo "[local]" > /etc/ansible/hosts
 echo "localhost" >> /etc/ansible/hosts
 cd ..
-rm -rf egida
+rm -rf build
+rm egida.zip
