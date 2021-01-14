@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"github.com/antonioalfa22/go-utils/collections"
 	"github.com/antonioalfa22/go-utils/io"
-	"strings"
 )
 
-func AddHostGroup(group string, hostsliststr string) {
-	hostslist := strings.Split(hostsliststr, ",")
+func AddHostGroup(group string, hostslist []string) {
 	groups := io.ReadFile("/etc/egida/hostsgroups")
 	if collections.Find(hostslist, func(s string) bool { return s == group }) == nil {
 		groups = append(groups, group)

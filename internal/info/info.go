@@ -4,13 +4,12 @@ import (
 	"context"
 	"fmt"
 	grpc "github.com/antonioalfa22/egida/proto"
-	"strings"
 )
 
 var ctx context.Context
 
-func GetWorkerInfo(hostsliststr string, services string, packages string, hardening string) {
-	hostslist := strings.Split(hostsliststr, ",")
+func GetWorkerInfo(hostslist []string, services string, packages string, hardening string) {
+	fmt.Println(hostslist, services, packages, hardening)
 	if services != "" {
 		if services == "stopped" {
 			GetStoppedServices(hostslist)

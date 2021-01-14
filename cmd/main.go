@@ -1,8 +1,8 @@
 package main
 
 import (
-	"flag"
 	"fmt"
+	"github.com/akamensky/argparse"
 	"github.com/antonioalfa22/egida/internal/config"
 	"github.com/antonioalfa22/egida/internal/dsl"
 	"github.com/antonioalfa22/egida/internal/info"
@@ -10,33 +10,49 @@ import (
 	"os"
 )
 
+var parser *argparse.Parser
+
 func main() {
-	hostsgroup := flag.String("group", "", "Host group")
-	hostslist := flag.String("hosts", "", "List of hosts, ej: 192.128.2.1,localhost,129.1.1.1")
-	services := flag.String("services", "", "Services info: all | running | stopped")
-	packages := flag.String("packages", "", "Packages info: all")
-	hardening := flag.String("hardscores", "", "Hardening scores info: lynis")
-	//connection := flag.String("connection", "local", "Connection type (default local): local | ssh")
-	if len(os.Args) <= 1 { invalidArgs() }
-	mode := os.Args[1]
-	if mode == "menu" {
+	parser = argparse.NewParser("Egida CLI", "")
+	// Commands
+	menuCmd := parser.NewCommand("menu", "")
+	addGroupCmd := parser.NewCommand("add-group", "")
+	infoCmd := parser.NewCommand("info", "")
+	compileCmd := parser.NewCommand("compile", "")
+	// Flags
+	hostsgroup := parser.String("g", "group",
+		&argparse.Options{Required: false, Help: "Host group: -group local"})
+	hostslist := parser.StringList("H", "hosts",
+		&argparse.Options{Required: false, Help:"List of hosts: -H 192.128.2.1 --hosts localhost -H 129.1.1.1"})
+	services := parser.Selector("s", "services", []string{"all", "running", "stopped"},
+		&argparse.Options{Required: false, Help:"Services info (all | running | stopped): -services all"})
+	packages := parser.Selector("p", "packages", []string{"all"} ,
+		&argparse.Options{Required: false, Help:"Packages info (all): -packages all"})
+	hardening := parser.Selector("z", "hardscores", []string{"lynis"},
+		&argparse.Options{Required: false, Help:"Hardening scores info (lynis): -hardscores lynis"})
+
+	err := parser.Parse(os.Args)
+	if err != nil {
+		invalidArgs()
+		return
+	}
+	if menuCmd.Happened() {
 		setMenu()
-	} else if mode == "compile" {
+	} else if compileCmd.Happened() {
 		setCompile()
-	} else if mode == "add-group" {
+	} else if addGroupCmd.Happened() {
 		setAddGroup(*hostsgroup, *hostslist)
-	} else if mode == "info" {
+	} else if infoCmd.Happened() {
 		setInfo(*hostslist, *services, *packages, *hardening)
 	} else {
 		invalidArgs()
 	}
 }
 
-func invalidArgs() {
-	fmt.Println("EGIDA Mode invalid -> [menu | compile | add-group | info]")
-}
-
 // EGIDA OPTIONS
+func invalidArgs()  {
+	fmt.Print(parser.Usage(nil))
+}
 
 func setMenu() {
 	menu.SelectHardeningMode()
@@ -47,27 +63,18 @@ func setCompile() {
 	dsl.ParseFile(file)
 }
 
-func setAddGroup(hostsgroup string, hostslist string) {
-	if hostsgroup != "" && hostslist != "" {
+func setAddGroup(hostsgroup string, hostslist []string) {
+	if hostsgroup != "" && len(hostslist) != 0 {
 		config.AddHostGroup(hostsgroup, hostslist)
 	} else {
-		fmt.Println("Command not found, Try: egida add-group -group=example -hosts=192.128.2.1,localhost")
+		invalidArgs()
 	}
 }
 
-func setInfo(hostslist string, services string, packages string, hardening string) {
-	if hostslist != "" && checkInfoArgs(services, packages, hardening){
+func setInfo(hostslist []string, services string, packages string, hardening string) {
+	if len(hostslist) != 0 {
 		info.GetWorkerInfo(hostslist, services, packages, hardening)
 	} else {
-		fmt.Println("Command not found, Try: egida info -services=running -packages=all -hardscore=lynis -hosts=192.128.2.1,localhost")
+		invalidArgs()
 	}
-}
-
-func checkInfoArgs(ser string, pack string, har string) bool {
-	val := ser != "" || pack != "" || har != ""
-	if ! val { return false }
-	if ser != "" && !(ser == "all" || ser == "running" || ser == "stopped") { return false }
-	if pack != "" && !(pack == "all") { return false }
-	if har != "" && !(har == "lynis") { return false }
-	return true
 }
