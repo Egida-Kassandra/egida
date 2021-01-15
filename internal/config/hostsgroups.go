@@ -8,7 +8,7 @@ import (
 
 func AddHostGroup(group string, hostslist []string) {
 	groups := io.ReadFile("/etc/egida/hostsgroups")
-	if collections.Find(hostslist, func(s string) bool { return s == group }) == nil {
+	if collections.Find(groups, func(s string) bool { return s == group }) == nil {
 		groups = append(groups, group)
 		io.WriteFile(groups, "/etc/egida/hostsgroups")
 		lines := io.ReadFile("/etc/ansible/hosts")
