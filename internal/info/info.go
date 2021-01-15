@@ -3,13 +3,12 @@ package info
 import (
 	"context"
 	"fmt"
+	"time"
 	grpc "github.com/antonioalfa22/egida/proto"
 )
 
-var ctx context.Context
 
 func GetWorkerInfo(hostslist []string, services string, packages string, hardening string) {
-	fmt.Println(hostslist, services, packages, hardening)
 	if services != "" {
 		if services == "stopped" {
 			GetStoppedServices(hostslist)
@@ -32,6 +31,8 @@ func GetWorkerInfo(hostslist []string, services string, packages string, hardeni
 }
 
 func GetAllServices(hosts []string) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
 	for _, h := range hosts {
 		client := CreateServicesClient(h)
 		res, err := client.ListAllServices(ctx, &grpc.ListServicesReq{})
@@ -47,6 +48,8 @@ func GetAllServices(hosts []string) {
 }
 
 func GetRunningServices(hosts []string) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
 	for _, h := range hosts {
 		client := CreateServicesClient(h)
 		res, err := client.ListRunningServices(ctx, &grpc.ListServicesReq{})
@@ -62,6 +65,8 @@ func GetRunningServices(hosts []string) {
 }
 
 func GetStoppedServices(hosts []string) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
 	for _, h := range hosts {
 		client := CreateServicesClient(h)
 		res, err := client.ListStoppedServices(ctx, &grpc.ListServicesReq{})
@@ -77,6 +82,8 @@ func GetStoppedServices(hosts []string) {
 }
 
 func GetAllPackages(hosts []string) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
 	for _, h := range hosts {
 		client := CreatePackagesClient(h)
 		res, err := client.ListAllPackages(ctx, &grpc.ListPackagesReq{})
@@ -92,6 +99,8 @@ func GetAllPackages(hosts []string) {
 }
 
 func GetLynisScore(hosts []string) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
 	for _, h := range hosts {
 		client := CreateHardeningClient(h)
 		res, err := client.GetLynisScore(ctx, &grpc.ScoreReq{})
