@@ -17,6 +17,7 @@ func main() {
 	// Commands
 	menuCmd := parser.NewCommand("menu", "")
 	addGroupCmd := parser.NewCommand("add-group", "")
+	removeGroupCmd := parser.NewCommand("remove-group", "")
 	infoCmd := parser.NewCommand("info", "")
 	compileCmd := parser.NewCommand("compile", "")
 	// Flags
@@ -42,6 +43,8 @@ func main() {
 		setCompile()
 	} else if addGroupCmd.Happened() {
 		setAddGroup(*hostsgroup, *hostslist)
+	} else if removeGroupCmd.Happened() {
+		setRemoveGroup(*hostsgroup)
 	} else if infoCmd.Happened() {
 		setInfo(*hostslist, *services, *packages, *hardening)
 	} else {
@@ -66,6 +69,14 @@ func setCompile() {
 func setAddGroup(hostsgroup string, hostslist []string) {
 	if hostsgroup != "" && len(hostslist) != 0 {
 		config.AddHostGroup(hostsgroup, hostslist)
+	} else {
+		invalidArgs()
+	}
+}
+
+func setRemoveGroup(hostsgroup string) {
+	if hostsgroup != "" {
+		config.RemoveHostGroup(hostsgroup)
 	} else {
 		invalidArgs()
 	}
