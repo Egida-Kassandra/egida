@@ -1,13 +1,14 @@
 package cis
 
 import (
+	"strings"
+
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/antonioalfa22/egida/internal/ansible"
 	"github.com/antonioalfa22/go-utils/collections"
-	"strings"
 )
 
-func ShowPointsMenu()  {
+func ShowPointsMenu(connection string) {
 	var points []string
 	prompt := &survey.MultiSelect{
 		Message: "Select CIS Points:",
@@ -79,7 +80,6 @@ func ShowPointsMenu()  {
 
 			"1.9- Ensure updates, patches, and additional security software are installed (Not Scored)",
 
-
 			"2.1.1- Ensure xinetd is not installed (Scored)",
 			"2.1.2- Ensure openbsd-inetd is not installed (Scored)",
 
@@ -109,7 +109,6 @@ func ShowPointsMenu()  {
 			"2.3.3- Ensure talk client is not installed (Scored)",
 			"2.3.4- Ensure telnet client is not installed (Scored)",
 			"2.3.5- Ensure LDAP client is not installed (Scored)",
-
 
 			"3.1.1- Ensure packet redirect sending is disabled (Scored)",
 			"3.1.2- Ensure IP forwarding is disabled (Scored)",
@@ -267,6 +266,6 @@ func ShowPointsMenu()  {
 		},
 	}
 	_ = survey.AskOne(prompt, &points)
-	result := collections.Map(points, func(p string) string { return "rule_"+strings.Split(p, "-")[0] })
-	ansible.CreatePlaybook(result.([]string))
+	result := collections.Map(points, func(p string) string { return "rule_" + strings.Split(p, "-")[0] })
+	ansible.CreatePlaybook(result.([]string), connection)
 }
