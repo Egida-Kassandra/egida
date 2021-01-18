@@ -100,7 +100,9 @@ func GetLynisScore(hosts []string) {
 		} else {
 			fmt.Println("----> Host: ", h)
 			fmt.Println("Score: ", res.Score)
-			fmt.Println("Log: ", res.Log)
+			for _, l := range res.Log {
+				fmt.Println(l)
+			}
 		}
 	}
 }
