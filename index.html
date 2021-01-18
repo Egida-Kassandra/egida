@@ -102,8 +102,6 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#getting-info">Getting Info</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#license">License</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#contact">Contact</a>
@@ -186,9 +184,7 @@
 <li><a href="#cis-points">CIS Points</a></li>
 <li><a href="#cis-sections">CIS Sections</a></li>
 <li><a href="#cis-controls">CIS Controls</a></li>
-<li><a href="#getting-info">Getting Info</a></li>
-<li><a href="#lynis-score">Lynis Score</a></li>
-<li><a href="#machine-info">Machine Info</a></li>
+<li><a href="#hardening-variables">Hardening Variables</a></li>
 <li><a href="#license">License</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -350,9 +346,10 @@ the hardening options we want to perform.</p>
 <h2 id="hardening">Hardening</h2>
 <p>At this moment only the <strong>console menu</strong> hardening option is developed.
 The option using a DSL (Domain Specific Language) is under development.</p>
-<p><img alt="Egida Menu" src="img/egidamenu.png" />
-At this moment, only the CIS Benchmarks based hardening option is available, 
+<p><img alt="Egida Menu" src="img/egidamenu.png" /></p>
+<p>At this moment, only the CIS Benchmarks based hardening option is available, 
 but in future versions the option of LAMP and LEMP specialized hardening will be added.</p>
+<p><img alt="Egida Menu Selection" src="img/selection.png" /></p>
 <h3 id="all-cis-benchmarks">All CIS Benchmarks</h3>
 <p>This option will perform all the controls of the CIS Benchmarks except those ones included 
 in the variables <em>cis_level_1_exclusions</em> and <em>cis_level_2_exclusions</em> defined in the variables file.</p>
@@ -375,8 +372,8 @@ You can use <em>up</em>, <em>down</em> to move, <em>space</em> to select, <em>a<
 <h3 id="hardening-variables">Hardening variables</h3>
 <p>Many of the operations require data which, depending on the type of installation, can be variable 
 (e.g. user names, passwords, etc.).</p>
-<p>To edit these variables there is a template located in <em>/etc/egida/custom/vars_template.yml</em></p>
-<p>Any YAML file whose name begins with <strong>vars_</strong> located in the <em>/etc/egida/custom</em> folder will be considered 
+<p>To edit these variables there is a template located in <em>/etc/egida/vars/vars_template.yml</em></p>
+<p>Any YAML file whose name begins with <strong>vars_</strong> located in the <em>/etc/egida/vars</em> folder will be considered 
 as a possible configuration of 
 variables that can be selected at the hardening time.</p>
 <blockquote>
@@ -475,11 +472,6 @@ password:
 nameservers: [8.8.8.8, 8.8.4.4]
 </code></pre>
 
-<!-- Getting info -->
-
-<hr />
-<h2 id="getting-info">Getting Info</h2>
-<p>Not implemented yet.</p>
 <!-- LICENSE -->
 
 <hr />
@@ -549,5 +541,5 @@ nameservers: [8.8.8.8, 8.8.4.4]
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-01-18 14:43:18.523273+00:00
+Build Date UTC : 2021-01-18 14:55:01.065273+00:00
 -->
