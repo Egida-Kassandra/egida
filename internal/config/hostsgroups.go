@@ -12,7 +12,7 @@ import (
 	"github.com/antonioalfa22/go-utils/io"
 )
 
-func AddHostGroup(group string, hostslist []string) {
+func AddHostGroup(group string, hostslist []string, connection string) {
 	groups := io.ReadFile("/etc/egida/hostsgroups")
 	if collections.Find(groups, func(s string) bool { return s == group }) == nil {
 		groups = append(groups, group)
@@ -27,32 +27,40 @@ func AddHostGroup(group string, hostslist []string) {
 	} else {
 		fmt.Println("Group " + group + " already exists")
 	}
-	SetupGroup(group)
+	SetupGroup(group, connection)
 }
 
-func SetupGroup(group string) {
-	renderFile(group)
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("SSH User: ")
-	user, _ := reader.ReadString('\n')
-	err := command.RunCommandPrintOutput("ansible-playbook", "-u", user, "--ask-pass", "/etc/egida/generated_setup.yml")
-	if err != nil {
-		fmt.Println("Error on running playbook, Do you have Ansible installed?")
+func SetupGroup(group string, connection string) {
+	renderFile(group, connection)
+	if connection == "ssh" {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("SSH User: ")
+		user, _ := reader.ReadString('\n')
+		err := command.RunCommandPrintOutput("ansible-playbook", "-u", user, "--ask-pass", "/etc/egida/generated_setup.yml")
+		if err != nil {
+			fmt.Println("Error on running playbook, Do you have Ansible installed?")
+		}
+	} else {
+		err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated_setup.yml")
+		if err != nil {
+			fmt.Println("Error on running playbook, Do you have Ansible installed?")
+		}
 	}
 }
 
-func renderFile(group string) {
+func renderFile(group string, connection string) {
 	type Options struct {
-		Hosts string
+		Hosts      string
+		Connection string
 	}
-	options := Options{Hosts: group}
+	options := Options{Hosts: group, Connection: connection}
 	tmpl := template.New("PlaybookSetupTemplate")
 	tmpl, _ = tmpl.Parse(
 		"---\n" +
 			"\n" +
 			"- name: egida-role-setup\n" +
 			"  hosts: {{ .Hosts }}\n" +
-			"  connection: ssh\n" +
+			"  connection: {{ .Connection }}\n" +
 			"  become: yes\n" +
 			"\n" +
 			"  roles:\n" +

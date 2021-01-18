@@ -49,7 +49,7 @@ func main() {
 	} else if compileCmd.Happened() {
 		setCompile()
 	} else if addGroupCmd.Happened() {
-		setAddGroup(*hostsgroup, *hostslist)
+		setAddGroup(*hostsgroup, *hostslist, *connection)
 	} else if removeGroupCmd.Happened() {
 		setRemoveGroup(*hostsgroup)
 	} else if infoCmd.Happened() {
@@ -77,9 +77,9 @@ func setCompile() {
 	dsl.ParseFile(file)
 }
 
-func setAddGroup(hostsgroup string, hostslist []string) {
+func setAddGroup(hostsgroup string, hostslist []string, connection string) {
 	if hostsgroup != "" && len(hostslist) != 0 {
-		config.AddHostGroup(hostsgroup, hostslist)
+		config.AddHostGroup(hostsgroup, hostslist, connection)
 	} else {
 		invalidArgs()
 	}

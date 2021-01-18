@@ -4,6 +4,7 @@ set -e
 
 mkdir -p /etc/ansible/roles
 
+apt install ansible -y
 apt install -y unzip
 apt install sshpass -y
 
@@ -16,7 +17,7 @@ rm egida-role-cis.zip
 # ==============> Download & install egida-role-setup
 wget https://github.com/antonioalfa22/egida-role-setup/releases/download/2.0.0/egida-role-setup.zip
 unzip egida-role-setup.zip
-mv egida-role-setup-master /etc/ansible/roles/egida-role-setup
+mv egida-role-setup /etc/ansible/roles/egida-role-setup
 rm egida-role-setup.zip
 
 # Create egida vars location
@@ -28,9 +29,11 @@ wget https://github.com/antonioalfa22/egida/releases/download/2.0.0/egida.zip
 unzip egida.zip
 cd build
 chmod +x egida
+chmod 777 ansible.cfg
 mv egida /usr/local/bin/egida
 mv hostsgroups /etc/egida/hostsgroups
 mv vars_template.yml /etc/egida/vars/vars_template.yml
+mv ansible.cfg /etc/ansible/ansible.cfg
 echo "[local]" > /etc/ansible/hosts
 echo "localhost" >> /etc/ansible/hosts
 cd ..
