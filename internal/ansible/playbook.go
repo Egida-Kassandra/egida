@@ -1,6 +1,7 @@
 package ansible
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -15,10 +16,21 @@ import (
 
 func CreatePlaybook(tags []string, connection string) {
 	createFile(connection)
-	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
-		"--tags="+getTags(tags))
-	if err != nil {
-		fmt.Println("Error on running playbook, Do you have Ansible installed?")
+	if connection == "ssh" {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("SSH User: ")
+		user, _ := reader.ReadString('\n')
+		err := command.RunCommandPrintOutput("ansible-playbook", "-u", user, "--ask-pass", "/etc/egida/generated.yml",
+			"--tags="+getTags(tags))
+		if err != nil {
+			fmt.Println("Error on running playbook, Do you have Ansible installed?")
+		}
+	} else {
+		err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
+			"--tags="+getTags(tags))
+		if err != nil {
+			fmt.Println("Error on running playbook, Do you have Ansible installed?")
+		}
 	}
 }
 

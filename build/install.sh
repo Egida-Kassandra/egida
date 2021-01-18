@@ -5,6 +5,7 @@ set -e
 mkdir -p /etc/ansible/roles
 
 apt install -y unzip
+apt install sshpass -y
 
 # ==============> Download & install egida-role-cis
 wget https://github.com/antonioalfa22/egida-role-cis/releases/download/2.0.0/egida-role-cis.zip
@@ -31,7 +32,7 @@ mv egida /usr/local/bin/egida
 mv hostsgroups /etc/egida/hostsgroups
 mv vars_template.yml /etc/egida/vars/vars_template.yml
 echo "[local]" > /etc/ansible/hosts
-echo "localhost ansible_ssh_user=root" >> /etc/ansible/hosts
+echo "localhost" >> /etc/ansible/hosts
 cd ..
 rm -rf build
 rm egida.zip

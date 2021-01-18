@@ -17,7 +17,7 @@ func AddHostGroup(group string, hostslist []string) {
 		g := "[" + group + "]"
 		lines = append(lines, g)
 		for _, host := range hostslist {
-			lines = append(lines, host+" ansible_ssh_user=root")
+			lines = append(lines, host)
 		}
 		io.WriteFile(lines, "/etc/ansible/hosts")
 	} else {
