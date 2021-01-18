@@ -31,7 +31,7 @@ mv egida /usr/local/bin/egida
 mv hostsgroups /etc/egida/hostsgroups
 mv vars_template.yml /etc/egida/vars/vars_template.yml
 echo "[local]" > /etc/ansible/hosts
-echo "localhost" >> /etc/ansible/hosts
+echo "localhost ansible_ssh_user=root" >> /etc/ansible/hosts
 cd ..
 rm -rf build
 rm egida.zip

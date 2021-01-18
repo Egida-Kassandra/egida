@@ -2,11 +2,12 @@ package menu
 
 import (
 	"fmt"
+
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/antonioalfa22/egida/internal/menu/cis"
 )
 
-func SelectHardeningMode() {
+func SelectHardeningMode(connection string) {
 	// LOGO
 	fmt.Print("\033[2J") //Clear screen
 	printLogo()
@@ -18,16 +19,16 @@ func SelectHardeningMode() {
 	}{}
 	// RESPUESTAS
 	_ = survey.Ask(qs, &respuestas)
-	if respuestas.HardMode == "CIS Benchmarks"{
+	if respuestas.HardMode == "CIS Benchmarks" {
 		switch respuestas.Option {
 		case "Select CIS Controls":
-			cis.ShowControlsMenu()
+			cis.ShowControlsMenu(connection)
 		case "Select CIS Benchmarks Points":
-			cis.ShowPointsMenu()
+			cis.ShowPointsMenu(connection)
 		case "Select CIS Sections":
-			cis.ShowSectionsMenu()
+			cis.ShowSectionsMenu(connection)
 		case "Run all CIS Benchmarks":
-			cis.ShowAllMenu()
+			cis.ShowAllMenu(connection)
 		}
 	}
 }
@@ -85,6 +86,6 @@ func printLogo() {
 	fmt.Println("\t@@@@@@@@@%%%%((((((       / __/ / / __ / // / / / /| |      ((((((((%%%%@@@@@@@@")
 	fmt.Println("\t@@@@@@@@@@%%%%(((((((    / /___/ /_/ // // /_/ / ___ |   ((((((((%%%%%@@@@@@@@@@")
 	fmt.Println("\t@@@@@@@@@%%%%((((((((   /_____/\\____/___/_____/_/  |_|   (((((((%%%%%@@@@@@@@@@@")
-	fmt.Println( "                              ")
+	fmt.Println("                              ")
 	fmt.Println()
 }

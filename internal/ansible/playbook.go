@@ -2,18 +2,19 @@ package ansible
 
 import (
 	"fmt"
-	"github.com/AlecAivazis/survey/v2"
-	"github.com/antonioalfa22/go-utils/collections"
-	"github.com/antonioalfa22/go-utils/command"
-	"github.com/antonioalfa22/go-utils/io"
 	"os"
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	"github.com/AlecAivazis/survey/v2"
+	"github.com/antonioalfa22/go-utils/collections"
+	"github.com/antonioalfa22/go-utils/command"
+	"github.com/antonioalfa22/go-utils/io"
 )
 
-func CreatePlaybook(tags []string)  {
-	createFile()
+func CreatePlaybook(tags []string, connection string) {
+	createFile(connection)
 	err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
 		"--tags="+getTags(tags))
 	if err != nil {
@@ -25,45 +26,45 @@ func getTags(tags []string) string {
 	return strings.Join(tags[:], ",")
 }
 
-func createFile() {
+func createFile(connection string) {
 	varsfiles, hostlist := getVarsAndHosts()
 	qs := crearMenu(varsfiles, hostlist)
 	respuestas := struct {
-		VarsFile 	 string
-		HostsGroup   string
+		VarsFile   string
+		HostsGroup string
 	}{}
 	// RESPUESTAS
 	_ = survey.Ask(qs, &respuestas)
 	vars := collections.Map(io.ReadFile(respuestas.VarsFile), func(x string) string {
-		return "    "+x+"\n"
+		return "    " + x + "\n"
 	}).([]string)
-	renderFile(vars, respuestas.HostsGroup)
+	renderFile(vars, respuestas.HostsGroup, connection)
 }
 
-func renderFile(vars []string, hosts string) {
+func renderFile(vars []string, hosts string, connection string) {
 	type Options struct {
-		Hosts string
+		Hosts      string
 		Connection string
-		Vars []string
+		Vars       []string
 	}
-	options := Options{Hosts: hosts, Vars: vars, Connection: "local"}
+	options := Options{Hosts: hosts, Vars: vars, Connection: connection}
 	tmpl := template.New("PlaybookTemplate")
 	tmpl, _ = tmpl.Parse(
 		"---\n" +
 			"\n" +
-			"- name: Harden Server\n"+
-			"  hosts:\n"+
-			"    {{ .Hosts }}\n"+
-			"  connection: {{ .Connection }}\n"+
-			"  become: yes\n"+
-			"  vars:\n"+
-			"{{ range .Vars }}{{ . }}{{ end }}\n"+
-			"\n"+
-			"  roles:\n"+
+			"- name: Harden Server\n" +
+			"  hosts:\n" +
+			"    {{ .Hosts }}\n" +
+			"  connection: {{ .Connection }}\n" +
+			"  become: yes\n" +
+			"  vars:\n" +
+			"{{ range .Vars }}{{ . }}{{ end }}\n" +
+			"\n" +
+			"  roles:\n" +
 			"    - egida-role-cis\n")
 	f, err := os.Create("/etc/egida/generated.yml")
 	if err != nil {
-		fmt.Println("Error creating playbook: "+err.Error())
+		fmt.Println("Error creating playbook: " + err.Error())
 	}
 	_ = tmpl.Execute(f, options)
 }
@@ -72,10 +73,14 @@ func getVarsAndHosts() ([]string, []string) {
 	varsroot := "/etc/egida/vars"
 	var varsfiles []string
 	err := filepath.Walk(varsroot, func(path string, info os.FileInfo, err error) error {
-		if path != "/etc/egida/vars" { varsfiles = append(varsfiles, path) }
+		if path != "/etc/egida/vars" {
+			varsfiles = append(varsfiles, path)
+		}
 		return nil
 	})
-	if err != nil { fmt.Println("Cant find /etc/egida/vars directory") }
+	if err != nil {
+		fmt.Println("Cant find /etc/egida/vars directory")
+	}
 	hostlist := io.ReadFile("/etc/egida/hostsgroups")
 	return varsfiles, hostlist
 }
