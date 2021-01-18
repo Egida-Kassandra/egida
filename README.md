@@ -23,24 +23,22 @@
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
-* [Overview](#overview)
+* [Overview](https://antonioalfa22.github.io/egida/#overview)
 * [Installation](https://antonioalfa22.github.io/egida/#installation)
   * [Prerequisites](https://antonioalfa22.github.io/egida/#prerequisites)
   * [Download and install](https://antonioalfa22.github.io/egida/#download-and-install)
 * [Getting Started](https://antonioalfa22.github.io/egida/#getting-started)
-  * [Environment SetUp](https://antonioalfa22.github.io/egida/#environment-setup)
-  * [Add Host](https://antonioalfa22.github.io/egida/#add-host)
-  * [Variables](https://antonioalfa22.github.io/egida/#variables)
+  * [Create and delete host groups](https://antonioalfa22.github.io/egida/#create-and-delete-host-groups)
+  * [Show host info](https://antonioalfa22.github.io/egida/#show-host-info)
+  * [Hardening Menu](https://antonioalfa22.github.io/egida/#hardening-menu))
 * [Hardening](https://antonioalfa22.github.io/egida/#hardening)
   * [All CIS Benchmarks](https://antonioalfa22.github.io/egida/#all-cis-benchmarks)
   * [CIS Points](https://antonioalfa22.github.io/egida/#cis-points)
   * [CIS Sections](https://antonioalfa22.github.io/egida/#cis-sections)
   * [CIS Controls](https://antonioalfa22.github.io/egida/#cis-controls)
-* [Getting Info](https://antonioalfa22.github.io/egida/#getting-info)
-  * [Lynis Score](https://antonioalfa22.github.io/egida/#lynis-score)
-  * [Machine Info](https://antonioalfa22.github.io/egida/#machine-info)
-* [License](#license)
-* [Contact](#contact)
+  * [Hardening Variables](https://antonioalfa22.github.io/egida/#hardening-variables)
+* [License](https://antonioalfa22.github.io/egida/#license)
+* [Contact](https://antonioalfa22.github.io/egida/#contact)
 
 <!-- Overview -->
 ---

@@ -28,21 +28,19 @@
 ## Table of Contents
 
 * [Overview](#overview)
-* [Installation](#installation)
+* [Install](#install)
   * [Prerequisites](#prerequisites)
   * [Download and install](#download-and-install)
 * [Getting Started](#getting-started)
-  * [Environment SetUp](#environment-setup)
-  * [Add Host](#add-host)
-  * [Variables](#variables)
+  * [Create and delete host groups](#create-and-delete-host-groups)
+  * [Show host info](#show-host-info)
+  * [Hardening Menu](#hardening-menu)
 * [Hardening](#hardening)
   * [All CIS Benchmarks](#all-cis-benchmarks)
   * [CIS Points](#cis-points)
   * [CIS Sections](#cis-sections)
   * [CIS Controls](#cis-controls)
-* [Getting Info](#getting-info)
-  * [Lynis Score](#lynis-score)
-  * [Machine Info](#machine-info)
+  * [Hardening Variables](#hardening-variables)
 * [License](#license)
 * [Contact](#contact)
 
@@ -107,17 +105,13 @@ sudo apt install python3-pip
 > At this point, Python 3.7 is installed on your Ubuntu system and ready to be used. You can verify it by typing
 > `python3.7 --version`
 
-- **unzip**: Install Unzip
-```commandline
-sudo apt install unzip
-```
 
 ### Download and install
 
 In order to install the Egida core you have to follow the instructions below.
 
 ```commandline
-wget https://github.com/antonioalfa22/egida/releases/download/1.0.3/install.sh
+wget https://github.com/antonioalfa22/egida/releases/download/2.0.0/install.sh
 sudo chmod +x install.sh
 sudo ./install.sh
 ```
@@ -127,37 +121,149 @@ sudo ./install.sh
 ---
 ## Getting Started
 
-Once Egida has been successfully installed, you must follow the following steps in order to run it correctly:
+Egida can be executed in the following ways:
 
-### Environment SetUp
+### Create and delete host groups
 
-The preparation of the environment is necessary to customize the execution of Egida to your restrictions.
+Egida, like Ansible, allows you to work with groups of hosts in order to perform actions on these hosts
+simultaneously.
 
-#### Hosts
+#### *add-group*
 
-**Add hosts group**: To add a new hosts group you have to follow these steps:
+The add-group command creates a new group of hosts and executes the setup actions (egida-role-setup)
+necessary for Egida to communicate with each host.
 
 ```commandline
-sudo egida config -g [Group Name] --hosts [Host1 Host2 ... HostN]
+sudo egida add-group -c [local | ssh] -g [Group Name] -H [Host1] -H [Host2] ...
 ```
 
-> **Example**: `sudo egida config -g servers --hosts localhost 192.168.0.11 192.168.0.12`
+> Example: `sudo egida add-group -c ssh -g webservers -H 192.168.1.3 -H 192.168.1.2`
 
-> **Localhost Example**: `sudo egida config -g servers --hosts localhost`
+**-c, --connection**:  Connection (local | ssh)
+> Example: --connection ssh
+> **Localhost not allows ssh**
 
-> Currently, editing groups is not implemented, if you want to add or remove hosts to a group you must edit the hosts file located in /etc/ansible/hosts
+**-g, --group**:  Host group
+ > Example: --group local
 
-#### Variables
+**-H, --hosts**:  List of hosts
+ > Example: -H 192.128.2.1 --hosts localhost -H 129.1.1.1
 
-Many of the operations require data which, depending on the type of installation, can be variable (e.g. user names, passwords, etc.).
+#### *remove-group*
+
+The remove-group command removes an existing group
+
+```commandline
+sudo egida remove-group -g [Group Name]
+```
+
+> Example: `sudo egida add-group -g webservers`
+
+**-g, --group**:  Host group
+ > Example: --group local
 
 
-To edit these variables there is a template located in _/etc/egida/custom/vars_template.yml_
+### Show host info
 
-Any YAML file whose name begins with **vars_** located in the _/etc/egida/custom_ folder will be considered as a possible configuration of 
+The Egida Info option allows you to obtain information about a specific host 
+(it must have been previously added in a group with the add-group option).
+
+#### *info*
+
+```commandline
+sudo egida info -H [Host] --services [running | stopped | all ] --packages [all] --hardscores [lynis]
+```
+
+> Example: `sudo egida info -H 192.168.0.3 -s running -p all -z lynis`
+
+**-H, --hosts**:  List of hosts
+ > Example: -H 192.128.2.1 --hosts localhost -H 129.1.1.1
+
+**-s, --services**:  Services info (all | running | stopped)
+ > Example: --services all
+
+**-p, --packages**:  Packages info (all)
+ > Example: --packages all
+
+**-z, --hardscores**:  Hardening scores info (lynis)
+ > Example: --hardscores lynis
+
+### Hardening Menu
+
+The Egida Menu option shows a console interface with which we can select 
+the hardening options we want to perform.
+
+#### *menu*
+```commandline
+sudo egida menu -c [local | ssh]
+```
+
+> Example: `sudo egida menu -c ssh`
+
+**-c, --connection**:  Connection (local | ssh)
+> Example: --connection ssh
+> **Localhost not allows ssh**
+
+<!-- Hardening -->
+---
+## Hardening
+
+At this moment only the **console menu** hardening option is developed.
+The option using a DSL (Domain Specific Language) is under development.
+
+
+![Egida Menu](img/egidamenu.png)
+
+
+At this moment, only the CIS Benchmarks based hardening option is available, 
+but in future versions the option of LAMP and LEMP specialized hardening will be added.
+
+![Egida Menu Selection](img/selection.png)
+
+
+### All CIS Benchmarks
+This option will perform all the controls of the CIS Benchmarks except those ones included 
+in the variables _cis_level_1_exclusions_ and _cis_level_2_exclusions_ defined in the variables file.
+
+### CIS Points
+![Egida CIS Points](img/cispoints.png)
+
+This option will perform all the selected points of the CIS Benchmarks.
+You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
+
+### CIS Sections
+![Egida CIS Sections](img/cissections.png)
+
+This option will perform all the selected sections of the CIS Benchmarks.
+You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
+
+### CIS Controls
+![Egida CIS Controls](img/ciscontrols.png)
+
+This option will perform all the selected controls of the CIS Benchmarks.
+You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
+
+### Hosts and Templates
+![Egida Hosts and Templates](img/hoststemplates.png)
+
+In this menu you can select which file of variables you want to use and which hosts group.
+
+**Once selected, the hardening options will begin.**
+
+### Hardening variables
+
+Many of the operations require data which, depending on the type of installation, can be variable 
+(e.g. user names, passwords, etc.).
+
+
+To edit these variables there is a template located in _/etc/egida/vars/vars_template.yml_
+
+Any YAML file whose name begins with **vars_** located in the _/etc/egida/vars_ folder will be considered 
+as a possible configuration of 
 variables that can be selected at the hardening time.
  
-> It is recommended to **never delete** the file **vars_template.yml** as it contains the appropriate syntax and all the necessary variables.
+> It is recommended to **never delete** the file **vars_template.yml** as it contains the 
+>appropriate syntax and all the necessary variables.
 
 **vars_template.yml**:
 
@@ -252,72 +358,6 @@ password:
 # ======== EXTRAS ===================
 nameservers: [8.8.8.8, 8.8.4.4]
 ```
-
-<!-- Hardening -->
----
-## Hardening
-
-At this moment only the **console menu** hardening option is developed.
-The option using a DSL (Domain Specific Language) is under development.
-
-To start using Egida you must run it as follows:
-
-> sudo egida \[-h\] \[--file FILE\] \[-g GROUP\] \[-c CONNECTION\] \[-H HOSTS ...\] \[-a\] mode
-
-**Positional arguments:**
-
-- _mode:_ EGIDA Mode \[menu | compile | config | info\]
-
-**Optional arguments:**
-
-- **_-h, --help_**: Show help
-- **_--file_**: Aspida (DSL) file (Not implemented yet)
-- **_-g GROUP, --group GROUP_**: Host group
-- **_-c CONNECTION, --connection CONNECTION_**: Connection type (default local): local | ssh
-- **_-a, --audit_**: Audit hosts with lynis (Needs egida-api-worker)
-
-**Localhost Example:**
-
-> sudo egida menu
-
-![Egida Menu](img/egidamenu.png)
-At this moment, only the CIS Benchmarks based hardening option is available, 
-but in future versions the option of LAMP and LEMP specialized hardening will be added.
-
-### All CIS Benchmarks
-This option will perform all the controls of the CIS Benchmarks except those ones included 
-in the variables _cis_level_1_exclusions_ and _cis_level_2_exclusions_ defined in the variables file.
-
-### CIS Points
-![Egida CIS Points](img/cispoints.png)
-
-This option will perform all the selected points of the CIS Benchmarks.
-You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
-
-### CIS Sections
-![Egida CIS Sections](img/cissections.png)
-
-This option will perform all the selected sections of the CIS Benchmarks.
-You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
-
-### CIS Controls
-![Egida CIS Controls](img/ciscontrols.png)
-
-This option will perform all the selected controls of the CIS Benchmarks.
-You can use _up_, _down_ to move, _space_ to select, _a_ to toggle, _i_ to invert.
-
-### Hosts and Templates
-![Egida Hosts and Templates](img/hoststemplates.png)
-
-In this menu you can select which file of variables you want to use and which hosts group.
-
-**Once selected, the hardening options will begin.**
-
-<!-- Getting info -->
----
-## Getting Info
-
-Not implemented yet.
 
 
 <!-- LICENSE -->
