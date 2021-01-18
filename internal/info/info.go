@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"time"
+
 	grpc "github.com/antonioalfa22/egida/proto"
 )
-
 
 func GetWorkerInfo(hostslist []string, services string, packages string, hardening string) {
 	if services != "" {
@@ -37,7 +37,7 @@ func GetAllServices(hosts []string) {
 		client := CreateServicesClient(h)
 		res, err := client.ListAllServices(ctx, &grpc.ListServicesReq{})
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: can not connect to host ", h, " on port 8128")
 		} else {
 			fmt.Println("----> Host: ", h)
 			for _, s := range res.Services {
@@ -54,7 +54,7 @@ func GetRunningServices(hosts []string) {
 		client := CreateServicesClient(h)
 		res, err := client.ListRunningServices(ctx, &grpc.ListServicesReq{})
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: can not connect to host ", h, " on port 8128")
 		} else {
 			fmt.Println("----> Host: ", h)
 			for _, s := range res.Services {
@@ -71,7 +71,7 @@ func GetStoppedServices(hosts []string) {
 		client := CreateServicesClient(h)
 		res, err := client.ListStoppedServices(ctx, &grpc.ListServicesReq{})
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: can not connect to host ", h, " on port 8128")
 		} else {
 			fmt.Println("----> Host: ", h)
 			for _, s := range res.Services {
@@ -88,7 +88,7 @@ func GetAllPackages(hosts []string) {
 		client := CreatePackagesClient(h)
 		res, err := client.ListAllPackages(ctx, &grpc.ListPackagesReq{})
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: can not connect to host ", h, " on port 8128")
 		} else {
 			fmt.Println("----> Host: ", h)
 			for _, s := range res.Packages {
@@ -99,13 +99,14 @@ func GetAllPackages(hosts []string) {
 }
 
 func GetLynisScore(hosts []string) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Second)
+	fmt.Println("Getting Lynis scores ...")
 	defer cancel()
 	for _, h := range hosts {
 		client := CreateHardeningClient(h)
 		res, err := client.GetLynisScore(ctx, &grpc.ScoreReq{})
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: can not connect to host ", h, " on port 8128")
 		} else {
 			fmt.Println("----> Host: ", h)
 			fmt.Println("Score: ", res.Score)
