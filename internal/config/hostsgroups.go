@@ -77,7 +77,7 @@ func RemoveHostGroup(group string) {
 	if collections.Find(groups, func(s string) bool { return s == group }) != nil {
 		groups = remove(groups, group)
 		io.WriteFile(groups, "/etc/egida/hostsgroups")
-		lines := []string{}
+		var lines []string
 		for _, gp := range groups {
 			g := "[" + gp + "]"
 			lines = append(lines, g)
@@ -95,7 +95,7 @@ func RemoveHostGroup(group string) {
 
 func GetHostsFromGroup(group string) []string {
 	lines := io.ReadFile("/etc/ansible/hosts")
-	hosts := []string{}
+	var hosts []string
 	gpStarts := false
 	for _, line := range lines {
 		if strings.HasPrefix(line, "[") {

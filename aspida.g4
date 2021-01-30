@@ -1,5 +1,9 @@
-grammar aspida;
+grammar Aspida;
 
+options
+{
+    language = Go;
+}
 /*
 
 Aspida Full grammar
@@ -7,63 +11,116 @@ Aspida Full grammar
 @author Antonio Paya Gonzalez
 */
 
-/* Parser rules*/
+/*
 
-program             : main hosts tasks? variables?;
+    =====================================  PARSER RULES  =====================================
 
-// Blocks
-main                : MAIN_KW ':' '{' main_content '}' ;
-hosts               : HOSTS_KW ':' hosts_list  ;
-tasks               : TASKS_KW  ':' '{' tasks_content '}' ;
-variables           : VARS_KW  ':' '{' vars_content '}' ;
+*/
 
-// MAIN Block
-main_content        : main_prop (main_prop)*;
-main_prop           : (name | connection | description) NS;
-name                : 'name' ':' STRING
-                    | 'NAME' ':' STRING
+program             : main hosts tasks variables?;
+
+// =================================================== Blocks
+main                : MAIN_KW ':' '{' main_content '}';
+hosts               : HOSTS_KW ':' STRING NS;
+tasks               : TASKS_KW  ':' '{' tasks_content '}';
+variables           : VARS_KW  ':' '{' vars_content '}';
+
+// ======================= MAIN Block
+main_content        : main_prop (main_prop)*
                     ;
-connection          : 'connection' ':' (LOCAL_KW | SSH_KW | SSHPASS_KW)
-                    | 'CONNECTION' ':' (LOCAL_KW | SSH_KW | SSHPASS_KW);
-description         : 'description' ':' STRING
-                    | 'DESCRIPTION' ':' STRING
+main_prop           : name NS                   #nameMain
+                    | connection NS             #connectionMain
+                    | description NS            #descriptionMain
+                    ;
+name                : 'name' ':' value
+                    | 'NAME' ':' value
+                    ;
+connection          : 'connection' ':' connection_type
+                    | 'CONNECTION' ':' connection_type
+                    ;
+connection_type     : LOCAL_KW                  #connectionLocal
+                    | SSH_KW                    #connectionSSH
+                    ;
+description         : 'description' ':' value
+                    | 'DESCRIPTION' ':' value
                     ;
 
-// HOSTS Block
-hosts_list       : '[' host (',' host)* ']'
-                 | '[' ']'                      /* localhost */
-                 ;
-host             : ip_v4 | ip_v6 ;
+// ======================= TASKS Block
+tasks_content       : tasks_prop (tasks_prop)*      #tContent
+                    | ifStat (elifStat)* elseStat   #ifStatement
+                    ;
+tasks_prop          : sections                  #tSections
+                    | points                    #tPoints
+                    | controls                  #tControls
+                    | exclusions                #tExclusions
+                    ;
+sections            : 'sections' ':' str_array NS
+                    | 'SECTIONS' ':' str_array NS
+                    ;
+points              : 'points' ':' str_array NS
+                    | 'POINTS' ':' str_array NS
+                    ;
+controls            : 'controls' ':' str_array NS
+                    | 'CONTROLS' ':' str_array NS
+                    ;
+exclusions          : 'exclusions' ':' str_array NS
+                    | 'EXCLUSIONS' ':' str_array NS
+                    ;
 
+// =================================================== Statements
+ifStat              : IF comparison '{' tasks_content '}'
+                    ;
+elifStat            : ELIF comparison '{' tasks_content '}'
+                    ;
+elseStat            : ELSE '{' tasks_content '}'
+                    ;
+comparison          : value comp_op value*
+                    ;
 
-// TASKS Block
-tasks_content        : tasks_prop (tasks_prop)*;
-tasks_prop           : (sections | points | controls | exclusions) NS;
-sections             : 'sections' ':' str_array
-                     | 'SECTIONS' ':' str_array
-                     ;
-points               : 'points' ':' str_array
-                     | 'POINTS' ':' str_array
-                     ;
-controls             : 'controls' ':' str_array
-                     | 'CONTROLS' ':' str_array
-                     ;
-exclusions           : 'exclusions' ':' str_array
-                     | 'EXCLUSIONS' ':' str_array
-                     ;
+// ======================= VARS Block
+vars_content        : vars_prop (vars_prop)*
+                    ;
+vars_prop           : STRING ':' value NS                   #varDef
+                    | STRING ':' '{' vars_content '}' NS    #varObjDef
+                    ;
 
-// VARS Block
-vars_content         : vars_prop (vars_prop)* ;
-vars_prop            : STRING ':' value NS
-                     | STRING ':' '{' vars_content '}' NS
-                     ;
+// =================================================== Values
 
-//Skippables
+comp_op: '<'|'>'|'=='|'>='|'<='|'!=';
+
+value
+   : STRING     #StringVal
+   | NUMBER     #NumberVal
+   | 'true'     #TrueVal
+   | 'false'    #FalseVal
+   | 'null'     #NullVal
+   | array      #ArrayVal
+   ;
+
+str_array
+   : '[' STRING (',' STRING)* ']'
+   | '[' ']'
+   ;
+
+array
+   : '[' value (',' value)* ']'
+   | '[' ']'
+   ;
+
+// =================================================== Skippables
 COMMENT             :  '#' ~('\r' | '\n')* -> skip ;
 WHITESPACE          : (' ' | '\t') -> skip ;
 NEWLINE             : ('\r'? '\n' | '\r')+ -> skip;
 
-/*=====================================  LEXER RULES  =====================================*/
+
+
+/*
+
+    =====================================  LEXER RULES  =====================================
+
+*/
+
+// =================================================== Fragments
 
 fragment ESC
     : '\\' (["\\/bfnrt] | UNICODE)
@@ -85,59 +142,6 @@ fragment EXP
    : [Ee] [+\-]? INT
    ;
 
-value
-   : STRING
-   | NUMBER
-   | 'true'
-   | 'false'
-   | 'null'
-   | array
-   ;
-
-str_array
-   : '[' cadena (',' cadena)* ']'
-   | '[' ']'
-   ;
-
-cadena : STRING ;
-
-array
-   : '[' value (',' value)* ']'
-   | '[' ']'
-   ;
-
-// IP V4
-ip_v4                : single_ip | ip_range;
-single_ip            : SINGLE_IP;
-ip_range             : IP_RANGE;
-//IP V6
-ip_v6
- : h16 ':' h16 ':' h16 ':' h16 ':' h16 ':' h16 ':' ls32
- | '::' h16 ':' h16 ':' h16 ':' h16 ':' h16 ':' ls32
- | h16? '::' h16 ':' h16 ':' h16 ':' h16 ':' ls32
- | ((h16 ':')? h16)? '::' h16 ':' h16 ':' h16 ':' ls32
- | (((h16 ':')? h16 ':')? h16)? '::' h16 ':' h16 ':' ls32
- | ((((h16 ':')? h16 ':')? h16 ':')? h16)? '::' h16 ':' ls32
- | (((((h16 ':')? h16 ':')? h16 ':')? h16 ':')? h16)? '::' ls32
- | ((((((h16 ':')? h16 ':')? h16 ':')? h16 ':')? h16 ':')? h16)? '::' h16
- ;
-
-h16
- : hexdigit hexdigit hexdigit hexdigit
- | hexdigit hexdigit hexdigit
- | hexdigit hexdigit
- | hexdigit
- ;
-ls32
- : h16 ':' h16
- | ip_v4
- ;
-//Hex numbers
-hexdigit
- : DIGIT
- | HEX_CHAR
- ;
-
 
 STRING
     : '"' (ESC | SAFECODEPOINT)* '"'
@@ -145,31 +149,20 @@ STRING
 NUMBER
     : '-'? INT ('.' [0-9] +)? EXP?
     ;
-DIGIT
-    : [0-9] ;
-HEX_CHAR
-    : [a-fA-F] ;
-NUMBER_RANGE
-    : NUMBER'-'NUMBER ;
-ARROW
-    : '->'
-    | '=>'
-    ;
-SINGLE_IP
-    :  NUMBER '.' NUMBER  '.' NUMBER  '.' NUMBER
-    ;
-
-IP_RANGE
-    :  (NUMBER | NUMBER_RANGE) '.' (NUMBER | NUMBER_RANGE)  '.' (NUMBER | NUMBER_RANGE)  '.' (NUMBER | NUMBER_RANGE)
-    ;
 
 
 // Keywords
 NS              : ';';      /*New Sentence*/
 MAIN_KW         : 'MAIN';
-HOSTS_KW        : 'HOSTS';
+HOSTS_KW        : 'HOST';
 TASKS_KW        : 'TASKS';
 VARS_KW         : 'VARS';
 LOCAL_KW        : 'LOCAL';
 SSH_KW          : 'SSH';
-SSHPASS_KW      : 'SSH-PASSWORD';
+IF              : 'IF';
+ELIF            : 'ELIF';
+ELSE            : 'ELSE';
+OR              : 'OR';
+AND             : 'AND';
+NOT             : 'NOT';
+IS              : 'IS';

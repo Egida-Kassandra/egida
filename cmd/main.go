@@ -38,6 +38,8 @@ func main() {
 		&argparse.Options{Required: false, Help: "Hardening scores info (lynis): --hardscores lynis"})
 	connection := parser.Selector("c", "connection", []string{"local", "ssh"},
 		&argparse.Options{Required: false, Help: "Connection (local | ssh): --connection ssh"})
+	file := parser.File("f", "file", os.O_RDWR, 0600,
+		&argparse.Options{Required: false, Help: "Aspida File"})
 
 	err := parser.Parse(os.Args)
 	if err != nil {
@@ -47,7 +49,7 @@ func main() {
 	if menuCmd.Happened() {
 		setMenu(*connection)
 	} else if compileCmd.Happened() {
-		setCompile()
+		setCompile(*file)
 	} else if addGroupCmd.Happened() {
 		setAddGroup(*hostsgroup, *hostslist, *connection)
 	} else if removeGroupCmd.Happened() {
@@ -72,9 +74,8 @@ func setMenu(connection string) {
 	}
 }
 
-func setCompile() {
-	file := os.Args[2]
-	dsl.ParseFile(file)
+func setCompile(file os.File) {
+	dsl.ParseFile(file.Name())
 }
 
 func setAddGroup(hostsgroup string, hostslist []string, connection string) {

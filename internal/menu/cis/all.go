@@ -1,7 +1,7 @@
 package cis
 
-import "github.com/antonioalfa22/egida/internal/ansible"
+import "github.com/antonioalfa22/egida/pkg/ansible"
 
 func ShowAllMenu(connection string) {
-	ansible.CreatePlaybook([]string{}, connection)
+	ansible.RunMenuPlaybook([]string{}, connection)
 }

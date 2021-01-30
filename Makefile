@@ -16,6 +16,8 @@ go-path:
 build: go-path
 	go build -o build/egida cmd/main.go
 
-
 docs:
 	mkdocs gh-deploy
+
+dsl:
+	java -jar tools/antlr-4.8.jar -o pkg/parser -listener -visitor -package parser -Dlanguage=Go Aspida.g4

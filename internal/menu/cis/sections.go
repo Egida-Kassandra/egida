@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/antonioalfa22/egida/internal/ansible"
+	"github.com/antonioalfa22/egida/pkg/ansible"
 	"github.com/antonioalfa22/go-utils/collections"
 )
 
@@ -52,5 +52,5 @@ func ShowSectionsMenu(connection string) {
 	}
 	_ = survey.AskOne(prompt, &sections)
 	result := collections.Map(sections, func(p string) string { return "section_" + strings.Split(p, "-")[0] })
-	ansible.CreatePlaybook(result.([]string), connection)
+	ansible.RunMenuPlaybook(result.([]string), connection)
 }

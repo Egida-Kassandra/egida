@@ -2,117 +2,175 @@ package info
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"github.com/antonioalfa22/go-utils/collections"
 	"time"
 
 	grpc "github.com/antonioalfa22/egida/proto"
 )
 
+type Result struct {
+	Host string
+	Lines []string
+}
+
 func GetWorkerInfo(hostslist []string, services string, packages string, hardening string) {
 	if services != "" {
 		if services == "stopped" {
-			GetStoppedServices(hostslist)
+			all, err :=GetStoppedServices(hostslist)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			collections.ForEach(all, func(result Result) {
+				fmt.Println("-------> Host", result.Host)
+				for _, line := range result.Lines {fmt.Println(line)}
+			})
 		} else if services == "running" {
-			GetRunningServices(hostslist)
+			all, err :=GetRunningServices(hostslist)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			collections.ForEach(all, func(result Result) {
+				fmt.Println("-------> Host", result.Host)
+				for _, line := range result.Lines {fmt.Println(line)}
+			})
 		} else {
-			GetAllServices(hostslist)
+			all, err := GetAllServices(hostslist)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			collections.ForEach(all, func(result Result) {
+				fmt.Println("-------> Host", result.Host)
+				for _, line := range result.Lines {fmt.Println(line)}
+			})
 		}
 	}
 	if packages != "" {
 		if packages == "all" {
-			GetAllPackages(hostslist)
+			all, err :=GetAllPackages(hostslist)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			collections.ForEach(all, func(result Result) {
+				fmt.Println("-------> Host", result.Host)
+				for _, line := range result.Lines {fmt.Println(line)}
+			})
 		}
 	}
 	if hardening != "" {
 		if hardening == "lynis" {
-			GetLynisScore(hostslist)
+			all, err :=GetLynisScore(hostslist)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			collections.ForEach(all, func(result Result) {
+				fmt.Println("-------> Host", result.Host)
+				for _, line := range result.Lines {fmt.Println(line)}
+			})
 		}
 	}
 }
 
-func GetAllServices(hosts []string) {
+func GetAllServices(hosts []string) ([]Result, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
+	var results []Result
 	for _, h := range hosts {
+		r := Result{Host: h, Lines: []string{}}
 		client := CreateServicesClient(h)
 		res, err := client.ListAllServices(ctx, &grpc.ListServicesReq{})
 		if err != nil {
-			fmt.Println("Error: can not connect to host ", h, " on port 8128")
+			return nil, errors.New("Error: can not connect to host " + h + " on port 8128")
 		} else {
-			fmt.Println("----> Host: ", h)
 			for _, s := range res.Services {
-				fmt.Println(s.Name, " [", s.Status, "]")
+				r.Lines = append(r.Lines, s.Name+"->"+s.Status)
 			}
+			results = append(results, r)
 		}
 	}
+	return results, nil
 }
 
-func GetRunningServices(hosts []string) {
+func GetRunningServices(hosts []string) ([]Result, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
+	var results []Result
 	for _, h := range hosts {
+		r := Result{Host: h, Lines: []string{}}
 		client := CreateServicesClient(h)
 		res, err := client.ListRunningServices(ctx, &grpc.ListServicesReq{})
 		if err != nil {
-			fmt.Println("Error: can not connect to host ", h, " on port 8128")
+			return nil, errors.New("Error: can not connect to host " + h + " on port 8128")
 		} else {
-			fmt.Println("----> Host: ", h)
 			for _, s := range res.Services {
-				fmt.Println(s.Name, " [", s.Status, "]")
+				r.Lines = append(r.Lines, s.Name+"->"+s.Status)
 			}
+			results = append(results, r)
 		}
 	}
+	return results, nil
 }
 
-func GetStoppedServices(hosts []string) {
+func GetStoppedServices(hosts []string) ([]Result, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
+	var results []Result
 	for _, h := range hosts {
+		r := Result{Host: h, Lines: []string{}}
 		client := CreateServicesClient(h)
 		res, err := client.ListStoppedServices(ctx, &grpc.ListServicesReq{})
 		if err != nil {
-			fmt.Println("Error: can not connect to host ", h, " on port 8128")
+			return nil, errors.New("Error: can not connect to host " + h + " on port 8128")
 		} else {
-			fmt.Println("----> Host: ", h)
 			for _, s := range res.Services {
-				fmt.Println(s.Name, " [", s.Status, "]")
+				r.Lines = append(r.Lines, s.Name+"->"+s.Status)
 			}
+			results = append(results, r)
 		}
 	}
+	return results, nil
 }
 
-func GetAllPackages(hosts []string) {
+func GetAllPackages(hosts []string) ([]Result, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
+	var results []Result
 	for _, h := range hosts {
+		r := Result{Host: h, Lines: []string{}}
 		client := CreatePackagesClient(h)
 		res, err := client.ListAllPackages(ctx, &grpc.ListPackagesReq{})
 		if err != nil {
-			fmt.Println("Error: can not connect to host ", h, " on port 8128")
+			return nil, errors.New("Error: can not connect to host " + h + " on port 8128")
 		} else {
-			fmt.Println("----> Host: ", h)
 			for _, s := range res.Packages {
-				fmt.Println(s.Name)
+				r.Lines = append(r.Lines, s.Name)
 			}
+			results = append(results, r)
 		}
 	}
+	return results, nil
 }
 
-func GetLynisScore(hosts []string) {
+func GetLynisScore(hosts []string) ([]Result, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Second)
-	fmt.Println("Getting Lynis scores ...")
 	defer cancel()
+	var results []Result
 	for _, h := range hosts {
+		r := Result{Host: h, Lines: []string{}}
 		client := CreateHardeningClient(h)
 		res, err := client.GetLynisScore(ctx, &grpc.ScoreReq{})
 		if err != nil {
-			fmt.Println("Error: can not connect to host ", h, " on port 8128")
+			return nil, errors.New("Error: can not connect to host " + h + " on port 8128")
 		} else {
-			fmt.Println("----> Host: ", h)
-			fmt.Println("Score: ", res.Score)
-			for _, l := range res.Log {
-				fmt.Println(l)
-			}
+			r.Lines = []string{res.Score}
+			results = append(results, r)
 		}
 	}
+	return results, nil
 }

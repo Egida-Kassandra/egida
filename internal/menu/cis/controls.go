@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/antonioalfa22/egida/internal/ansible"
+	"github.com/antonioalfa22/egida/pkg/ansible"
 	"github.com/antonioalfa22/go-utils/collections"
 )
 
@@ -28,7 +28,7 @@ func ShowControlsMenu(connection string) {
 	_ = survey.AskOne(prompt, &controls)
 	temp := collections.Map(controls, func(p string) string { return strings.Split(p, ".")[0] })
 	result := getControls(temp.([]string))
-	ansible.CreatePlaybook(result, connection)
+	ansible.RunMenuPlaybook(result, connection)
 }
 
 func getControls(controls []string) []string {

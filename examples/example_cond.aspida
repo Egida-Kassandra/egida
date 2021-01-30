@@ -1,20 +1,20 @@
 MAIN : {
     name: "Test 1";
-    connection: SSH;
+    connection: LOCAL;
     description: "Aspida Test";
 }
 
-HOSTS : [web-servers, 192.178.9.12] // Profiles & hosts
+HOST : "localhost";
 
 TASKS : {
-    IF aspida.machine.score <= 0.5 {
+    IF "services.ufw" == "stopped"{
         sections: ["1.1", "1.2"];
-        exclusions : ["1.1.1.3"]; // Points that will not be executed
+        exclusions : ["1.1.1.3"];
     }
-    ELSE IF aspida.machine.services.apache IS RUNNING { // Check apache service is running
-        points: ["1.1.1.3"];
+    ELIF "hardscores.lynis" <= 0.5 {
+        points: ["1.1.1.5"];
     }
-    ELSE IF aspida.machine.services.apache IS STOPPED { // Check apache service is stopped
+    ELIF "services.apache" == "STOPPED" {
         points: ["1.1.1.4"];
     }
     ELSE {
@@ -32,4 +32,3 @@ VARS : {
     };
     "nameservers": ["8.8.8.8", "8.8.4.4"];
 }
-
