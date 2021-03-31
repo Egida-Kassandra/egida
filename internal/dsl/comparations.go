@@ -51,8 +51,9 @@ func (c Comparation) Compare() bool {
 	case "hardscores":
 		lines, _ := info.GetLynisScore([]string{c.Host})
 		re := regexp.MustCompile("[0-9]+")
-		fmt.Println(lines)
+		fmt.Println(re.FindAllString(lines[0].Lines[0], -1)[0])
 		score, _ := strconv.ParseFloat(re.FindAllString(lines[0].Lines[0], -1)[0], 64)
+		fmt.Println(score)
 		switch c.Operator {
 		case "==":
 			return c.Value1.(float64) == score
