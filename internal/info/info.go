@@ -170,6 +170,8 @@ func GetLynisScore(hosts []string) ([]Result, error) {
 		} else {
 			r.Lines = []string{res.Score}
 			results = append(results, r)
+			fmt.Println(res.Log)
+			fmt.Println(res.Score)
 		}
 	}
 	return results, nil

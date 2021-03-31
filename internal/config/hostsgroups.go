@@ -43,7 +43,6 @@ func SetupGroup(group string, connection string) {
 	} else {
 		err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated_setup.yml")
 		if err != nil {
-			fmt.Println(err)
 			fmt.Println("Error on running playbook, Do you have Ansible installed?")
 		}
 	}
