@@ -54,17 +54,17 @@ func (c Comparation) Compare() bool {
 		value, _ := strconv.ParseFloat(c.Value2.(string), 64)
 		switch c.Operator {
 		case "==":
-			return value == score
+			return score == value
 		case ">=":
-			return value >= score
+			return score >= value
 		case "<=":
-			return value <= score
+			return score <= value
 		case ">":
-			return value > score
+			return score > value
 		case "<":
-			return value < score
+			return score < value
 		case "!=":
-			return value != score
+			return score != value
 		default:
 			return false
 		}
