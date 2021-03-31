@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/antonioalfa22/egida/internal/info"
 	"github.com/antonioalfa22/go-utils/collections"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -49,8 +50,9 @@ func (c Comparation) Compare() bool {
 		}
 	case "hardscores":
 		lines, _ := info.GetLynisScore([]string{c.Host})
-		fmt.Println(strings.Split(lines[0].Lines[0], " "))
-		score, _ := strconv.ParseFloat(strings.Split(lines[0].Lines[0], " ")[2], 64)
+		re := regexp.MustCompile("[0-9]+")
+		fmt.Println(lines)
+		score, _ := strconv.ParseFloat(re.FindAllString(lines[0].Lines[0], -1)[0], 64)
 		switch c.Operator {
 		case "==":
 			return c.Value1.(float64) == score
