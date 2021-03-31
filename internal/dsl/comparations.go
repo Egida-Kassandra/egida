@@ -51,19 +51,20 @@ func (c Comparation) Compare() bool {
 		lines, _ := info.GetLynisScore([]string{c.Host})
 		re := regexp.MustCompile("[0-9]+")
 		score, _ := strconv.ParseFloat(re.FindAllString(lines[0].Lines[0], -1)[0], 64)
+		value, _ := strconv.ParseFloat(c.Value2.(string), 64)
 		switch c.Operator {
 		case "==":
-			return c.Value2.(float64) == score
+			return value == score
 		case ">=":
-			return c.Value2.(float64) >= score
+			return value >= score
 		case "<=":
-			return c.Value2.(float64) <= score
+			return value <= score
 		case ">":
-			return c.Value2.(float64) > score
+			return value > score
 		case "<":
-			return c.Value2.(float64) < score
+			return value < score
 		case "!=":
-			return c.Value2.(float64) != score
+			return value != score
 		default:
 			return false
 		}
