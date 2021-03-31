@@ -84,6 +84,12 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#domain-specific-language">Domain Specific Language</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#compile">compile</a>
+    </li>
+        </ul>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#hardening">Hardening</a>
@@ -107,6 +113,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#contact">Contact</a>
     </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="dsl/">Aspida DSL</a>
                     </li>
                 </ul>
                 <ul>
@@ -172,13 +182,14 @@
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
 <li><a href="#overview">Overview</a></li>
-<li><a href="#install">Install</a></li>
+<li><a href="#installation">Installation</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#download-and-install">Download and install</a></li>
 <li><a href="#getting-started">Getting Started</a></li>
 <li><a href="#create-and-delete-host-groups">Create and delete host groups</a></li>
 <li><a href="#show-host-info">Show host info</a></li>
 <li><a href="#hardening-menu">Hardening Menu</a></li>
+<li><a href="#domain-specific-language">Domain Specific Language</a></li>
 <li><a href="#hardening">Hardening</a></li>
 <li><a href="#all-cis-benchmarks">All CIS Benchmarks</a></li>
 <li><a href="#cis-points">CIS Points</a></li>
@@ -340,6 +351,21 @@ the hardening options we want to perform.</p>
 <p>Example: --connection ssh
 <strong>Localhost not allows ssh</strong></p>
 </blockquote>
+<h3 id="domain-specific-language">Domain Specific Language</h3>
+<p>Egida has a domain specific language (DSL) called <strong>Aspida</strong> that allows customized hardening scripts that depend 
+on the value of properties and attributes of the target system.</p>
+<h4 id="compile"><em>compile</em></h4>
+<pre><code class="commandline">sudo egida compile -f filename
+</code></pre>
+
+<blockquote>
+<p>Example: <code>sudo egida compile -f /examples/example_cond.aspida</code></p>
+</blockquote>
+<p><strong>-f, --file</strong>:  Aspida File to compile</p>
+<blockquote>
+<p>Example: --file /examples/example_cond.aspida</p>
+</blockquote>
+<p>Information on the Aspida language and its syntax is available <a href="dsl/">here</a>.</p>
 <!-- Hardening -->
 
 <hr />
@@ -495,7 +521,7 @@ nameservers: [8.8.8.8, 8.8.4.4]
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="dsl/" class="btn btn-neutral float-right" title="Aspida DSL">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -523,7 +549,7 @@ nameservers: [8.8.8.8, 8.8.4.4]
       
       
       
-        <span style="margin-left: 15px"><a href="about/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="dsl/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -541,5 +567,5 @@ nameservers: [8.8.8.8, 8.8.4.4]
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-01-18 14:57:31.123829+00:00
+Build Date UTC : 2021-03-31 15:31:14.567857+00:00
 -->
