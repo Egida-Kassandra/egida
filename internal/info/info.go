@@ -165,14 +165,11 @@ func GetLynisScore(hosts []string) ([]Result, error) {
 		r := Result{Host: h, Lines: []string{}}
 		client := CreateHardeningClient(h)
 		res, err := client.GetLynisScore(ctx, &grpc.ScoreReq{})
-		fmt.Println(res)
 		if err != nil {
 			return nil, errors.New("Error: can not connect to host " + h + " on port 8128")
 		} else {
-			r.Lines = []string{res.Score}
+			r.Lines = res.Log
 			results = append(results, r)
-			fmt.Println(res.Log)
-			fmt.Println(res.Score)
 		}
 	}
 	return results, nil
