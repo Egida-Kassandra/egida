@@ -1,8 +1,10 @@
 package dsl
 
 import (
+	"fmt"
 	"github.com/antonioalfa22/egida/internal/info"
 	"github.com/antonioalfa22/go-utils/collections"
+	"strconv"
 	"strings"
 )
 
@@ -46,7 +48,25 @@ func (c Comparation) Compare() bool {
 			}) != nil
 		}
 	case "hardscores":
-		return false
+		lines, _ := info.GetLynisScore([]string{c.Host})
+		score, _ := strconv.ParseFloat(strings.Split(lines[0].Lines[0], " ")[3], 64)
+		fmt.Println(score)
+		switch c.Operator {
+		case "==":
+			return c.Value1.(float64) == score
+		case ">=":
+			return c.Value1.(float64) >= score
+		case "<=":
+			return c.Value1.(float64) <= score
+		case ">":
+			return c.Value1.(float64) > score
+		case "<":
+			return c.Value1.(float64) < score
+		case "!=":
+			return c.Value1.(float64) != score
+		default:
+			return false
+		}
 	}
 	return false
 }
