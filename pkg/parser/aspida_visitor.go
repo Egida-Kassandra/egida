@@ -67,6 +67,9 @@ type AspidaVisitor interface {
 	// Visit a parse tree produced by AspidaParser#tExclusions.
 	VisitTExclusions(ctx *TExclusionsContext) interface{}
 
+	// Visit a parse tree produced by AspidaParser#tTags.
+	VisitTTags(ctx *TTagsContext) interface{}
+
 	// Visit a parse tree produced by AspidaParser#sections.
 	VisitSections(ctx *SectionsContext) interface{}
 
@@ -78,6 +81,9 @@ type AspidaVisitor interface {
 
 	// Visit a parse tree produced by AspidaParser#exclusions.
 	VisitExclusions(ctx *ExclusionsContext) interface{}
+
+	// Visit a parse tree produced by AspidaParser#tags.
+	VisitTags(ctx *TagsContext) interface{}
 
 	// Visit a parse tree produced by AspidaParser#ifStat.
 	VisitIfStat(ctx *IfStatContext) interface{}

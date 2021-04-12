@@ -15,128 +15,134 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 50, 289,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 52, 304,
 	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
 	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
 	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
 	18, 4, 19, 9, 19, 4, 20, 9, 20, 4, 21, 9, 21, 4, 22, 9, 22, 4, 23, 9, 23,
-	4, 24, 9, 24, 4, 25, 9, 25, 4, 26, 9, 26, 4, 27, 9, 27, 4, 28, 9, 28, 3,
-	2, 3, 2, 3, 2, 3, 2, 5, 2, 61, 10, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-	3, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3,
-	6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 7, 3, 7, 7, 7, 88, 10, 7, 12, 7, 14,
-	7, 91, 11, 7, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 5,
-	8, 102, 10, 8, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 5, 9, 110, 10, 9, 3,
-	10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 5, 10, 118, 10, 10, 3, 11, 3, 11,
-	5, 11, 122, 10, 11, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 5, 12, 130,
-	10, 12, 3, 13, 3, 13, 7, 13, 134, 10, 13, 12, 13, 14, 13, 137, 11, 13,
-	3, 13, 3, 13, 7, 13, 141, 10, 13, 12, 13, 14, 13, 144, 11, 13, 3, 13, 3,
-	13, 5, 13, 148, 10, 13, 3, 14, 3, 14, 3, 14, 3, 14, 5, 14, 154, 10, 14,
-	3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 5,
-	15, 166, 10, 15, 3, 16, 3, 16, 3, 16, 3, 16, 3, 16, 3, 16, 3, 16, 3, 16,
-	3, 16, 3, 16, 5, 16, 178, 10, 16, 3, 17, 3, 17, 3, 17, 3, 17, 3, 17, 3,
-	17, 3, 17, 3, 17, 3, 17, 3, 17, 5, 17, 190, 10, 17, 3, 18, 3, 18, 3, 18,
-	3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 5, 18, 202, 10, 18, 3,
-	19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 20, 3, 20, 3, 20, 3, 20, 3, 20,
-	3, 20, 3, 21, 3, 21, 3, 21, 3, 21, 3, 21, 3, 22, 3, 22, 3, 22, 7, 22, 224,
-	10, 22, 12, 22, 14, 22, 227, 11, 22, 3, 23, 3, 23, 7, 23, 231, 10, 23,
-	12, 23, 14, 23, 234, 11, 23, 3, 24, 3, 24, 3, 24, 3, 24, 3, 24, 3, 24,
-	3, 24, 3, 24, 3, 24, 3, 24, 3, 24, 3, 24, 5, 24, 248, 10, 24, 3, 25, 3,
-	25, 3, 26, 3, 26, 3, 26, 3, 26, 3, 26, 3, 26, 5, 26, 258, 10, 26, 3, 27,
-	3, 27, 3, 27, 3, 27, 7, 27, 264, 10, 27, 12, 27, 14, 27, 267, 11, 27, 3,
-	27, 3, 27, 3, 27, 5, 27, 272, 10, 27, 3, 28, 3, 28, 3, 28, 3, 28, 7, 28,
-	278, 10, 28, 12, 28, 14, 28, 281, 11, 28, 3, 28, 3, 28, 3, 28, 3, 28, 5,
-	28, 287, 10, 28, 3, 28, 2, 2, 29, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22,
-	24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 2, 3, 3,
-	2, 20, 25, 2, 291, 2, 56, 3, 2, 2, 2, 4, 62, 3, 2, 2, 2, 6, 68, 3, 2, 2,
-	2, 8, 73, 3, 2, 2, 2, 10, 79, 3, 2, 2, 2, 12, 85, 3, 2, 2, 2, 14, 101,
-	3, 2, 2, 2, 16, 109, 3, 2, 2, 2, 18, 117, 3, 2, 2, 2, 20, 121, 3, 2, 2,
-	2, 22, 129, 3, 2, 2, 2, 24, 147, 3, 2, 2, 2, 26, 153, 3, 2, 2, 2, 28, 165,
-	3, 2, 2, 2, 30, 177, 3, 2, 2, 2, 32, 189, 3, 2, 2, 2, 34, 201, 3, 2, 2,
-	2, 36, 203, 3, 2, 2, 2, 38, 209, 3, 2, 2, 2, 40, 215, 3, 2, 2, 2, 42, 220,
-	3, 2, 2, 2, 44, 228, 3, 2, 2, 2, 46, 247, 3, 2, 2, 2, 48, 249, 3, 2, 2,
-	2, 50, 257, 3, 2, 2, 2, 52, 271, 3, 2, 2, 2, 54, 286, 3, 2, 2, 2, 56, 57,
-	5, 4, 3, 2, 57, 58, 5, 6, 4, 2, 58, 60, 5, 8, 5, 2, 59, 61, 5, 10, 6, 2,
-	60, 59, 3, 2, 2, 2, 60, 61, 3, 2, 2, 2, 61, 3, 3, 2, 2, 2, 62, 63, 7, 38,
-	2, 2, 63, 64, 7, 3, 2, 2, 64, 65, 7, 4, 2, 2, 65, 66, 5, 12, 7, 2, 66,
-	67, 7, 5, 2, 2, 67, 5, 3, 2, 2, 2, 68, 69, 7, 39, 2, 2, 69, 70, 7, 3, 2,
-	2, 70, 71, 7, 35, 2, 2, 71, 72, 7, 37, 2, 2, 72, 7, 3, 2, 2, 2, 73, 74,
-	7, 40, 2, 2, 74, 75, 7, 3, 2, 2, 75, 76, 7, 4, 2, 2, 76, 77, 5, 24, 13,
-	2, 77, 78, 7, 5, 2, 2, 78, 9, 3, 2, 2, 2, 79, 80, 7, 41, 2, 2, 80, 81,
-	7, 3, 2, 2, 81, 82, 7, 4, 2, 2, 82, 83, 5, 44, 23, 2, 83, 84, 7, 5, 2,
-	2, 84, 11, 3, 2, 2, 2, 85, 89, 5, 14, 8, 2, 86, 88, 5, 14, 8, 2, 87, 86,
-	3, 2, 2, 2, 88, 91, 3, 2, 2, 2, 89, 87, 3, 2, 2, 2, 89, 90, 3, 2, 2, 2,
-	90, 13, 3, 2, 2, 2, 91, 89, 3, 2, 2, 2, 92, 93, 5, 16, 9, 2, 93, 94, 7,
-	37, 2, 2, 94, 102, 3, 2, 2, 2, 95, 96, 5, 18, 10, 2, 96, 97, 7, 37, 2,
-	2, 97, 102, 3, 2, 2, 2, 98, 99, 5, 22, 12, 2, 99, 100, 7, 37, 2, 2, 100,
-	102, 3, 2, 2, 2, 101, 92, 3, 2, 2, 2, 101, 95, 3, 2, 2, 2, 101, 98, 3,
-	2, 2, 2, 102, 15, 3, 2, 2, 2, 103, 104, 7, 6, 2, 2, 104, 105, 7, 3, 2,
-	2, 105, 110, 5, 50, 26, 2, 106, 107, 7, 7, 2, 2, 107, 108, 7, 3, 2, 2,
-	108, 110, 5, 50, 26, 2, 109, 103, 3, 2, 2, 2, 109, 106, 3, 2, 2, 2, 110,
-	17, 3, 2, 2, 2, 111, 112, 7, 8, 2, 2, 112, 113, 7, 3, 2, 2, 113, 118, 5,
-	20, 11, 2, 114, 115, 7, 9, 2, 2, 115, 116, 7, 3, 2, 2, 116, 118, 5, 20,
-	11, 2, 117, 111, 3, 2, 2, 2, 117, 114, 3, 2, 2, 2, 118, 19, 3, 2, 2, 2,
-	119, 122, 7, 42, 2, 2, 120, 122, 7, 43, 2, 2, 121, 119, 3, 2, 2, 2, 121,
-	120, 3, 2, 2, 2, 122, 21, 3, 2, 2, 2, 123, 124, 7, 10, 2, 2, 124, 125,
-	7, 3, 2, 2, 125, 130, 5, 50, 26, 2, 126, 127, 7, 11, 2, 2, 127, 128, 7,
-	3, 2, 2, 128, 130, 5, 50, 26, 2, 129, 123, 3, 2, 2, 2, 129, 126, 3, 2,
-	2, 2, 130, 23, 3, 2, 2, 2, 131, 135, 5, 26, 14, 2, 132, 134, 5, 26, 14,
-	2, 133, 132, 3, 2, 2, 2, 134, 137, 3, 2, 2, 2, 135, 133, 3, 2, 2, 2, 135,
-	136, 3, 2, 2, 2, 136, 148, 3, 2, 2, 2, 137, 135, 3, 2, 2, 2, 138, 142,
-	5, 36, 19, 2, 139, 141, 5, 38, 20, 2, 140, 139, 3, 2, 2, 2, 141, 144, 3,
-	2, 2, 2, 142, 140, 3, 2, 2, 2, 142, 143, 3, 2, 2, 2, 143, 145, 3, 2, 2,
-	2, 144, 142, 3, 2, 2, 2, 145, 146, 5, 40, 21, 2, 146, 148, 3, 2, 2, 2,
-	147, 131, 3, 2, 2, 2, 147, 138, 3, 2, 2, 2, 148, 25, 3, 2, 2, 2, 149, 154,
-	5, 28, 15, 2, 150, 154, 5, 30, 16, 2, 151, 154, 5, 32, 17, 2, 152, 154,
-	5, 34, 18, 2, 153, 149, 3, 2, 2, 2, 153, 150, 3, 2, 2, 2, 153, 151, 3,
-	2, 2, 2, 153, 152, 3, 2, 2, 2, 154, 27, 3, 2, 2, 2, 155, 156, 7, 12, 2,
-	2, 156, 157, 7, 3, 2, 2, 157, 158, 5, 52, 27, 2, 158, 159, 7, 37, 2, 2,
-	159, 166, 3, 2, 2, 2, 160, 161, 7, 13, 2, 2, 161, 162, 7, 3, 2, 2, 162,
-	163, 5, 52, 27, 2, 163, 164, 7, 37, 2, 2, 164, 166, 3, 2, 2, 2, 165, 155,
-	3, 2, 2, 2, 165, 160, 3, 2, 2, 2, 166, 29, 3, 2, 2, 2, 167, 168, 7, 14,
-	2, 2, 168, 169, 7, 3, 2, 2, 169, 170, 5, 52, 27, 2, 170, 171, 7, 37, 2,
-	2, 171, 178, 3, 2, 2, 2, 172, 173, 7, 15, 2, 2, 173, 174, 7, 3, 2, 2, 174,
-	175, 5, 52, 27, 2, 175, 176, 7, 37, 2, 2, 176, 178, 3, 2, 2, 2, 177, 167,
-	3, 2, 2, 2, 177, 172, 3, 2, 2, 2, 178, 31, 3, 2, 2, 2, 179, 180, 7, 16,
-	2, 2, 180, 181, 7, 3, 2, 2, 181, 182, 5, 52, 27, 2, 182, 183, 7, 37, 2,
-	2, 183, 190, 3, 2, 2, 2, 184, 185, 7, 17, 2, 2, 185, 186, 7, 3, 2, 2, 186,
-	187, 5, 52, 27, 2, 187, 188, 7, 37, 2, 2, 188, 190, 3, 2, 2, 2, 189, 179,
-	3, 2, 2, 2, 189, 184, 3, 2, 2, 2, 190, 33, 3, 2, 2, 2, 191, 192, 7, 18,
-	2, 2, 192, 193, 7, 3, 2, 2, 193, 194, 5, 52, 27, 2, 194, 195, 7, 37, 2,
-	2, 195, 202, 3, 2, 2, 2, 196, 197, 7, 19, 2, 2, 197, 198, 7, 3, 2, 2, 198,
-	199, 5, 52, 27, 2, 199, 200, 7, 37, 2, 2, 200, 202, 3, 2, 2, 2, 201, 191,
-	3, 2, 2, 2, 201, 196, 3, 2, 2, 2, 202, 35, 3, 2, 2, 2, 203, 204, 7, 44,
-	2, 2, 204, 205, 5, 42, 22, 2, 205, 206, 7, 4, 2, 2, 206, 207, 5, 24, 13,
-	2, 207, 208, 7, 5, 2, 2, 208, 37, 3, 2, 2, 2, 209, 210, 7, 45, 2, 2, 210,
-	211, 5, 42, 22, 2, 211, 212, 7, 4, 2, 2, 212, 213, 5, 24, 13, 2, 213, 214,
-	7, 5, 2, 2, 214, 39, 3, 2, 2, 2, 215, 216, 7, 46, 2, 2, 216, 217, 7, 4,
-	2, 2, 217, 218, 5, 24, 13, 2, 218, 219, 7, 5, 2, 2, 219, 41, 3, 2, 2, 2,
-	220, 221, 5, 50, 26, 2, 221, 225, 5, 48, 25, 2, 222, 224, 5, 50, 26, 2,
-	223, 222, 3, 2, 2, 2, 224, 227, 3, 2, 2, 2, 225, 223, 3, 2, 2, 2, 225,
-	226, 3, 2, 2, 2, 226, 43, 3, 2, 2, 2, 227, 225, 3, 2, 2, 2, 228, 232, 5,
-	46, 24, 2, 229, 231, 5, 46, 24, 2, 230, 229, 3, 2, 2, 2, 231, 234, 3, 2,
-	2, 2, 232, 230, 3, 2, 2, 2, 232, 233, 3, 2, 2, 2, 233, 45, 3, 2, 2, 2,
-	234, 232, 3, 2, 2, 2, 235, 236, 7, 35, 2, 2, 236, 237, 7, 3, 2, 2, 237,
-	238, 5, 50, 26, 2, 238, 239, 7, 37, 2, 2, 239, 248, 3, 2, 2, 2, 240, 241,
-	7, 35, 2, 2, 241, 242, 7, 3, 2, 2, 242, 243, 7, 4, 2, 2, 243, 244, 5, 44,
-	23, 2, 244, 245, 7, 5, 2, 2, 245, 246, 7, 37, 2, 2, 246, 248, 3, 2, 2,
-	2, 247, 235, 3, 2, 2, 2, 247, 240, 3, 2, 2, 2, 248, 47, 3, 2, 2, 2, 249,
-	250, 9, 2, 2, 2, 250, 49, 3, 2, 2, 2, 251, 258, 7, 35, 2, 2, 252, 258,
-	7, 36, 2, 2, 253, 258, 7, 26, 2, 2, 254, 258, 7, 27, 2, 2, 255, 258, 7,
-	28, 2, 2, 256, 258, 5, 54, 28, 2, 257, 251, 3, 2, 2, 2, 257, 252, 3, 2,
-	2, 2, 257, 253, 3, 2, 2, 2, 257, 254, 3, 2, 2, 2, 257, 255, 3, 2, 2, 2,
-	257, 256, 3, 2, 2, 2, 258, 51, 3, 2, 2, 2, 259, 260, 7, 29, 2, 2, 260,
-	265, 7, 35, 2, 2, 261, 262, 7, 30, 2, 2, 262, 264, 7, 35, 2, 2, 263, 261,
-	3, 2, 2, 2, 264, 267, 3, 2, 2, 2, 265, 263, 3, 2, 2, 2, 265, 266, 3, 2,
-	2, 2, 266, 268, 3, 2, 2, 2, 267, 265, 3, 2, 2, 2, 268, 272, 7, 31, 2, 2,
-	269, 270, 7, 29, 2, 2, 270, 272, 7, 31, 2, 2, 271, 259, 3, 2, 2, 2, 271,
-	269, 3, 2, 2, 2, 272, 53, 3, 2, 2, 2, 273, 274, 7, 29, 2, 2, 274, 279,
-	5, 50, 26, 2, 275, 276, 7, 30, 2, 2, 276, 278, 5, 50, 26, 2, 277, 275,
-	3, 2, 2, 2, 278, 281, 3, 2, 2, 2, 279, 277, 3, 2, 2, 2, 279, 280, 3, 2,
-	2, 2, 280, 282, 3, 2, 2, 2, 281, 279, 3, 2, 2, 2, 282, 283, 7, 31, 2, 2,
-	283, 287, 3, 2, 2, 2, 284, 285, 7, 29, 2, 2, 285, 287, 7, 31, 2, 2, 286,
-	273, 3, 2, 2, 2, 286, 284, 3, 2, 2, 2, 287, 55, 3, 2, 2, 2, 25, 60, 89,
-	101, 109, 117, 121, 129, 135, 142, 147, 153, 165, 177, 189, 201, 225, 232,
-	247, 257, 265, 271, 279, 286,
+	4, 24, 9, 24, 4, 25, 9, 25, 4, 26, 9, 26, 4, 27, 9, 27, 4, 28, 9, 28, 4,
+	29, 9, 29, 3, 2, 3, 2, 3, 2, 3, 2, 5, 2, 63, 10, 2, 3, 3, 3, 3, 3, 3, 3,
+	3, 3, 3, 3, 3, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 5, 3, 5, 3, 5, 3, 5, 3,
+	5, 3, 5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 7, 3, 7, 7, 7, 90, 10,
+	7, 12, 7, 14, 7, 93, 11, 7, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3, 8, 3,
+	8, 3, 8, 5, 8, 104, 10, 8, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 5, 9, 112,
+	10, 9, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 5, 10, 120, 10, 10, 3,
+	11, 3, 11, 5, 11, 124, 10, 11, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12,
+	5, 12, 132, 10, 12, 3, 13, 3, 13, 7, 13, 136, 10, 13, 12, 13, 14, 13, 139,
+	11, 13, 3, 13, 3, 13, 7, 13, 143, 10, 13, 12, 13, 14, 13, 146, 11, 13,
+	3, 13, 3, 13, 5, 13, 150, 10, 13, 3, 14, 3, 14, 3, 14, 3, 14, 3, 14, 5,
+	14, 157, 10, 14, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15, 3, 15,
+	3, 15, 3, 15, 5, 15, 169, 10, 15, 3, 16, 3, 16, 3, 16, 3, 16, 3, 16, 3,
+	16, 3, 16, 3, 16, 3, 16, 3, 16, 5, 16, 181, 10, 16, 3, 17, 3, 17, 3, 17,
+	3, 17, 3, 17, 3, 17, 3, 17, 3, 17, 3, 17, 3, 17, 5, 17, 193, 10, 17, 3,
+	18, 3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 3, 18, 5, 18,
+	205, 10, 18, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3,
+	19, 3, 19, 5, 19, 217, 10, 19, 3, 20, 3, 20, 3, 20, 3, 20, 3, 20, 3, 20,
+	3, 21, 3, 21, 3, 21, 3, 21, 3, 21, 3, 21, 3, 22, 3, 22, 3, 22, 3, 22, 3,
+	22, 3, 23, 3, 23, 3, 23, 7, 23, 239, 10, 23, 12, 23, 14, 23, 242, 11, 23,
+	3, 24, 3, 24, 7, 24, 246, 10, 24, 12, 24, 14, 24, 249, 11, 24, 3, 25, 3,
+	25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25, 3, 25,
+	5, 25, 263, 10, 25, 3, 26, 3, 26, 3, 27, 3, 27, 3, 27, 3, 27, 3, 27, 3,
+	27, 5, 27, 273, 10, 27, 3, 28, 3, 28, 3, 28, 3, 28, 7, 28, 279, 10, 28,
+	12, 28, 14, 28, 282, 11, 28, 3, 28, 3, 28, 3, 28, 5, 28, 287, 10, 28, 3,
+	29, 3, 29, 3, 29, 3, 29, 7, 29, 293, 10, 29, 12, 29, 14, 29, 296, 11, 29,
+	3, 29, 3, 29, 3, 29, 3, 29, 5, 29, 302, 10, 29, 3, 29, 2, 2, 30, 2, 4,
+	6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
+	44, 46, 48, 50, 52, 54, 56, 2, 3, 3, 2, 22, 27, 2, 307, 2, 58, 3, 2, 2,
+	2, 4, 64, 3, 2, 2, 2, 6, 70, 3, 2, 2, 2, 8, 75, 3, 2, 2, 2, 10, 81, 3,
+	2, 2, 2, 12, 87, 3, 2, 2, 2, 14, 103, 3, 2, 2, 2, 16, 111, 3, 2, 2, 2,
+	18, 119, 3, 2, 2, 2, 20, 123, 3, 2, 2, 2, 22, 131, 3, 2, 2, 2, 24, 149,
+	3, 2, 2, 2, 26, 156, 3, 2, 2, 2, 28, 168, 3, 2, 2, 2, 30, 180, 3, 2, 2,
+	2, 32, 192, 3, 2, 2, 2, 34, 204, 3, 2, 2, 2, 36, 216, 3, 2, 2, 2, 38, 218,
+	3, 2, 2, 2, 40, 224, 3, 2, 2, 2, 42, 230, 3, 2, 2, 2, 44, 235, 3, 2, 2,
+	2, 46, 243, 3, 2, 2, 2, 48, 262, 3, 2, 2, 2, 50, 264, 3, 2, 2, 2, 52, 272,
+	3, 2, 2, 2, 54, 286, 3, 2, 2, 2, 56, 301, 3, 2, 2, 2, 58, 59, 5, 4, 3,
+	2, 59, 60, 5, 6, 4, 2, 60, 62, 5, 8, 5, 2, 61, 63, 5, 10, 6, 2, 62, 61,
+	3, 2, 2, 2, 62, 63, 3, 2, 2, 2, 63, 3, 3, 2, 2, 2, 64, 65, 7, 40, 2, 2,
+	65, 66, 7, 3, 2, 2, 66, 67, 7, 4, 2, 2, 67, 68, 5, 12, 7, 2, 68, 69, 7,
+	5, 2, 2, 69, 5, 3, 2, 2, 2, 70, 71, 7, 41, 2, 2, 71, 72, 7, 3, 2, 2, 72,
+	73, 7, 37, 2, 2, 73, 74, 7, 39, 2, 2, 74, 7, 3, 2, 2, 2, 75, 76, 7, 42,
+	2, 2, 76, 77, 7, 3, 2, 2, 77, 78, 7, 4, 2, 2, 78, 79, 5, 24, 13, 2, 79,
+	80, 7, 5, 2, 2, 80, 9, 3, 2, 2, 2, 81, 82, 7, 43, 2, 2, 82, 83, 7, 3, 2,
+	2, 83, 84, 7, 4, 2, 2, 84, 85, 5, 46, 24, 2, 85, 86, 7, 5, 2, 2, 86, 11,
+	3, 2, 2, 2, 87, 91, 5, 14, 8, 2, 88, 90, 5, 14, 8, 2, 89, 88, 3, 2, 2,
+	2, 90, 93, 3, 2, 2, 2, 91, 89, 3, 2, 2, 2, 91, 92, 3, 2, 2, 2, 92, 13,
+	3, 2, 2, 2, 93, 91, 3, 2, 2, 2, 94, 95, 5, 16, 9, 2, 95, 96, 7, 39, 2,
+	2, 96, 104, 3, 2, 2, 2, 97, 98, 5, 18, 10, 2, 98, 99, 7, 39, 2, 2, 99,
+	104, 3, 2, 2, 2, 100, 101, 5, 22, 12, 2, 101, 102, 7, 39, 2, 2, 102, 104,
+	3, 2, 2, 2, 103, 94, 3, 2, 2, 2, 103, 97, 3, 2, 2, 2, 103, 100, 3, 2, 2,
+	2, 104, 15, 3, 2, 2, 2, 105, 106, 7, 6, 2, 2, 106, 107, 7, 3, 2, 2, 107,
+	112, 5, 52, 27, 2, 108, 109, 7, 7, 2, 2, 109, 110, 7, 3, 2, 2, 110, 112,
+	5, 52, 27, 2, 111, 105, 3, 2, 2, 2, 111, 108, 3, 2, 2, 2, 112, 17, 3, 2,
+	2, 2, 113, 114, 7, 8, 2, 2, 114, 115, 7, 3, 2, 2, 115, 120, 5, 20, 11,
+	2, 116, 117, 7, 9, 2, 2, 117, 118, 7, 3, 2, 2, 118, 120, 5, 20, 11, 2,
+	119, 113, 3, 2, 2, 2, 119, 116, 3, 2, 2, 2, 120, 19, 3, 2, 2, 2, 121, 124,
+	7, 44, 2, 2, 122, 124, 7, 45, 2, 2, 123, 121, 3, 2, 2, 2, 123, 122, 3,
+	2, 2, 2, 124, 21, 3, 2, 2, 2, 125, 126, 7, 10, 2, 2, 126, 127, 7, 3, 2,
+	2, 127, 132, 5, 52, 27, 2, 128, 129, 7, 11, 2, 2, 129, 130, 7, 3, 2, 2,
+	130, 132, 5, 52, 27, 2, 131, 125, 3, 2, 2, 2, 131, 128, 3, 2, 2, 2, 132,
+	23, 3, 2, 2, 2, 133, 137, 5, 26, 14, 2, 134, 136, 5, 26, 14, 2, 135, 134,
+	3, 2, 2, 2, 136, 139, 3, 2, 2, 2, 137, 135, 3, 2, 2, 2, 137, 138, 3, 2,
+	2, 2, 138, 150, 3, 2, 2, 2, 139, 137, 3, 2, 2, 2, 140, 144, 5, 38, 20,
+	2, 141, 143, 5, 40, 21, 2, 142, 141, 3, 2, 2, 2, 143, 146, 3, 2, 2, 2,
+	144, 142, 3, 2, 2, 2, 144, 145, 3, 2, 2, 2, 145, 147, 3, 2, 2, 2, 146,
+	144, 3, 2, 2, 2, 147, 148, 5, 42, 22, 2, 148, 150, 3, 2, 2, 2, 149, 133,
+	3, 2, 2, 2, 149, 140, 3, 2, 2, 2, 150, 25, 3, 2, 2, 2, 151, 157, 5, 28,
+	15, 2, 152, 157, 5, 30, 16, 2, 153, 157, 5, 32, 17, 2, 154, 157, 5, 34,
+	18, 2, 155, 157, 5, 36, 19, 2, 156, 151, 3, 2, 2, 2, 156, 152, 3, 2, 2,
+	2, 156, 153, 3, 2, 2, 2, 156, 154, 3, 2, 2, 2, 156, 155, 3, 2, 2, 2, 157,
+	27, 3, 2, 2, 2, 158, 159, 7, 12, 2, 2, 159, 160, 7, 3, 2, 2, 160, 161,
+	5, 54, 28, 2, 161, 162, 7, 39, 2, 2, 162, 169, 3, 2, 2, 2, 163, 164, 7,
+	13, 2, 2, 164, 165, 7, 3, 2, 2, 165, 166, 5, 54, 28, 2, 166, 167, 7, 39,
+	2, 2, 167, 169, 3, 2, 2, 2, 168, 158, 3, 2, 2, 2, 168, 163, 3, 2, 2, 2,
+	169, 29, 3, 2, 2, 2, 170, 171, 7, 14, 2, 2, 171, 172, 7, 3, 2, 2, 172,
+	173, 5, 54, 28, 2, 173, 174, 7, 39, 2, 2, 174, 181, 3, 2, 2, 2, 175, 176,
+	7, 15, 2, 2, 176, 177, 7, 3, 2, 2, 177, 178, 5, 54, 28, 2, 178, 179, 7,
+	39, 2, 2, 179, 181, 3, 2, 2, 2, 180, 170, 3, 2, 2, 2, 180, 175, 3, 2, 2,
+	2, 181, 31, 3, 2, 2, 2, 182, 183, 7, 16, 2, 2, 183, 184, 7, 3, 2, 2, 184,
+	185, 5, 54, 28, 2, 185, 186, 7, 39, 2, 2, 186, 193, 3, 2, 2, 2, 187, 188,
+	7, 17, 2, 2, 188, 189, 7, 3, 2, 2, 189, 190, 5, 54, 28, 2, 190, 191, 7,
+	39, 2, 2, 191, 193, 3, 2, 2, 2, 192, 182, 3, 2, 2, 2, 192, 187, 3, 2, 2,
+	2, 193, 33, 3, 2, 2, 2, 194, 195, 7, 18, 2, 2, 195, 196, 7, 3, 2, 2, 196,
+	197, 5, 54, 28, 2, 197, 198, 7, 39, 2, 2, 198, 205, 3, 2, 2, 2, 199, 200,
+	7, 19, 2, 2, 200, 201, 7, 3, 2, 2, 201, 202, 5, 54, 28, 2, 202, 203, 7,
+	39, 2, 2, 203, 205, 3, 2, 2, 2, 204, 194, 3, 2, 2, 2, 204, 199, 3, 2, 2,
+	2, 205, 35, 3, 2, 2, 2, 206, 207, 7, 20, 2, 2, 207, 208, 7, 3, 2, 2, 208,
+	209, 5, 54, 28, 2, 209, 210, 7, 39, 2, 2, 210, 217, 3, 2, 2, 2, 211, 212,
+	7, 21, 2, 2, 212, 213, 7, 3, 2, 2, 213, 214, 5, 54, 28, 2, 214, 215, 7,
+	39, 2, 2, 215, 217, 3, 2, 2, 2, 216, 206, 3, 2, 2, 2, 216, 211, 3, 2, 2,
+	2, 217, 37, 3, 2, 2, 2, 218, 219, 7, 46, 2, 2, 219, 220, 5, 44, 23, 2,
+	220, 221, 7, 4, 2, 2, 221, 222, 5, 24, 13, 2, 222, 223, 7, 5, 2, 2, 223,
+	39, 3, 2, 2, 2, 224, 225, 7, 47, 2, 2, 225, 226, 5, 44, 23, 2, 226, 227,
+	7, 4, 2, 2, 227, 228, 5, 24, 13, 2, 228, 229, 7, 5, 2, 2, 229, 41, 3, 2,
+	2, 2, 230, 231, 7, 48, 2, 2, 231, 232, 7, 4, 2, 2, 232, 233, 5, 24, 13,
+	2, 233, 234, 7, 5, 2, 2, 234, 43, 3, 2, 2, 2, 235, 236, 5, 52, 27, 2, 236,
+	240, 5, 50, 26, 2, 237, 239, 5, 52, 27, 2, 238, 237, 3, 2, 2, 2, 239, 242,
+	3, 2, 2, 2, 240, 238, 3, 2, 2, 2, 240, 241, 3, 2, 2, 2, 241, 45, 3, 2,
+	2, 2, 242, 240, 3, 2, 2, 2, 243, 247, 5, 48, 25, 2, 244, 246, 5, 48, 25,
+	2, 245, 244, 3, 2, 2, 2, 246, 249, 3, 2, 2, 2, 247, 245, 3, 2, 2, 2, 247,
+	248, 3, 2, 2, 2, 248, 47, 3, 2, 2, 2, 249, 247, 3, 2, 2, 2, 250, 251, 7,
+	37, 2, 2, 251, 252, 7, 3, 2, 2, 252, 253, 5, 52, 27, 2, 253, 254, 7, 39,
+	2, 2, 254, 263, 3, 2, 2, 2, 255, 256, 7, 37, 2, 2, 256, 257, 7, 3, 2, 2,
+	257, 258, 7, 4, 2, 2, 258, 259, 5, 46, 24, 2, 259, 260, 7, 5, 2, 2, 260,
+	261, 7, 39, 2, 2, 261, 263, 3, 2, 2, 2, 262, 250, 3, 2, 2, 2, 262, 255,
+	3, 2, 2, 2, 263, 49, 3, 2, 2, 2, 264, 265, 9, 2, 2, 2, 265, 51, 3, 2, 2,
+	2, 266, 273, 7, 37, 2, 2, 267, 273, 7, 38, 2, 2, 268, 273, 7, 28, 2, 2,
+	269, 273, 7, 29, 2, 2, 270, 273, 7, 30, 2, 2, 271, 273, 5, 56, 29, 2, 272,
+	266, 3, 2, 2, 2, 272, 267, 3, 2, 2, 2, 272, 268, 3, 2, 2, 2, 272, 269,
+	3, 2, 2, 2, 272, 270, 3, 2, 2, 2, 272, 271, 3, 2, 2, 2, 273, 53, 3, 2,
+	2, 2, 274, 275, 7, 31, 2, 2, 275, 280, 7, 37, 2, 2, 276, 277, 7, 32, 2,
+	2, 277, 279, 7, 37, 2, 2, 278, 276, 3, 2, 2, 2, 279, 282, 3, 2, 2, 2, 280,
+	278, 3, 2, 2, 2, 280, 281, 3, 2, 2, 2, 281, 283, 3, 2, 2, 2, 282, 280,
+	3, 2, 2, 2, 283, 287, 7, 33, 2, 2, 284, 285, 7, 31, 2, 2, 285, 287, 7,
+	33, 2, 2, 286, 274, 3, 2, 2, 2, 286, 284, 3, 2, 2, 2, 287, 55, 3, 2, 2,
+	2, 288, 289, 7, 31, 2, 2, 289, 294, 5, 52, 27, 2, 290, 291, 7, 32, 2, 2,
+	291, 293, 5, 52, 27, 2, 292, 290, 3, 2, 2, 2, 293, 296, 3, 2, 2, 2, 294,
+	292, 3, 2, 2, 2, 294, 295, 3, 2, 2, 2, 295, 297, 3, 2, 2, 2, 296, 294,
+	3, 2, 2, 2, 297, 298, 7, 33, 2, 2, 298, 302, 3, 2, 2, 2, 299, 300, 7, 31,
+	2, 2, 300, 302, 7, 33, 2, 2, 301, 288, 3, 2, 2, 2, 301, 299, 3, 2, 2, 2,
+	302, 57, 3, 2, 2, 2, 26, 62, 91, 103, 111, 119, 123, 131, 137, 144, 149,
+	156, 168, 180, 192, 204, 216, 240, 247, 262, 272, 280, 286, 294, 301,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
 var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
@@ -145,14 +151,14 @@ var literalNames = []string{
 	"", "':'", "'{'", "'}'", "'name'", "'NAME'", "'connection'", "'CONNECTION'",
 	"'description'", "'DESCRIPTION'", "'sections'", "'SECTIONS'", "'points'",
 	"'POINTS'", "'controls'", "'CONTROLS'", "'exclusions'", "'EXCLUSIONS'",
-	"'<'", "'>'", "'=='", "'>='", "'<='", "'!='", "'true'", "'false'", "'null'",
-	"'['", "','", "']'", "", "", "", "", "", "';'", "'MAIN'", "'HOST'", "'TASKS'",
-	"'VARS'", "'LOCAL'", "'SSH'", "'IF'", "'ELIF'", "'ELSE'", "'OR'", "'AND'",
-	"'NOT'", "'IS'",
+	"'tags'", "'TAGS'", "'<'", "'>'", "'=='", "'>='", "'<='", "'!='", "'true'",
+	"'false'", "'null'", "'['", "','", "']'", "", "", "", "", "", "';'", "'MAIN'",
+	"'HOST'", "'TASKS'", "'VARS'", "'LOCAL'", "'SSH'", "'IF'", "'ELIF'", "'ELSE'",
+	"'OR'", "'AND'", "'NOT'", "'IS'",
 }
 var symbolicNames = []string{
 	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-	"", "", "", "", "", "", "", "", "", "", "", "", "COMMENT", "WHITESPACE",
+	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "COMMENT", "WHITESPACE",
 	"NEWLINE", "STRING", "NUMBER", "NS", "MAIN_KW", "HOSTS_KW", "TASKS_KW",
 	"VARS_KW", "LOCAL_KW", "SSH_KW", "IF", "ELIF", "ELSE", "OR", "AND", "NOT",
 	"IS",
@@ -161,7 +167,7 @@ var symbolicNames = []string{
 var ruleNames = []string{
 	"program", "main", "hosts", "tasks", "variables", "main_content", "main_prop",
 	"name", "connection", "connection_type", "description", "tasks_content",
-	"tasks_prop", "sections", "points", "controls", "exclusions", "ifStat",
+	"tasks_prop", "sections", "points", "controls", "exclusions", "tags", "ifStat",
 	"elifStat", "elseStat", "comparison", "vars_content", "vars_prop", "comp_op",
 	"value", "str_array", "array",
 }
@@ -223,25 +229,27 @@ const (
 	AspidaParserT__26      = 27
 	AspidaParserT__27      = 28
 	AspidaParserT__28      = 29
-	AspidaParserCOMMENT    = 30
-	AspidaParserWHITESPACE = 31
-	AspidaParserNEWLINE    = 32
-	AspidaParserSTRING     = 33
-	AspidaParserNUMBER     = 34
-	AspidaParserNS         = 35
-	AspidaParserMAIN_KW    = 36
-	AspidaParserHOSTS_KW   = 37
-	AspidaParserTASKS_KW   = 38
-	AspidaParserVARS_KW    = 39
-	AspidaParserLOCAL_KW   = 40
-	AspidaParserSSH_KW     = 41
-	AspidaParserIF         = 42
-	AspidaParserELIF       = 43
-	AspidaParserELSE       = 44
-	AspidaParserOR         = 45
-	AspidaParserAND        = 46
-	AspidaParserNOT        = 47
-	AspidaParserIS         = 48
+	AspidaParserT__29      = 30
+	AspidaParserT__30      = 31
+	AspidaParserCOMMENT    = 32
+	AspidaParserWHITESPACE = 33
+	AspidaParserNEWLINE    = 34
+	AspidaParserSTRING     = 35
+	AspidaParserNUMBER     = 36
+	AspidaParserNS         = 37
+	AspidaParserMAIN_KW    = 38
+	AspidaParserHOSTS_KW   = 39
+	AspidaParserTASKS_KW   = 40
+	AspidaParserVARS_KW    = 41
+	AspidaParserLOCAL_KW   = 42
+	AspidaParserSSH_KW     = 43
+	AspidaParserIF         = 44
+	AspidaParserELIF       = 45
+	AspidaParserELSE       = 46
+	AspidaParserOR         = 47
+	AspidaParserAND        = 48
+	AspidaParserNOT        = 49
+	AspidaParserIS         = 50
 )
 
 // AspidaParser rules.
@@ -263,16 +271,17 @@ const (
 	AspidaParserRULE_points          = 14
 	AspidaParserRULE_controls        = 15
 	AspidaParserRULE_exclusions      = 16
-	AspidaParserRULE_ifStat          = 17
-	AspidaParserRULE_elifStat        = 18
-	AspidaParserRULE_elseStat        = 19
-	AspidaParserRULE_comparison      = 20
-	AspidaParserRULE_vars_content    = 21
-	AspidaParserRULE_vars_prop       = 22
-	AspidaParserRULE_comp_op         = 23
-	AspidaParserRULE_value           = 24
-	AspidaParserRULE_str_array       = 25
-	AspidaParserRULE_array           = 26
+	AspidaParserRULE_tags            = 17
+	AspidaParserRULE_ifStat          = 18
+	AspidaParserRULE_elifStat        = 19
+	AspidaParserRULE_elseStat        = 20
+	AspidaParserRULE_comparison      = 21
+	AspidaParserRULE_vars_content    = 22
+	AspidaParserRULE_vars_prop       = 23
+	AspidaParserRULE_comp_op         = 24
+	AspidaParserRULE_value           = 25
+	AspidaParserRULE_str_array       = 26
+	AspidaParserRULE_array           = 27
 )
 
 // IProgramContext is an interface to support dynamic dispatch.
@@ -406,24 +415,24 @@ func (p *AspidaParser) Program() (localctx IProgramContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(54)
+		p.SetState(56)
 		p.Main()
 	}
 	{
-		p.SetState(55)
+		p.SetState(57)
 		p.Hosts()
 	}
 	{
-		p.SetState(56)
+		p.SetState(58)
 		p.Tasks()
 	}
-	p.SetState(58)
+	p.SetState(60)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == AspidaParserVARS_KW {
 		{
-			p.SetState(57)
+			p.SetState(59)
 			p.Variables()
 		}
 
@@ -536,23 +545,23 @@ func (p *AspidaParser) Main() (localctx IMainContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(60)
+		p.SetState(62)
 		p.Match(AspidaParserMAIN_KW)
 	}
 	{
-		p.SetState(61)
+		p.SetState(63)
 		p.Match(AspidaParserT__0)
 	}
 	{
-		p.SetState(62)
+		p.SetState(64)
 		p.Match(AspidaParserT__1)
 	}
 	{
-		p.SetState(63)
+		p.SetState(65)
 		p.Main_content()
 	}
 	{
-		p.SetState(64)
+		p.SetState(66)
 		p.Match(AspidaParserT__2)
 	}
 
@@ -661,19 +670,19 @@ func (p *AspidaParser) Hosts() (localctx IHostsContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(66)
+		p.SetState(68)
 		p.Match(AspidaParserHOSTS_KW)
 	}
 	{
-		p.SetState(67)
+		p.SetState(69)
 		p.Match(AspidaParserT__0)
 	}
 	{
-		p.SetState(68)
+		p.SetState(70)
 		p.Match(AspidaParserSTRING)
 	}
 	{
-		p.SetState(69)
+		p.SetState(71)
 		p.Match(AspidaParserNS)
 	}
 
@@ -784,23 +793,23 @@ func (p *AspidaParser) Tasks() (localctx ITasksContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(71)
+		p.SetState(73)
 		p.Match(AspidaParserTASKS_KW)
 	}
 	{
-		p.SetState(72)
+		p.SetState(74)
 		p.Match(AspidaParserT__0)
 	}
 	{
-		p.SetState(73)
+		p.SetState(75)
 		p.Match(AspidaParserT__1)
 	}
 	{
-		p.SetState(74)
+		p.SetState(76)
 		p.Tasks_content()
 	}
 	{
-		p.SetState(75)
+		p.SetState(77)
 		p.Match(AspidaParserT__2)
 	}
 
@@ -911,23 +920,23 @@ func (p *AspidaParser) Variables() (localctx IVariablesContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(77)
+		p.SetState(79)
 		p.Match(AspidaParserVARS_KW)
 	}
 	{
-		p.SetState(78)
+		p.SetState(80)
 		p.Match(AspidaParserT__0)
 	}
 	{
-		p.SetState(79)
+		p.SetState(81)
 		p.Match(AspidaParserT__1)
 	}
 	{
-		p.SetState(80)
+		p.SetState(82)
 		p.Vars_content()
 	}
 	{
-		p.SetState(81)
+		p.SetState(83)
 		p.Match(AspidaParserT__2)
 	}
 
@@ -1048,20 +1057,20 @@ func (p *AspidaParser) Main_content() (localctx IMain_contentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(83)
+		p.SetState(85)
 		p.Main_prop()
 	}
-	p.SetState(87)
+	p.SetState(89)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<AspidaParserT__3)|(1<<AspidaParserT__4)|(1<<AspidaParserT__5)|(1<<AspidaParserT__6)|(1<<AspidaParserT__7)|(1<<AspidaParserT__8))) != 0 {
 		{
-			p.SetState(84)
+			p.SetState(86)
 			p.Main_prop()
 		}
 
-		p.SetState(89)
+		p.SetState(91)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -1301,7 +1310,7 @@ func (p *AspidaParser) Main_prop() (localctx IMain_propContext) {
 		}
 	}()
 
-	p.SetState(99)
+	p.SetState(101)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
@@ -1309,11 +1318,11 @@ func (p *AspidaParser) Main_prop() (localctx IMain_propContext) {
 		localctx = NewNameMainContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(90)
+			p.SetState(92)
 			p.Name()
 		}
 		{
-			p.SetState(91)
+			p.SetState(93)
 			p.Match(AspidaParserNS)
 		}
 
@@ -1321,11 +1330,11 @@ func (p *AspidaParser) Main_prop() (localctx IMain_propContext) {
 		localctx = NewConnectionMainContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(93)
+			p.SetState(95)
 			p.Connection()
 		}
 		{
-			p.SetState(94)
+			p.SetState(96)
 			p.Match(AspidaParserNS)
 		}
 
@@ -1333,11 +1342,11 @@ func (p *AspidaParser) Main_prop() (localctx IMain_propContext) {
 		localctx = NewDescriptionMainContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(96)
+			p.SetState(98)
 			p.Description()
 		}
 		{
-			p.SetState(97)
+			p.SetState(99)
 			p.Match(AspidaParserNS)
 		}
 
@@ -1446,37 +1455,37 @@ func (p *AspidaParser) Name() (localctx INameContext) {
 		}
 	}()
 
-	p.SetState(107)
+	p.SetState(109)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case AspidaParserT__3:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(101)
+			p.SetState(103)
 			p.Match(AspidaParserT__3)
 		}
 		{
-			p.SetState(102)
+			p.SetState(104)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(103)
+			p.SetState(105)
 			p.Value()
 		}
 
 	case AspidaParserT__4:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(104)
+			p.SetState(106)
 			p.Match(AspidaParserT__4)
 		}
 		{
-			p.SetState(105)
+			p.SetState(107)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(106)
+			p.SetState(108)
 			p.Value()
 		}
 
@@ -1585,37 +1594,37 @@ func (p *AspidaParser) Connection() (localctx IConnectionContext) {
 		}
 	}()
 
-	p.SetState(115)
+	p.SetState(117)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case AspidaParserT__5:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(109)
+			p.SetState(111)
 			p.Match(AspidaParserT__5)
 		}
 		{
-			p.SetState(110)
+			p.SetState(112)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(111)
+			p.SetState(113)
 			p.Connection_type()
 		}
 
 	case AspidaParserT__6:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(112)
+			p.SetState(114)
 			p.Match(AspidaParserT__6)
 		}
 		{
-			p.SetState(113)
+			p.SetState(115)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(114)
+			p.SetState(116)
 			p.Connection_type()
 		}
 
@@ -1784,7 +1793,7 @@ func (p *AspidaParser) Connection_type() (localctx IConnection_typeContext) {
 		}
 	}()
 
-	p.SetState(119)
+	p.SetState(121)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
@@ -1792,7 +1801,7 @@ func (p *AspidaParser) Connection_type() (localctx IConnection_typeContext) {
 		localctx = NewConnectionLocalContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(117)
+			p.SetState(119)
 			p.Match(AspidaParserLOCAL_KW)
 		}
 
@@ -1800,7 +1809,7 @@ func (p *AspidaParser) Connection_type() (localctx IConnection_typeContext) {
 		localctx = NewConnectionSSHContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(118)
+			p.SetState(120)
 			p.Match(AspidaParserSSH_KW)
 		}
 
@@ -1909,37 +1918,37 @@ func (p *AspidaParser) Description() (localctx IDescriptionContext) {
 		}
 	}()
 
-	p.SetState(127)
+	p.SetState(129)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case AspidaParserT__7:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(121)
+			p.SetState(123)
 			p.Match(AspidaParserT__7)
 		}
 		{
-			p.SetState(122)
+			p.SetState(124)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(123)
+			p.SetState(125)
 			p.Value()
 		}
 
 	case AspidaParserT__8:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(124)
+			p.SetState(126)
 			p.Match(AspidaParserT__8)
 		}
 		{
-			p.SetState(125)
+			p.SetState(127)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(126)
+			p.SetState(128)
 			p.Value()
 		}
 
@@ -2167,28 +2176,28 @@ func (p *AspidaParser) Tasks_content() (localctx ITasks_contentContext) {
 		}
 	}()
 
-	p.SetState(145)
+	p.SetState(147)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
-	case AspidaParserT__9, AspidaParserT__10, AspidaParserT__11, AspidaParserT__12, AspidaParserT__13, AspidaParserT__14, AspidaParserT__15, AspidaParserT__16:
+	case AspidaParserT__9, AspidaParserT__10, AspidaParserT__11, AspidaParserT__12, AspidaParserT__13, AspidaParserT__14, AspidaParserT__15, AspidaParserT__16, AspidaParserT__17, AspidaParserT__18:
 		localctx = NewTContentContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(129)
+			p.SetState(131)
 			p.Tasks_prop()
 		}
-		p.SetState(133)
+		p.SetState(135)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<AspidaParserT__9)|(1<<AspidaParserT__10)|(1<<AspidaParserT__11)|(1<<AspidaParserT__12)|(1<<AspidaParserT__13)|(1<<AspidaParserT__14)|(1<<AspidaParserT__15)|(1<<AspidaParserT__16))) != 0 {
+		for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<AspidaParserT__9)|(1<<AspidaParserT__10)|(1<<AspidaParserT__11)|(1<<AspidaParserT__12)|(1<<AspidaParserT__13)|(1<<AspidaParserT__14)|(1<<AspidaParserT__15)|(1<<AspidaParserT__16)|(1<<AspidaParserT__17)|(1<<AspidaParserT__18))) != 0 {
 			{
-				p.SetState(130)
+				p.SetState(132)
 				p.Tasks_prop()
 			}
 
-			p.SetState(135)
+			p.SetState(137)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 		}
@@ -2197,25 +2206,25 @@ func (p *AspidaParser) Tasks_content() (localctx ITasks_contentContext) {
 		localctx = NewIfStatementContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(136)
+			p.SetState(138)
 			p.IfStat()
 		}
-		p.SetState(140)
+		p.SetState(142)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
 		for _la == AspidaParserELIF {
 			{
-				p.SetState(137)
+				p.SetState(139)
 				p.ElifStat()
 			}
 
-			p.SetState(142)
+			p.SetState(144)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(143)
+			p.SetState(145)
 			p.ElseStat()
 		}
 
@@ -2320,6 +2329,56 @@ func (s *TPointsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 	switch t := visitor.(type) {
 	case AspidaVisitor:
 		return t.VisitTPoints(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+type TTagsContext struct {
+	*Tasks_propContext
+}
+
+func NewTTagsContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TTagsContext {
+	var p = new(TTagsContext)
+
+	p.Tasks_propContext = NewEmptyTasks_propContext()
+	p.parser = parser
+	p.CopyFrom(ctx.(*Tasks_propContext))
+
+	return p
+}
+
+func (s *TTagsContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TTagsContext) Tags() ITagsContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITagsContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITagsContext)
+}
+
+func (s *TTagsContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(AspidaListener); ok {
+		listenerT.EnterTTags(s)
+	}
+}
+
+func (s *TTagsContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(AspidaListener); ok {
+		listenerT.ExitTTags(s)
+	}
+}
+
+func (s *TTagsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case AspidaVisitor:
+		return t.VisitTTags(s)
 
 	default:
 		return t.VisitChildren(s)
@@ -2496,7 +2555,7 @@ func (p *AspidaParser) Tasks_prop() (localctx ITasks_propContext) {
 		}
 	}()
 
-	p.SetState(151)
+	p.SetState(154)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
@@ -2504,7 +2563,7 @@ func (p *AspidaParser) Tasks_prop() (localctx ITasks_propContext) {
 		localctx = NewTSectionsContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(147)
+			p.SetState(149)
 			p.Sections()
 		}
 
@@ -2512,7 +2571,7 @@ func (p *AspidaParser) Tasks_prop() (localctx ITasks_propContext) {
 		localctx = NewTPointsContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(148)
+			p.SetState(150)
 			p.Points()
 		}
 
@@ -2520,7 +2579,7 @@ func (p *AspidaParser) Tasks_prop() (localctx ITasks_propContext) {
 		localctx = NewTControlsContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(149)
+			p.SetState(151)
 			p.Controls()
 		}
 
@@ -2528,8 +2587,16 @@ func (p *AspidaParser) Tasks_prop() (localctx ITasks_propContext) {
 		localctx = NewTExclusionsContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(150)
+			p.SetState(152)
 			p.Exclusions()
+		}
+
+	case AspidaParserT__17, AspidaParserT__18:
+		localctx = NewTTagsContext(p, localctx)
+		p.EnterOuterAlt(localctx, 5)
+		{
+			p.SetState(153)
+			p.Tags()
 		}
 
 	default:
@@ -2641,45 +2708,45 @@ func (p *AspidaParser) Sections() (localctx ISectionsContext) {
 		}
 	}()
 
-	p.SetState(163)
+	p.SetState(166)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case AspidaParserT__9:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(153)
+			p.SetState(156)
 			p.Match(AspidaParserT__9)
 		}
 		{
-			p.SetState(154)
+			p.SetState(157)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(155)
+			p.SetState(158)
 			p.Str_array()
 		}
 		{
-			p.SetState(156)
+			p.SetState(159)
 			p.Match(AspidaParserNS)
 		}
 
 	case AspidaParserT__10:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(158)
+			p.SetState(161)
 			p.Match(AspidaParserT__10)
 		}
 		{
-			p.SetState(159)
+			p.SetState(162)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(160)
+			p.SetState(163)
 			p.Str_array()
 		}
 		{
-			p.SetState(161)
+			p.SetState(164)
 			p.Match(AspidaParserNS)
 		}
 
@@ -2792,45 +2859,45 @@ func (p *AspidaParser) Points() (localctx IPointsContext) {
 		}
 	}()
 
-	p.SetState(175)
+	p.SetState(178)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case AspidaParserT__11:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(165)
+			p.SetState(168)
 			p.Match(AspidaParserT__11)
 		}
 		{
-			p.SetState(166)
+			p.SetState(169)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(167)
+			p.SetState(170)
 			p.Str_array()
 		}
 		{
-			p.SetState(168)
+			p.SetState(171)
 			p.Match(AspidaParserNS)
 		}
 
 	case AspidaParserT__12:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(170)
+			p.SetState(173)
 			p.Match(AspidaParserT__12)
 		}
 		{
-			p.SetState(171)
+			p.SetState(174)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(172)
+			p.SetState(175)
 			p.Str_array()
 		}
 		{
-			p.SetState(173)
+			p.SetState(176)
 			p.Match(AspidaParserNS)
 		}
 
@@ -2943,45 +3010,45 @@ func (p *AspidaParser) Controls() (localctx IControlsContext) {
 		}
 	}()
 
-	p.SetState(187)
+	p.SetState(190)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case AspidaParserT__13:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(177)
+			p.SetState(180)
 			p.Match(AspidaParserT__13)
 		}
 		{
-			p.SetState(178)
+			p.SetState(181)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(179)
+			p.SetState(182)
 			p.Str_array()
 		}
 		{
-			p.SetState(180)
+			p.SetState(183)
 			p.Match(AspidaParserNS)
 		}
 
 	case AspidaParserT__14:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(182)
+			p.SetState(185)
 			p.Match(AspidaParserT__14)
 		}
 		{
-			p.SetState(183)
+			p.SetState(186)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(184)
+			p.SetState(187)
 			p.Str_array()
 		}
 		{
-			p.SetState(185)
+			p.SetState(188)
 			p.Match(AspidaParserNS)
 		}
 
@@ -3094,45 +3161,196 @@ func (p *AspidaParser) Exclusions() (localctx IExclusionsContext) {
 		}
 	}()
 
-	p.SetState(199)
+	p.SetState(202)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case AspidaParserT__15:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(189)
+			p.SetState(192)
 			p.Match(AspidaParserT__15)
 		}
 		{
-			p.SetState(190)
+			p.SetState(193)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(191)
+			p.SetState(194)
 			p.Str_array()
 		}
 		{
-			p.SetState(192)
+			p.SetState(195)
 			p.Match(AspidaParserNS)
 		}
 
 	case AspidaParserT__16:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(194)
+			p.SetState(197)
 			p.Match(AspidaParserT__16)
 		}
 		{
-			p.SetState(195)
+			p.SetState(198)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(196)
+			p.SetState(199)
 			p.Str_array()
 		}
 		{
-			p.SetState(197)
+			p.SetState(200)
+			p.Match(AspidaParserNS)
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	}
+
+	return localctx
+}
+
+// ITagsContext is an interface to support dynamic dispatch.
+type ITagsContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsTagsContext differentiates from other interfaces.
+	IsTagsContext()
+}
+
+type TagsContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyTagsContext() *TagsContext {
+	var p = new(TagsContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = AspidaParserRULE_tags
+	return p
+}
+
+func (*TagsContext) IsTagsContext() {}
+
+func NewTagsContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TagsContext {
+	var p = new(TagsContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = AspidaParserRULE_tags
+
+	return p
+}
+
+func (s *TagsContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *TagsContext) Str_array() IStr_arrayContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IStr_arrayContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IStr_arrayContext)
+}
+
+func (s *TagsContext) NS() antlr.TerminalNode {
+	return s.GetToken(AspidaParserNS, 0)
+}
+
+func (s *TagsContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TagsContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *TagsContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(AspidaListener); ok {
+		listenerT.EnterTags(s)
+	}
+}
+
+func (s *TagsContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(AspidaListener); ok {
+		listenerT.ExitTags(s)
+	}
+}
+
+func (s *TagsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case AspidaVisitor:
+		return t.VisitTags(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *AspidaParser) Tags() (localctx ITagsContext) {
+	localctx = NewTagsContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 34, AspidaParserRULE_tags)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.SetState(214)
+	p.GetErrorHandler().Sync(p)
+
+	switch p.GetTokenStream().LA(1) {
+	case AspidaParserT__17:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(204)
+			p.Match(AspidaParserT__17)
+		}
+		{
+			p.SetState(205)
+			p.Match(AspidaParserT__0)
+		}
+		{
+			p.SetState(206)
+			p.Str_array()
+		}
+		{
+			p.SetState(207)
+			p.Match(AspidaParserNS)
+		}
+
+	case AspidaParserT__18:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(209)
+			p.Match(AspidaParserT__18)
+		}
+		{
+			p.SetState(210)
+			p.Match(AspidaParserT__0)
+		}
+		{
+			p.SetState(211)
+			p.Str_array()
+		}
+		{
+			p.SetState(212)
 			p.Match(AspidaParserNS)
 		}
 
@@ -3237,7 +3455,7 @@ func (s *IfStatContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) IfStat() (localctx IIfStatContext) {
 	localctx = NewIfStatContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, AspidaParserRULE_ifStat)
+	p.EnterRule(localctx, 36, AspidaParserRULE_ifStat)
 
 	defer func() {
 		p.ExitRule()
@@ -3257,23 +3475,23 @@ func (p *AspidaParser) IfStat() (localctx IIfStatContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(201)
+		p.SetState(216)
 		p.Match(AspidaParserIF)
 	}
 	{
-		p.SetState(202)
+		p.SetState(217)
 		p.Comparison()
 	}
 	{
-		p.SetState(203)
+		p.SetState(218)
 		p.Match(AspidaParserT__1)
 	}
 	{
-		p.SetState(204)
+		p.SetState(219)
 		p.Tasks_content()
 	}
 	{
-		p.SetState(205)
+		p.SetState(220)
 		p.Match(AspidaParserT__2)
 	}
 
@@ -3374,7 +3592,7 @@ func (s *ElifStatContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) ElifStat() (localctx IElifStatContext) {
 	localctx = NewElifStatContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, AspidaParserRULE_elifStat)
+	p.EnterRule(localctx, 38, AspidaParserRULE_elifStat)
 
 	defer func() {
 		p.ExitRule()
@@ -3394,23 +3612,23 @@ func (p *AspidaParser) ElifStat() (localctx IElifStatContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(207)
+		p.SetState(222)
 		p.Match(AspidaParserELIF)
 	}
 	{
-		p.SetState(208)
+		p.SetState(223)
 		p.Comparison()
 	}
 	{
-		p.SetState(209)
+		p.SetState(224)
 		p.Match(AspidaParserT__1)
 	}
 	{
-		p.SetState(210)
+		p.SetState(225)
 		p.Tasks_content()
 	}
 	{
-		p.SetState(211)
+		p.SetState(226)
 		p.Match(AspidaParserT__2)
 	}
 
@@ -3501,7 +3719,7 @@ func (s *ElseStatContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) ElseStat() (localctx IElseStatContext) {
 	localctx = NewElseStatContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, AspidaParserRULE_elseStat)
+	p.EnterRule(localctx, 40, AspidaParserRULE_elseStat)
 
 	defer func() {
 		p.ExitRule()
@@ -3521,19 +3739,19 @@ func (p *AspidaParser) ElseStat() (localctx IElseStatContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(213)
+		p.SetState(228)
 		p.Match(AspidaParserELSE)
 	}
 	{
-		p.SetState(214)
+		p.SetState(229)
 		p.Match(AspidaParserT__1)
 	}
 	{
-		p.SetState(215)
+		p.SetState(230)
 		p.Tasks_content()
 	}
 	{
-		p.SetState(216)
+		p.SetState(231)
 		p.Match(AspidaParserT__2)
 	}
 
@@ -3643,7 +3861,7 @@ func (s *ComparisonContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) Comparison() (localctx IComparisonContext) {
 	localctx = NewComparisonContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, AspidaParserRULE_comparison)
+	p.EnterRule(localctx, 42, AspidaParserRULE_comparison)
 	var _la int
 
 	defer func() {
@@ -3664,24 +3882,24 @@ func (p *AspidaParser) Comparison() (localctx IComparisonContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(218)
+		p.SetState(233)
 		p.Value()
 	}
 	{
-		p.SetState(219)
+		p.SetState(234)
 		p.Comp_op()
 	}
-	p.SetState(223)
+	p.SetState(238)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ((_la-24)&-(0x1f+1)) == 0 && ((1<<uint((_la-24)))&((1<<(AspidaParserT__23-24))|(1<<(AspidaParserT__24-24))|(1<<(AspidaParserT__25-24))|(1<<(AspidaParserT__26-24))|(1<<(AspidaParserSTRING-24))|(1<<(AspidaParserNUMBER-24)))) != 0 {
+	for ((_la-26)&-(0x1f+1)) == 0 && ((1<<uint((_la-26)))&((1<<(AspidaParserT__25-26))|(1<<(AspidaParserT__26-26))|(1<<(AspidaParserT__27-26))|(1<<(AspidaParserT__28-26))|(1<<(AspidaParserSTRING-26))|(1<<(AspidaParserNUMBER-26)))) != 0 {
 		{
-			p.SetState(220)
+			p.SetState(235)
 			p.Value()
 		}
 
-		p.SetState(225)
+		p.SetState(240)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -3782,7 +4000,7 @@ func (s *Vars_contentContext) Accept(visitor antlr.ParseTreeVisitor) interface{}
 
 func (p *AspidaParser) Vars_content() (localctx IVars_contentContext) {
 	localctx = NewVars_contentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, AspidaParserRULE_vars_content)
+	p.EnterRule(localctx, 44, AspidaParserRULE_vars_content)
 	var _la int
 
 	defer func() {
@@ -3803,20 +4021,20 @@ func (p *AspidaParser) Vars_content() (localctx IVars_contentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(226)
+		p.SetState(241)
 		p.Vars_prop()
 	}
-	p.SetState(230)
+	p.SetState(245)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == AspidaParserSTRING {
 		{
-			p.SetState(227)
+			p.SetState(242)
 			p.Vars_prop()
 		}
 
-		p.SetState(232)
+		p.SetState(247)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -3992,7 +4210,7 @@ func (s *VarObjDefContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) Vars_prop() (localctx IVars_propContext) {
 	localctx = NewVars_propContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, AspidaParserRULE_vars_prop)
+	p.EnterRule(localctx, 46, AspidaParserRULE_vars_prop)
 
 	defer func() {
 		p.ExitRule()
@@ -4010,26 +4228,26 @@ func (p *AspidaParser) Vars_prop() (localctx IVars_propContext) {
 		}
 	}()
 
-	p.SetState(245)
+	p.SetState(260)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 17, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 18, p.GetParserRuleContext()) {
 	case 1:
 		localctx = NewVarDefContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(233)
+			p.SetState(248)
 			p.Match(AspidaParserSTRING)
 		}
 		{
-			p.SetState(234)
+			p.SetState(249)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(235)
+			p.SetState(250)
 			p.Value()
 		}
 		{
-			p.SetState(236)
+			p.SetState(251)
 			p.Match(AspidaParserNS)
 		}
 
@@ -4037,27 +4255,27 @@ func (p *AspidaParser) Vars_prop() (localctx IVars_propContext) {
 		localctx = NewVarObjDefContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(238)
+			p.SetState(253)
 			p.Match(AspidaParserSTRING)
 		}
 		{
-			p.SetState(239)
+			p.SetState(254)
 			p.Match(AspidaParserT__0)
 		}
 		{
-			p.SetState(240)
+			p.SetState(255)
 			p.Match(AspidaParserT__1)
 		}
 		{
-			p.SetState(241)
+			p.SetState(256)
 			p.Vars_content()
 		}
 		{
-			p.SetState(242)
+			p.SetState(257)
 			p.Match(AspidaParserT__2)
 		}
 		{
-			p.SetState(243)
+			p.SetState(258)
 			p.Match(AspidaParserNS)
 		}
 
@@ -4135,7 +4353,7 @@ func (s *Comp_opContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) Comp_op() (localctx IComp_opContext) {
 	localctx = NewComp_opContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, AspidaParserRULE_comp_op)
+	p.EnterRule(localctx, 48, AspidaParserRULE_comp_op)
 	var _la int
 
 	defer func() {
@@ -4156,10 +4374,10 @@ func (p *AspidaParser) Comp_op() (localctx IComp_opContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(247)
+		p.SetState(262)
 		_la = p.GetTokenStream().LA(1)
 
-		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<AspidaParserT__17)|(1<<AspidaParserT__18)|(1<<AspidaParserT__19)|(1<<AspidaParserT__20)|(1<<AspidaParserT__21)|(1<<AspidaParserT__22))) != 0) {
+		if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<AspidaParserT__19)|(1<<AspidaParserT__20)|(1<<AspidaParserT__21)|(1<<AspidaParserT__22)|(1<<AspidaParserT__23)|(1<<AspidaParserT__24))) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)
@@ -4480,7 +4698,7 @@ func (s *NullValContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) Value() (localctx IValueContext) {
 	localctx = NewValueContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, AspidaParserRULE_value)
+	p.EnterRule(localctx, 50, AspidaParserRULE_value)
 
 	defer func() {
 		p.ExitRule()
@@ -4498,7 +4716,7 @@ func (p *AspidaParser) Value() (localctx IValueContext) {
 		}
 	}()
 
-	p.SetState(255)
+	p.SetState(270)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
@@ -4506,7 +4724,7 @@ func (p *AspidaParser) Value() (localctx IValueContext) {
 		localctx = NewStringValContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(249)
+			p.SetState(264)
 			p.Match(AspidaParserSTRING)
 		}
 
@@ -4514,39 +4732,39 @@ func (p *AspidaParser) Value() (localctx IValueContext) {
 		localctx = NewNumberValContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(250)
+			p.SetState(265)
 			p.Match(AspidaParserNUMBER)
 		}
 
-	case AspidaParserT__23:
+	case AspidaParserT__25:
 		localctx = NewTrueValContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(251)
-			p.Match(AspidaParserT__23)
-		}
-
-	case AspidaParserT__24:
-		localctx = NewFalseValContext(p, localctx)
-		p.EnterOuterAlt(localctx, 4)
-		{
-			p.SetState(252)
-			p.Match(AspidaParserT__24)
-		}
-
-	case AspidaParserT__25:
-		localctx = NewNullValContext(p, localctx)
-		p.EnterOuterAlt(localctx, 5)
-		{
-			p.SetState(253)
+			p.SetState(266)
 			p.Match(AspidaParserT__25)
 		}
 
 	case AspidaParserT__26:
+		localctx = NewFalseValContext(p, localctx)
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(267)
+			p.Match(AspidaParserT__26)
+		}
+
+	case AspidaParserT__27:
+		localctx = NewNullValContext(p, localctx)
+		p.EnterOuterAlt(localctx, 5)
+		{
+			p.SetState(268)
+			p.Match(AspidaParserT__27)
+		}
+
+	case AspidaParserT__28:
 		localctx = NewArrayValContext(p, localctx)
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(254)
+			p.SetState(269)
 			p.Array()
 		}
 
@@ -4635,7 +4853,7 @@ func (s *Str_arrayContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) Str_array() (localctx IStr_arrayContext) {
 	localctx = NewStr_arrayContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 50, AspidaParserRULE_str_array)
+	p.EnterRule(localctx, 52, AspidaParserRULE_str_array)
 	var _la int
 
 	defer func() {
@@ -4654,51 +4872,51 @@ func (p *AspidaParser) Str_array() (localctx IStr_arrayContext) {
 		}
 	}()
 
-	p.SetState(269)
+	p.SetState(284)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 21, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(257)
-			p.Match(AspidaParserT__26)
+			p.SetState(272)
+			p.Match(AspidaParserT__28)
 		}
 		{
-			p.SetState(258)
+			p.SetState(273)
 			p.Match(AspidaParserSTRING)
 		}
-		p.SetState(263)
+		p.SetState(278)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == AspidaParserT__27 {
+		for _la == AspidaParserT__29 {
 			{
-				p.SetState(259)
-				p.Match(AspidaParserT__27)
+				p.SetState(274)
+				p.Match(AspidaParserT__29)
 			}
 			{
-				p.SetState(260)
+				p.SetState(275)
 				p.Match(AspidaParserSTRING)
 			}
 
-			p.SetState(265)
+			p.SetState(280)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(266)
-			p.Match(AspidaParserT__28)
+			p.SetState(281)
+			p.Match(AspidaParserT__30)
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(267)
-			p.Match(AspidaParserT__26)
+			p.SetState(282)
+			p.Match(AspidaParserT__28)
 		}
 		{
-			p.SetState(268)
-			p.Match(AspidaParserT__28)
+			p.SetState(283)
+			p.Match(AspidaParserT__30)
 		}
 
 	}
@@ -4799,7 +5017,7 @@ func (s *ArrayContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *AspidaParser) Array() (localctx IArrayContext) {
 	localctx = NewArrayContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 52, AspidaParserRULE_array)
+	p.EnterRule(localctx, 54, AspidaParserRULE_array)
 	var _la int
 
 	defer func() {
@@ -4818,51 +5036,51 @@ func (p *AspidaParser) Array() (localctx IArrayContext) {
 		}
 	}()
 
-	p.SetState(284)
+	p.SetState(299)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 22, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 23, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(271)
-			p.Match(AspidaParserT__26)
+			p.SetState(286)
+			p.Match(AspidaParserT__28)
 		}
 		{
-			p.SetState(272)
+			p.SetState(287)
 			p.Value()
 		}
-		p.SetState(277)
+		p.SetState(292)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		for _la == AspidaParserT__27 {
+		for _la == AspidaParserT__29 {
 			{
-				p.SetState(273)
-				p.Match(AspidaParserT__27)
+				p.SetState(288)
+				p.Match(AspidaParserT__29)
 			}
 			{
-				p.SetState(274)
+				p.SetState(289)
 				p.Value()
 			}
 
-			p.SetState(279)
+			p.SetState(294)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 		}
 		{
-			p.SetState(280)
-			p.Match(AspidaParserT__28)
+			p.SetState(295)
+			p.Match(AspidaParserT__30)
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(282)
-			p.Match(AspidaParserT__26)
+			p.SetState(297)
+			p.Match(AspidaParserT__28)
 		}
 		{
-			p.SetState(283)
-			p.Match(AspidaParserT__28)
+			p.SetState(298)
+			p.Match(AspidaParserT__30)
 		}
 
 	}

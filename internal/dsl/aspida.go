@@ -28,8 +28,8 @@ func ParseFile(file string)  {
 	codegen.Visit(tree)
 	// Run Playbook
 	tags := getTags(codegen.TkTable.Sections, codegen.TkTable.Points,
-		codegen.TkTable.Controls)
-	vars := collections.Map(getVars(codegen.VarTable.Table, codegen.TkTable.Exclusions), func(x string) string {
+		codegen.TkTable.Controls, codegen.TkTable.Tags)
+	vars := collections.Map(getVars(codegen.VarTable.Table), func(x string) string {
 		return "    " + x + "\n"
 	}).([]string)
 	hosts := codegen.HostGroup
@@ -37,7 +37,7 @@ func ParseFile(file string)  {
 	ansible.RunDSLPlaybook(tags, vars, hosts, connection)
 }
 
-func getTags(sections []string, points []string, controls []string) []string {
+func getTags(sections []string, points []string, controls []string, tags []string) []string {
 	var lines []string
 	for _, sec := range sections {
 		lines = append(lines, "section_"+sec)
@@ -48,10 +48,13 @@ func getTags(sections []string, points []string, controls []string) []string {
 	for _, c := range controls {
 		lines = append(lines, "control_"+c)
 	}
+	for _, c := range tags {
+		lines = append(lines, c)
+	}
 	return lines
 }
 
-func getVars(all map[string]interface{}, exclusions []string) []string {
+func getVars(all map[string]interface{}) []string {
 	var lines []string
 	lines = getLinesFromObject(all, 0)
 	return lines

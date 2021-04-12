@@ -10,6 +10,7 @@ type TasksTable struct {
 	Controls []string
 	Points []string
 	Exclusions []string
+	Tags []string
 }
 
 func NewTasksTable() TasksTable {
@@ -18,6 +19,7 @@ func NewTasksTable() TasksTable {
 		Controls: []string{},
 		Points: []string{},
 		Exclusions: []string{},
+		Tags: []string{},
 	}
 }
 
@@ -54,6 +56,14 @@ func (t *TasksTable) AddExclusionPoint(point string) {
 	}
 }
 
+func (t *TasksTable) AddTag(tag string) {
+	if collections.Find(t.Tags, func(x string) bool {return x == tag}) == nil {
+		t.Points = append(t.Points, tag)
+	} else {
+		fmt.Println("Tag", tag, "ya existe")
+	}
+}
+
 func (t TasksTable) GetSections() []string {
 	return t.Sections
 }
@@ -70,4 +80,8 @@ func (t TasksTable) GetPoints() []string {
 
 func (t TasksTable) GetExclusions() []string {
 	return t.Exclusions
+}
+
+func (t TasksTable) GetTags() []string {
+	return t.Tags
 }

@@ -67,6 +67,9 @@ type AspidaListener interface {
 	// EnterTExclusions is called when entering the tExclusions production.
 	EnterTExclusions(c *TExclusionsContext)
 
+	// EnterTTags is called when entering the tTags production.
+	EnterTTags(c *TTagsContext)
+
 	// EnterSections is called when entering the sections production.
 	EnterSections(c *SectionsContext)
 
@@ -78,6 +81,9 @@ type AspidaListener interface {
 
 	// EnterExclusions is called when entering the exclusions production.
 	EnterExclusions(c *ExclusionsContext)
+
+	// EnterTags is called when entering the tags production.
+	EnterTags(c *TagsContext)
 
 	// EnterIfStat is called when entering the ifStat production.
 	EnterIfStat(c *IfStatContext)
@@ -187,6 +193,9 @@ type AspidaListener interface {
 	// ExitTExclusions is called when exiting the tExclusions production.
 	ExitTExclusions(c *TExclusionsContext)
 
+	// ExitTTags is called when exiting the tTags production.
+	ExitTTags(c *TTagsContext)
+
 	// ExitSections is called when exiting the sections production.
 	ExitSections(c *SectionsContext)
 
@@ -198,6 +207,9 @@ type AspidaListener interface {
 
 	// ExitExclusions is called when exiting the exclusions production.
 	ExitExclusions(c *ExclusionsContext)
+
+	// ExitTags is called when exiting the tags production.
+	ExitTags(c *TagsContext)
 
 	// ExitIfStat is called when exiting the ifStat production.
 	ExitIfStat(c *IfStatContext)

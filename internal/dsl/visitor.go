@@ -118,6 +118,8 @@ func (v *Visitor) VisitTContent(ctx *parser.TContentContext) interface{} {
 			collections.ForEach(task.Tasks, func(x string) {v.TkTable.AddPoint(x)})
 		case "exclusions":
 			collections.ForEach(task.Tasks, func(x string) {v.TkTable.AddExclusionPoint(x)})
+		case "tags":
+			collections.ForEach(task.Tasks, func(x string) {v.TkTable.AddTag(x)})
 		}
 	}
 	return nil
@@ -152,6 +154,10 @@ func (v *Visitor) VisitTExclusions(ctx *parser.TExclusionsContext) interface{} {
 	return Task{Tasks: ctx.Exclusions().Accept(v), Type: "exclusions"}
 }
 
+func (v *Visitor) VisitTTags(ctx *parser.TTagsContext) interface{} {
+	return Task{Tasks: ctx.Tags().Accept(v), Type: "tags"}
+}
+
 func (v *Visitor) VisitSections(ctx *parser.SectionsContext) interface{} {
 	return ctx.Str_array().Accept(v)
 }
@@ -165,6 +171,10 @@ func (v *Visitor) VisitControls(ctx *parser.ControlsContext) interface{} {
 }
 
 func (v *Visitor) VisitExclusions(ctx *parser.ExclusionsContext) interface{} {
+	return ctx.Str_array().Accept(v)
+}
+
+func (v *Visitor) VisitTags(ctx *parser.TagsContext) interface{} {
 	return ctx.Str_array().Accept(v)
 }
 

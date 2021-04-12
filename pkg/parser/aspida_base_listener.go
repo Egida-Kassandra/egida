@@ -140,6 +140,12 @@ func (s *BaseAspidaListener) EnterTExclusions(ctx *TExclusionsContext) {}
 // ExitTExclusions is called when production tExclusions is exited.
 func (s *BaseAspidaListener) ExitTExclusions(ctx *TExclusionsContext) {}
 
+// EnterTTags is called when production tTags is entered.
+func (s *BaseAspidaListener) EnterTTags(ctx *TTagsContext) {}
+
+// ExitTTags is called when production tTags is exited.
+func (s *BaseAspidaListener) ExitTTags(ctx *TTagsContext) {}
+
 // EnterSections is called when production sections is entered.
 func (s *BaseAspidaListener) EnterSections(ctx *SectionsContext) {}
 
@@ -163,6 +169,12 @@ func (s *BaseAspidaListener) EnterExclusions(ctx *ExclusionsContext) {}
 
 // ExitExclusions is called when production exclusions is exited.
 func (s *BaseAspidaListener) ExitExclusions(ctx *ExclusionsContext) {}
+
+// EnterTags is called when production tags is entered.
+func (s *BaseAspidaListener) EnterTags(ctx *TagsContext) {}
+
+// ExitTags is called when production tags is exited.
+func (s *BaseAspidaListener) ExitTags(ctx *TagsContext) {}
 
 // EnterIfStat is called when production ifStat is entered.
 func (s *BaseAspidaListener) EnterIfStat(ctx *IfStatContext) {}

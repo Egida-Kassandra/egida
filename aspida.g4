@@ -53,6 +53,7 @@ tasks_prop          : sections                  #tSections
                     | points                    #tPoints
                     | controls                  #tControls
                     | exclusions                #tExclusions
+                    | tags                      #tTags
                     ;
 sections            : 'sections' ':' str_array NS
                     | 'SECTIONS' ':' str_array NS
@@ -65,6 +66,10 @@ controls            : 'controls' ':' str_array NS
                     ;
 exclusions          : 'exclusions' ':' str_array NS
                     | 'EXCLUSIONS' ':' str_array NS
+                    ;
+
+tags                : 'tags' ':' str_array NS
+                    | 'TAGS' ':' str_array NS
                     ;
 
 // =================================================== Statements

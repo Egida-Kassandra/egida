@@ -87,6 +87,10 @@ func (v *BaseAspidaVisitor) VisitTExclusions(ctx *TExclusionsContext) interface{
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseAspidaVisitor) VisitTTags(ctx *TTagsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseAspidaVisitor) VisitSections(ctx *SectionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -100,6 +104,10 @@ func (v *BaseAspidaVisitor) VisitControls(ctx *ControlsContext) interface{} {
 }
 
 func (v *BaseAspidaVisitor) VisitExclusions(ctx *ExclusionsContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseAspidaVisitor) VisitTags(ctx *TagsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
