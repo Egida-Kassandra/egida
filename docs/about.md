@@ -1,14 +1,19 @@
 # About
 
-## Lucifer oppida gestamina velamine infelix lanigeris regis
+<!-- LICENSE -->
+---
+## License
 
-Lorem markdownum debilis non leto, repetita numinis mundi et hunc suo utraque
-*solvi vulnus*, caeli sonus deceant se. Videres pallentemque tuque monimenta
-utque ferunt! Et tauro corde Rhodopeius tibi illi, pulvere, iram dant! Territus
-certate quoque frena addidit, vaticinos *tangat vaporem* tristisque stabant.
+Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 
-- De piumque dederat novenis saucia nunc longe
-- Dea Pisenore efficiet vidit maxima hic pandite
-- Primum voto
-- Iuro de veni generi
-- Irascere Stygias eludere antiquam spatium capillos totidem
+<!-- CONTACT -->
+---
+## Contact
+
+Authors:
+
+* [Antonio Payá González](https://antoniopg.tk)
+* [Alba Cotarelo Tuñón](https://antoniopg.tk)
+* [Jose Manuel Redondo Lopez](http://orcid.org/0000-0002-0939-0186)
+
+Project Link: [https://github.com/antonioalfa22/egida](https://github.com/antonioalfa22/egida)

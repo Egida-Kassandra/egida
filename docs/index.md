@@ -28,21 +28,20 @@
 ## Table of Contents
 
 * [Overview](#overview)
-* [Install](#install)
+* [Installation](#installation)
   * [Prerequisites](#prerequisites)
   * [Download and install](#download-and-install)
 * [Getting Started](#getting-started)
   * [Create and delete host groups](#create-and-delete-host-groups)
   * [Show host info](#show-host-info)
   * [Hardening Menu](#hardening-menu)
+  * [Domain Specific Language](#domain-specific-language)
 * [Hardening](#hardening)
   * [All CIS Benchmarks](#all-cis-benchmarks)
   * [CIS Points](#cis-points)
   * [CIS Sections](#cis-sections)
   * [CIS Controls](#cis-controls)
   * [Hardening Variables](#hardening-variables)
-* [License](#license)
-* [Contact](#contact)
 
 <!-- Overview -->
 ---
@@ -204,6 +203,23 @@ sudo egida menu -c [local | ssh]
 > Example: --connection ssh
 > **Localhost not allows ssh**
 
+### Domain Specific Language
+
+Egida has a Domain Specific Language (DSL) called **Aspida** that allows customized hardening scripts that depend 
+on the value of properties and attributes of the target system.
+
+#### *compile*
+```commandline
+sudo egida compile -f filename
+```
+
+> Example: `sudo egida compile -f /examples/example_cond.aspida`
+
+**-f, --file**:  Aspida File to compile
+> Example: --file /examples/example_cond.aspida
+
+Information on the Aspida language and its syntax is available [here](dsl.md).
+
 <!-- Hardening -->
 ---
 ## Hardening
@@ -358,24 +374,5 @@ password:
 # ======== EXTRAS ===================
 nameservers: [8.8.8.8, 8.8.4.4]
 ```
-
-
-<!-- LICENSE -->
----
-## License
-
-Distributed under the Apache 2.0 License. See `LICENSE` for more information.
-
-<!-- CONTACT -->
----
-## Contact
-
-Authors:
-
-* [Antonio Payá González](https://antoniopg.tk)
-* [Alba Cotarelo Tuñón](https://antoniopg.tk)
-* [Jose Manuel Redondo Lopez](http://orcid.org/0000-0002-0939-0186)
-
-Project Link: [https://github.com/antonioalfa22/egida](https://github.com/antonioalfa22/egida)
 
 
