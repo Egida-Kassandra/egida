@@ -54,6 +54,48 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Aspida DSL</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#your-first-program">Your First Program</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#blocks">Blocks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#main">MAIN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#host">HOST</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tasks">TASKS</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#sections">sections</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#controls">controls</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#points">points</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#exclusions">exclusions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tags">tags</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vars">VARS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#conditional-statements">Conditional Statements</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if">If</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#else">Else</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#elif">Elif</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-host-info">Getting Host Info</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -94,6 +136,371 @@
             <div class="section">
               
                 <h1 id="aspida-domain-specific-language">Aspida Domain Specific Language</h1>
+<!-- TABLE OF CONTENTS -->
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#your-first-program">Your first Program</a></li>
+<li><a href="#blocks">Blocks</a></li>
+<li><a href="#main">MAIN</a></li>
+<li><a href="#host">HOST</a></li>
+<li><a href="#tasks">TASKS</a><ul>
+<li><a href="#sections">sections</a></li>
+<li><a href="#controls">controls</a></li>
+<li><a href="#points">points</a></li>
+<li><a href="#exclusions">exclusions</a></li>
+<li><a href="#tags">tags</a></li>
+</ul>
+</li>
+<li><a href="#vars">VARS</a></li>
+<li><a href="#conditional-statements">Conditional Statements</a></li>
+<li><a href="#if">If</a></li>
+<li><a href="#else">Else</a></li>
+<li><a href="#elif">Elif</a></li>
+<li><a href="#getting-host-info">Getting Host Info</a></li>
+</ul>
+<!-- Overview -->
+
+<hr />
+<h2 id="overview">Overview</h2>
+<p>Egida has a Domain Specific Language (DSL) called <strong>Aspida</strong> that allows customized hardening scripts that depend on the value of properties and attributes of the target system.</p>
+<p>For Egida to use a script written in Aspida we must use the <strong>compile</strong> option:</p>
+<pre><code class="commandline">sudo egida compile -f filename
+</code></pre>
+
+<blockquote>
+<p>Example: <code>sudo egida compile -f /examples/example_cond.aspida</code></p>
+</blockquote>
+<p><strong>-f, --file</strong>:  Aspida File to compile</p>
+<blockquote>
+<p>Example: --file /examples/example_cond.aspida</p>
+</blockquote>
+<!-- Your first Program -->
+
+<hr />
+<h2 id="your-first-program">Your First Program</h2>
+<p>To create our first script in Egida we have to create a new file. To improve the identification of these programs, the extension .aspida can be added to them.</p>
+<p>An Aspida program is composed of four blocks:</p>
+<ul>
+<li><strong>MAIN</strong>: Main program information, such as connection type (SSH or local)</li>
+<li><strong>HOST</strong>: Name of the Egida Hosts group on which the script is to be applied</li>
+<li><strong>TASKS</strong>: Main content of the Script, defines the behavior of the program (tasks to be performed),</li>
+<li><strong>VARS</strong>: (Optional) Variables of the tasks to be executed</li>
+</ul>
+<p>Example program:</p>
+<pre><code class="golang">MAIN : {
+    name: &quot;Hello World&quot;;
+    connection: local;
+    description: &quot;Hello World description&quot;;
+}
+
+HOST : &quot;localhost&quot;;
+
+TASKS : {
+    points : [&quot;1.1&quot;, &quot;1.2&quot;];
+    sections: [&quot;1.1&quot;];
+    exclusions : [&quot;1.3&quot;];
+}
+
+VARS : {
+    &quot;user_ssh&quot;: &quot;antonio&quot;;
+    &quot;nameservers&quot;: [&quot;8.8.8.8&quot;, &quot;8.8.4.4&quot;];
+}
+</code></pre>
+
+<!-- Blocks -->
+
+<hr />
+<h2 id="blocks">Blocks</h2>
+<h3 id="main">MAIN</h3>
+<p>The main block may optionally contain the following attributes:</p>
+<ul>
+<li><strong>name</strong>: Name of the script</li>
+<li><strong>description</strong>: Description of the script</li>
+<li><strong>connection</strong>: Method of connection to the target hosts (local or ssh)</li>
+</ul>
+<pre><code class="golang">MAIN : {
+    name: &quot;Hello World&quot;;
+    connection: ssh;
+    description: &quot;Hello World description&quot;;
+}
+</code></pre>
+
+<h3 id="host">HOST</h3>
+<p>The HOST block contains a single value that corresponds to the name of the Egida host group on which you want to act.</p>
+<blockquote>
+<p>If you want to add or remove a Host group you must use the Egida <a href="..#add-group">add-group</a> option.</p>
+</blockquote>
+<pre><code class="golang">HOST : &quot;bbdd_servers&quot;;
+</code></pre>
+
+<h3 id="tasks">TASKS</h3>
+<p>The TASKS block specifies which tasks are to be performed during script execution. </p>
+<p>The following actions can be defined:</p>
+<h4 id="sections"><strong>sections</strong></h4>
+<p><strong>CIS Benchmarks</strong> sections. The complete list of sections is as follows:</p>
+<ul>
+<li>1.1-Filesystem Configuration</li>
+<li>1.2-Console Software Updates</li>
+<li>1.3-Configure sudo</li>
+<li>1.4-Filesystem Integrity</li>
+<li>1.5-Secure Boot Settings</li>
+<li>1.6-Additional Process Hardering</li>
+<li>1.7-Mandatory Access Control</li>
+<li>1.8-Warning Banners</li>
+<li>1.9-Updates</li>
+<li>2.1-Initd Services</li>
+<li>2.2-Special Purpose Services</li>
+<li>2.3-Service Clients</li>
+<li>3.1-Network Parameters Host</li>
+<li>3.2-Network Parameters Host and Router</li>
+<li>3.3-TCP Wrappers</li>
+<li>3.4-Uncommon Network Protocols</li>
+<li>3.5-Firewall Configuration</li>
+<li>3.6-Wireless</li>
+<li>3.7-Disable IPv6</li>
+<li>4.1-Configure System Accounting (auditd)</li>
+<li>4.2-Configure logging</li>
+<li>4.3-Ensure logrotate is configured</li>
+<li>5.1-Configure cron</li>
+<li>5.2-SSH Server configuration</li>
+<li>5.3-Configure PAM</li>
+<li>5.4-User accounts and environment</li>
+<li>5.5-Ensure root login is restricted to system console</li>
+<li>5.6-Ensure access to the su command is restricted</li>
+<li>6.1-System file permisions</li>
+<li>6.2-User and Group Settings</li>
+</ul>
+<pre><code class="golang">TASKS : {
+    sections: [&quot;1.1&quot;];
+}
+</code></pre>
+
+<h4 id="controls"><strong>controls</strong></h4>
+<p><strong>CIS Benchmarks</strong> controls. The complete list of controls is as follows:</p>
+<ul>
+<li>2.-Inventory and Control of Software Assets</li>
+<li>3.-Continuous Vulnerability Management</li>
+<li>4.-Controlled Use of Administrative Privileges</li>
+<li>5.-Secure Configuration for Hardware and Software on Mobile Devices, Laptops, Workstations and Servers</li>
+<li>6.-Maintenance, Monitoring and Analysis of Audit Logs</li>
+<li>8.-Malware Defenses</li>
+<li>9.-Limitation and Control of Network Ports, Protocols and Services</li>
+<li>13.-Data Protection</li>
+<li>14.-Controlled Access Based on the Need to Know</li>
+<li>16.-Account Monitoring and Control</li>
+</ul>
+<pre><code class="golang">TASKS : {
+    controls: [&quot;1.1&quot;];
+}
+</code></pre>
+
+<h4 id="points"><strong>points</strong></h4>
+<p><strong>CIS Benchmarks</strong> points.</p>
+<pre><code class="golang">TASKS : {
+    points: [&quot;1.1.1.1&quot;];
+}
+</code></pre>
+
+<h4 id="exclusions"><strong>exclusions</strong></h4>
+<p><strong>CIS Benchmarks</strong> points exclusions.</p>
+<pre><code class="golang">TASKS : {
+    exclusions: [&quot;1.1.1.2&quot;];
+}
+</code></pre>
+
+<h4 id="tags"><strong>tags</strong></h4>
+<p>Allows to execute all the tasks that contain a specific tag. </p>
+<blockquote>
+<p>For example, it allows to execute all tasks related to SSH. </p>
+</blockquote>
+<pre><code class="golang">TASKS : {
+    tags: [&quot;ssh&quot;];
+}
+</code></pre>
+
+<h3 id="vars">VARS</h3>
+<p>The VARS block contains the list of values for the variables to be used during the hardening process.</p>
+<pre><code class="golang">VARS : {
+    &quot;user_ssh&quot;: &quot;antonio&quot;;
+    &quot;password&quot;: {
+        &quot;max_days&quot;: 365;
+        &quot;min_days&quot;: 7;
+        &quot;warn_age&quot;: 7;
+        &quot;inactive&quot;: 30;
+    };
+    &quot;nameservers&quot;: [&quot;8.8.8.8&quot;, &quot;8.8.4.4&quot;];
+}
+</code></pre>
+
+<p>In case a task is executed that requires a variable, if this variable has not been defined in the VARS block, its default value will be used.</p>
+<p>The complete list of variables and their default values is shown below:</p>
+<pre><code class="yaml"># defaults file for cis
+
+###############################################
+# Values which modify the behaviour of the role
+###############################################
+
+run_all_level_1: true    # Whether Level 1 of the benchmark should be applied
+run_all_level_2: true    # Whether Level 2 of the benchmark should be applied
+
+# extras: true              # Check if want extras
+
+cis_level_1_exclusions: []         # A list of Level 1 recommendations to exclude (i.e. ['1.1.1.1'])
+cis_level_2_exclusions: []         # A list of Level 2 recommendations to exclude
+
+
+###############################################
+# Check specific values which can be overridden
+###############################################
+
+# ======== 1. Initial Setup ===================
+
+# 1.3.2 AIDE cron settings
+
+aide_cron:
+  cron_user: root
+  cron_file: /etc/crontab
+  aide_job: '/usr/bin/aide.wrapper --check'
+  aide_minute: 0
+  aide_hour: 5
+  aide_day: '*'
+  aide_month: '*'
+  aide_weekday: '*'
+
+# 1.4.2 GRUB Password
+grub_pass: antonio
+
+# 1.4.3 root Password
+root_pass: antonio
+
+# ======== 3. Network configuration ===================
+
+# 3.4.2 Host allow
+host_allow:
+  - &quot;10.0.0.0/255.0.0.0&quot;
+  - &quot;172.16.0.0/255.240.0.0&quot;
+  - &quot;192.168.0.0/255.255.0.0&quot;
+
+# 3.5.2.1 UFW
+
+ufw_ports_allow: ['22']
+ufw_deny_outgoing: false
+
+# ======== 4. Logging and auditing ===================
+default_auditd: true  # Copy auditd template
+
+
+# ======== 5. SSH Server Configuration ===================
+
+sshd_access:
+  ssh_port: 372
+  allowusers: antonio
+  # allowgroups: systems dba
+  # denyusers:
+  # denygroups:
+
+# 5.3.1  Ensure password creation
+pwquality:
+  - key: 'minlen'
+    value: '14'
+  - key: 'dcredit'
+    value: '-1'
+  - key: 'ucredit'
+    value: '-1'
+  - key: 'ocredit'
+    value: '-1'
+  - key: 'lcredit'
+    value: '-1'
+
+# 5.4.1.1 Password
+
+password:
+  max_days: 365
+  min_days: 7
+  warn_age: 7
+  inactive: 30
+
+
+# ======== EXTRAS ===================
+nameservers: [8.8.8.8, 8.8.4.4]
+</code></pre>
+
+<!-- Conditional Statements -->
+
+<hr />
+<h2 id="conditional-statements">Conditional Statements</h2>
+<h3 id="if">If</h3>
+<p>The TASKS block can include conditional statements that allow us to decide what to execute depending on the state of the target machine.</p>
+<p>On the left side of the conditional statement must be the attribute to be measured and on the right side the value to be compared.</p>
+<pre><code class="golang">TASKS : {
+    IF &quot;services.ufw&quot; == &quot;stopped&quot;{
+        sections: [&quot;1.1&quot;, &quot;1.2&quot;];
+        exclusions : [&quot;1.1.1.3&quot;];
+    }
+}
+</code></pre>
+
+<h3 id="else">Else</h3>
+<pre><code class="golang">TASKS : {
+    IF &quot;services.ufw&quot; == &quot;stopped&quot;{
+        sections: [&quot;1.1&quot;, &quot;1.2&quot;];
+        exclusions : [&quot;1.1.1.3&quot;];
+    }
+    ELSE {
+        controls: [&quot;9.4&quot;];
+    }
+}
+</code></pre>
+
+<h3 id="elif">Elif</h3>
+<pre><code class="golang">TASKS : {
+    IF &quot;services.ufw&quot; == &quot;stopped&quot;{
+        sections: [&quot;1.1&quot;, &quot;1.2&quot;];
+        exclusions : [&quot;1.1.1.3&quot;];
+    }
+    ELIF &quot;hardscores.lynis&quot; &lt;= 50 {
+        points: [&quot;1.1.1.5&quot;];
+    }
+    ELIF &quot;services.apache&quot; == &quot;STOPPED&quot; {
+        points: [&quot;1.1.1.4&quot;];
+    }
+    ELSE {
+        controls: [&quot;9.4&quot;];
+    }
+}
+</code></pre>
+
+<!-- Getting Host Info -->
+
+<hr />
+<h2 id="getting-host-info">Getting Host Info</h2>
+<p>To use conditional statements, we must use machine values.</p>
+<p>The following data are currently available:</p>
+<ul>
+<li><strong>services</strong>: Provides a list of machine services. A particular service can be accessed with <em>services.service_name</em></li>
+</ul>
+<pre><code class="golang">IF &quot;services.ufw&quot; == &quot;stopped&quot;
+</code></pre>
+
+<pre><code class="golang">IF &quot;services.ufw&quot; == &quot;running&quot;
+</code></pre>
+
+<ul>
+<li><strong>packages</strong>: Provides a list of machine packages. A particular package can be accessed with <em>packages.service_name</em></li>
+</ul>
+<pre><code class="golang">IF &quot;packages.ssh&quot; == &quot;installed&quot;
+</code></pre>
+
+<ul>
+<li><strong>hardscores</strong>: Provides the values of the available evaluators. Currently only <strong>Lynis</strong> is available. Returns a numeric value between 0 and 100</li>
+</ul>
+<pre><code class="golang">IF &quot;hardscores.lynis&quot; &gt; 50
+</code></pre>
+
+<pre><code class="golang">IF &quot;hardscores.lynis&quot; &lt;= 50
+</code></pre>
               
             </div>
           </div>
