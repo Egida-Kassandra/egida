@@ -13,7 +13,7 @@
 
   <p align="center">
     <br />
-    <a href="https://antonioalfa22.github.io/egida"><strong>Explore the docs »</strong></a>
+    <a href="https://egida-kassandra.github.io/egida/"><strong>Explore the docs »</strong></a>
     <br />
   </p>
 </div>
