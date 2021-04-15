@@ -3,10 +3,11 @@ package ansible
 import (
 	"bufio"
 	"fmt"
-	"github.com/antonioalfa22/go-utils/command"
 	"os"
 	"strings"
 	"text/template"
+
+	"github.com/antonioalfa22/go-utils/command"
 )
 
 func RunMenuPlaybook(tags []string, connection string) {
@@ -31,10 +32,17 @@ func runPlaybook(tags []string, connection string) {
 			fmt.Println("Error on running playbook, Do you have Ansible installed?")
 		}
 	} else {
-		err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
-			"--tags="+getTags(tags))
-		if err != nil {
-			fmt.Println("Error on running playbook, Do you have Ansible installed?")
+		if len(tags) == 0 {
+			err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml")
+			if err != nil {
+				fmt.Println("Error on running playbook, Do you have Ansible installed?")
+			}
+		} else {
+			err := command.RunCommandPrintOutput("ansible-playbook", "/etc/egida/generated.yml",
+				"--tags="+getTags(tags))
+			if err != nil {
+				fmt.Println("Error on running playbook, Do you have Ansible installed?")
+			}
 		}
 	}
 }
@@ -58,7 +66,7 @@ func renderFile(vars []string, hosts string, connection string) {
 			"{{ range .Vars }}{{ . }}{{ end }}\n" +
 			"\n" +
 			"  roles:\n" +
-			"    - egida-role-cis\n")
+			"    - antonioalfa22.egida_role_cis\n")
 	f, err := os.Create("/etc/egida/generated.yml")
 	if err != nil {
 		fmt.Println("Error creating playbook: " + err.Error())

@@ -1,18 +1,19 @@
 package dsl
 
 import (
-	"github.com/antonioalfa22/egida/internal/info"
-	"github.com/antonioalfa22/go-utils/collections"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/antonioalfa22/egida/internal/info"
+	"github.com/antonioalfa22/go-utils/collections"
 )
 
 type Comparation struct {
-	Host string
-	Value1 interface{}
+	Host     string
+	Value1   interface{}
 	Operator string
-	Value2 interface{}
+	Value2   interface{}
 }
 
 func (c Comparation) Compare() bool {

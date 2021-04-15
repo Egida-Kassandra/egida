@@ -64,7 +64,7 @@ func renderFile(group string, connection string) {
 			"  become: yes\n" +
 			"\n" +
 			"  roles:\n" +
-			"    - egida-role-setup\n")
+			"    - antonioalfa22.egida_role_setup\n")
 	f, err := os.Create("/etc/egida/generated_setup.yml")
 	if err != nil {
 		fmt.Println("Error creating playbook: " + err.Error())
