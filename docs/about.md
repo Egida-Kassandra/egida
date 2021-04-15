@@ -16,4 +16,4 @@ Authors:
 * [Alba Cotarelo Tuñón](https://antoniopg.tk)
 * [Jose Manuel Redondo Lopez](http://orcid.org/0000-0002-0939-0186)
 
-Project Link: [https://github.com/antonioalfa22/egida](https://github.com/antonioalfa22/egida)
+Project Link: [https://github.com/egida-kassandra/egida](https://github.com/egida-kassandra/egida)

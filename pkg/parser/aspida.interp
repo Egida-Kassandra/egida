@@ -41,8 +41,8 @@ null
 'HOST'
 'TASKS'
 'VARS'
-'LOCAL'
-'SSH'
+null
+null
 'IF'
 'ELIF'
 'ELSE'

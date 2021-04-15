@@ -13,28 +13,33 @@ import (
 
 
 func ParseFile(file string)  {
+	listener := &ErrorListener{Errors: 0}
 	input, _ := antlr.NewFileStream(file)
 	// Lexer
 	lexer := parser.NewAspidaLexer(input)
-	stream := antlr.NewCommonTokenStream(lexer,0)
+	lexer.RemoveErrorListeners()
+	stream := antlr.NewCommonTokenStream(lexer,antlr.TokenDefaultChannel)
 	// Parser
 	p := parser.NewAspidaParser(stream)
 	// Listeners
-	p.AddErrorListener(antlr.NewDiagnosticErrorListener(true))
+	p.RemoveErrorListeners()
+	p.AddErrorListener(listener)
 	p.BuildParseTrees = true
 	tree := p.Program()
-	// Codegen
-	codegen := NewVisitor()
-	codegen.Visit(tree)
-	// Run Playbook
-	tags := getTags(codegen.TkTable.Sections, codegen.TkTable.Points,
-		codegen.TkTable.Controls, codegen.TkTable.Tags)
-	vars := collections.Map(getVars(codegen.VarTable.Table), func(x string) string {
-		return "    " + x + "\n"
-	}).([]string)
-	hosts := codegen.HostGroup
-	connection := strings.ToLower(codegen.Info.Connection)
-	ansible.RunDSLPlaybook(tags, vars, hosts, connection)
+	if listener.Errors == 0 {
+		// Codegen
+		codegen := NewVisitor()
+		codegen.Visit(tree)
+		// Run Playbook
+		tags := getTags(codegen.TkTable.Sections, codegen.TkTable.Points,
+			codegen.TkTable.Controls, codegen.TkTable.Tags)
+		vars := collections.Map(getVars(codegen.VarTable.Table), func(x string) string {
+			return "    " + x + "\n"
+		}).([]string)
+		hosts := codegen.HostGroup
+		connection := strings.ToLower(codegen.Info.Connection)
+		ansible.RunDSLPlaybook(tags, vars, hosts, connection)
+	}
 }
 
 func getTags(sections []string, points []string, controls []string, tags []string) []string {

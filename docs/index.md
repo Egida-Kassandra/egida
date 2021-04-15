@@ -1,25 +1,25 @@
 # Egida Project
 
 <!-- PROJECT SHIELDS -->
-[![EGIDA VERSION](https://img.shields.io/badge/egida-v2.0.0-blue?style=for-the-badge&logo=ansible&color=ff69b4)](https://github.com/antonioalfa22/egida)
-[![GitHub license](https://img.shields.io/badge/license-Apache-blue?style=for-the-badge)](https://github.com/antonioalfa22/egida/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/badge/release-v.2.0.0-yellowgreen?style=for-the-badge)](https://github.com/antonioalfa22/egida/releases)
+[![EGIDA VERSION](https://img.shields.io/badge/egida-v2.0.0-blue?style=for-the-badge&logo=ansible&color=ff69b4)](https://github.com/egida-kassandra/egida)
+[![GitHub license](https://img.shields.io/badge/license-Apache-blue?style=for-the-badge)](https://github.com/egida-kassandra/egida/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/badge/release-v.2.0.0-yellowgreen?style=for-the-badge)](https://github.com/egida-kassandra/egida/releases)
 
 <!-- PROJECT LOGO -->
 
 <br />
 <div align="center">
-  <a href="https://github.com/antonioalfa22/egida">
+  <a href="https://github.com/egida-kassandra/egida">
     <img src="img/logo.png" alt="Logo" width="180" height="180">
   </a>
 
   <p align="center">
     <br />
-    <a href="https://github.com/antonioalfa22/egida">View Source</a>
+    <a href="https://github.com/egida-kassandra/egida">View Source</a>
     ·
-    <a href="https://github.com/antonioalfa22/egida/issues">Report Bug</a>
+    <a href="https://github.com/egida-kassandra/egida/issues">Report Bug</a>
     ·
-    <a href="https://github.com/antonioalfa22/egida/issues">Request Feature</a>
+    <a href="https://github.com/egida-kassandra/egida/issues">Request Feature</a>
   </p>
 </div>
 
@@ -110,7 +110,7 @@ sudo apt install python3-pip
 In order to install the Egida core you have to follow the instructions below.
 
 ```commandline
-wget https://github.com/antonioalfa22/egida/releases/download/2.0.0/install.sh
+wget https://github.com/egida-kassandra/egida/releases/download/2.0.0/install.sh
 sudo chmod +x install.sh
 sudo ./install.sh
 ```

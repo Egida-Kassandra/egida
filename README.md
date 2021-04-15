@@ -1,13 +1,13 @@
 # Egida
 
 <!-- PROJECT SHIELDS -->
-[![GitHub license](https://img.shields.io/badge/license-Apache-blue?style=for-the-badge)](https://github.com/antonioalfa22/egida/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-Apache-blue?style=for-the-badge)](https://github.com/egida-kassandra/egida/blob/master/LICENSE)
 
 <!-- PROJECT LOGO -->
 
 <br />
 <div align="center">
-  <a href="https://github.com/antonioalfa22/egida">
+  <a href="https://github.com/egida-kassandra/egida">
     <img src="img/logo.svg" alt="Logo" width="180" height="180">
   </a>
 
@@ -17,26 +17,6 @@
     <br />
   </p>
 </div>
-
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
-
-* [Overview](https://antonioalfa22.github.io/egida/#overview)
-* [Installation](https://antonioalfa22.github.io/egida/#installation)
-  * [Prerequisites](https://antonioalfa22.github.io/egida/#prerequisites)
-  * [Download and install](https://antonioalfa22.github.io/egida/#download-and-install)
-* [Getting Started](https://antonioalfa22.github.io/egida/#getting-started)
-  * [Create and delete host groups](https://antonioalfa22.github.io/egida/#create-and-delete-host-groups)
-  * [Show host info](https://antonioalfa22.github.io/egida/#show-host-info)
-  * [Hardening Menu](https://antonioalfa22.github.io/egida/#hardening-menu))
-* [Hardening](https://antonioalfa22.github.io/egida/#hardening)
-  * [All CIS Benchmarks](https://antonioalfa22.github.io/egida/#all-cis-benchmarks)
-  * [CIS Points](https://antonioalfa22.github.io/egida/#cis-points)
-  * [CIS Sections](https://antonioalfa22.github.io/egida/#cis-sections)
-  * [CIS Controls](https://antonioalfa22.github.io/egida/#cis-controls)
-  * [Hardening Variables](https://antonioalfa22.github.io/egida/#hardening-variables)
-* [License](https://antonioalfa22.github.io/egida/#license)
-* [Contact](https://antonioalfa22.github.io/egida/#contact)
 
 <!-- Overview -->
 ---
@@ -82,4 +62,4 @@ Authors:
 * [Alba Cotarelo Tuñón](https://antoniopg.tk)
 * [Jose Manuel Redondo Lopez](http://orcid.org/0000-0002-0939-0186)
 
-Project Link: [https://github.com/antonioalfa22/egida](https://github.com/antonioalfa22/egida)
+Project Link: [https://github.com/egida-kassandra/egida](https://github.com/egida-kassandra/egida)

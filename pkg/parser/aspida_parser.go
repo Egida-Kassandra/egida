@@ -153,8 +153,8 @@ var literalNames = []string{
 	"'POINTS'", "'controls'", "'CONTROLS'", "'exclusions'", "'EXCLUSIONS'",
 	"'tags'", "'TAGS'", "'<'", "'>'", "'=='", "'>='", "'<='", "'!='", "'true'",
 	"'false'", "'null'", "'['", "','", "']'", "", "", "", "", "", "';'", "'MAIN'",
-	"'HOST'", "'TASKS'", "'VARS'", "'LOCAL'", "'SSH'", "'IF'", "'ELIF'", "'ELSE'",
-	"'OR'", "'AND'", "'NOT'", "'IS'",
+	"'HOST'", "'TASKS'", "'VARS'", "", "", "'IF'", "'ELIF'", "'ELSE'", "'OR'",
+	"'AND'", "'NOT'", "'IS'",
 }
 var symbolicNames = []string{
 	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
