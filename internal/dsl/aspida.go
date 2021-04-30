@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 	"github.com/antonioalfa22/egida/pkg/ansible"
+	"github.com/antonioalfa22/egida/pkg/models"
 	"github.com/antonioalfa22/egida/pkg/parser"
 	"github.com/antonioalfa22/go-utils/collections"
 	"reflect"
@@ -38,7 +39,25 @@ func ParseFile(file string)  {
 		}).([]string)
 		hosts := codegen.HostGroup
 		connection := strings.ToLower(codegen.Info.Connection)
+
+		// Check variables
+		checkVariables(codegen.TkTable.Sections, codegen.TkTable.Points,
+			codegen.TkTable.Controls, codegen.TkTable.Tags, vars)
 		ansible.RunDSLPlaybook(tags, vars, hosts, connection)
+	}
+}
+
+func checkVariables(sections []string, points []string, controls []string, tags []string, vars []string) {
+	notvars := collections.Filter(models.GetVarsList(), func(x models.Variable) bool {
+		for _, v := range vars { if v == x.Name { return false } }
+		return true
+	}).([]models.Variable)
+	for _, variable := range notvars {
+		inuse := variable.VariableInPoints(points) || variable.VariableInControls(controls) ||
+			variable.VariableInSection(sections) || variable.VariableInTags(tags)
+		if inuse {
+			fmt.Println("WARNING: Variable ", variable.Name, "not defined", "--> Its default value will be used")
+		}
 	}
 }
 

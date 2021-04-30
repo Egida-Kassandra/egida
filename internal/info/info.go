@@ -174,3 +174,35 @@ func GetLynisScore(hosts []string) ([]Result, error) {
 	}
 	return results, nil
 }
+
+func GetMachineHasGUI(hosts []string) ([]bool, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Second)
+	defer cancel()
+	var results []bool
+	for _, h := range hosts {
+		client := CreateMachineInfoClient(h)
+		res, err := client.MachineHasGUI(ctx, &grpc.HasGUIReq{})
+		if err != nil {
+			return nil, errors.New("Error: can not connect to host " + h + " on port 8128")
+		} else {
+			results = append(results, res.Gui)
+		}
+	}
+	return results, nil
+}
+
+func GetMachineOpenPorts(host string) ([]int64, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 200*time.Second)
+	defer cancel()
+	var results []int64
+	client := CreateMachineInfoClient(host)
+	res, err := client.ListOpenPorts(ctx, &grpc.ListOpenPortsReq{})
+	if err != nil {
+		return nil, errors.New("Error: can not connect to host " + host + " on port 8128")
+	} else {
+		for _, port := range res.Ports {
+			results = append(results, port.Number)
+		}
+	}
+	return results, nil
+}

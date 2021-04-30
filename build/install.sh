@@ -9,8 +9,8 @@ apt install -y unzip
 apt install sshpass -y
 
 # ==============> Install egida-role-cis and egida-role-setup
-ansible-galaxy install antonioalfa22.egida_role_setup --roles-path /etc/ansible/roles
-ansible-galaxy install antonioalfa22.egida_role_cis --roles-path /etc/ansible/roles
+ansible-galaxy install antonioalfa22.egida_role_setup,v2.0.1 --roles-path /etc/ansible/roles
+ansible-galaxy install antonioalfa22.egida_role_cis,2.0.2 --roles-path /etc/ansible/roles
 
 # Create egida vars location
 mkdir /etc/egida

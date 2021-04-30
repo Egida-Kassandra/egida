@@ -69,6 +69,20 @@ func (c Comparation) Compare() bool {
 		default:
 			return false
 		}
+	case "machine":
+		// Get Open ports
+		if strings.ToLower(c.Value1.(string)) == "open_port" {
+			value, _ := strconv.ParseInt(c.Value2.(string),10,  64)
+			ports, _ := info.GetMachineOpenPorts(c.Host)
+			return collections.Find(ports, func(x int64) bool {
+				return x == value
+			}) != nil
+		} else { // Machine Has GUI
+			alls, _ := info.GetMachineHasGUI([]string{c.Host})
+			value, _ := strconv.ParseBool(c.Value2.(string))
+			result := alls[0]
+			return result == value
+		}
 	}
 	return false
 }

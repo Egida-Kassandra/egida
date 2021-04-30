@@ -53,3 +53,24 @@ message LynisScore {
 }
 
 message ScoreReq {}
+
+// MachineInfo
+service MachineInfo {
+  rpc ListOpenPorts (ListOpenPortsReq) returns (ListPort) {}
+  rpc MachineHasGUI (HasGUIReq) returns (HasGUI) {}
+}
+
+message Port {
+  int64 number = 1;
+}
+
+message ListPort {
+  repeated Port ports = 1;
+}
+
+message HasGUI {
+  bool gui = 1;
+}
+
+message HasGUIReq {}
+message ListOpenPortsReq {}
