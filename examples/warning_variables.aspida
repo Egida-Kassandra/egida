@@ -7,7 +7,7 @@ MAIN : {
 HOST : "localhost";
 
 TASKS : {
-    IF "machine.open_port" == 22 {
+    IF "machine.open_port" == 24 {
         sections: ["5.1", "5.3", "5.4"];
     }
     ELSE {
