@@ -1,6 +1,7 @@
 # Egida
 
 <!-- PROJECT SHIELDS -->
+[![Paper](https://img.shields.io/badge/DOI-10.1016%2Fj.cose.2022.102638-0E7490?style=for-the-badge)](https://doi.org/10.1016/j.cose.2022.102638)
 [![GitHub license](https://img.shields.io/badge/license-Apache-blue?style=for-the-badge)](https://github.com/egida-kassandra/egida/blob/master/LICENSE)
 
 <!-- PROJECT LOGO -->
@@ -48,6 +49,23 @@ To achieve that, Egida is built using a microservices-based architecture compose
 
 ![Egida Network](img/esquema.png)
 
+<!-- CITATION -->
+## Citation
+
+Egida is described in **[Egida: Automated security configuration deployment systems with early error detection](https://doi.org/10.1016/j.cose.2022.102638)**, *Computers & Security*, vol. 116, 102638 (2022).
+
+```bibtex
+@article{paya2022egida,
+  title   = {Egida: Automated security configuration deployment systems with early error detection},
+  author  = {Pay{\'a}, Antonio and Cotarelo, Alba and Redondo, Jos{\'e} Manuel},
+  journal = {Computers \& Security},
+  volume  = {116},
+  pages   = {102638},
+  year    = {2022},
+  doi     = {10.1016/j.cose.2022.102638}
+}
+```
+
 <!-- LICENSE -->
 ## License
 
@@ -58,8 +76,8 @@ Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 
 Authors:
 
-* [Antonio Payá González](https://antoniopg.tk)
-* [Alba Cotarelo Tuñón](https://antoniopg.tk)
+* [Antonio Payá González](https://antoniopaya22.github.io)
+* Alba Cotarelo Tuñón
 * [Jose Manuel Redondo Lopez](http://orcid.org/0000-0002-0939-0186)
 
 Project Link: [https://github.com/egida-kassandra/egida](https://github.com/egida-kassandra/egida)
