@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article below."
+title: "Egida: Automated security configuration deployment systems with early error detection"
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/Egida-Kassandra/egida"
+authors:
+  - family-names: "Payá"
+    given-names: "Antonio"
+    orcid: "https://orcid.org/0000-0003-3733-3805"
+  - family-names: "Cotarelo"
+    given-names: "Alba"
+  - family-names: "Redondo"
+    given-names: "José Manuel"
+keywords:
+  - hardening
+  - security configuration
+  - domain-specific language
+preferred-citation:
+  type: article
+  title: "Egida: Automated security configuration deployment systems with early error detection"
+  authors:
+    - family-names: "Payá"
+      given-names: "Antonio"
+      orcid: "https://orcid.org/0000-0003-3733-3805"
+    - family-names: "Cotarelo"
+      given-names: "Alba"
+    - family-names: "Redondo"
+      given-names: "José Manuel"
+  journal: "Computers & Security"
+  publisher:
+    name: "Elsevier"
+  volume: 116
+  start: 102638
+  year: 2022
+  month: 5
+  doi: "10.1016/j.cose.2022.102638"
+  url: "https://doi.org/10.1016/j.cose.2022.102638"
