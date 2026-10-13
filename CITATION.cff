@@ -12,6 +12,7 @@ authors:
     given-names: "Alba"
   - family-names: "Redondo"
     given-names: "José Manuel"
+    orcid: "https://orcid.org/0000-0002-0939-0186"
 keywords:
   - hardening
   - security configuration
@@ -27,6 +28,7 @@ preferred-citation:
       given-names: "Alba"
     - family-names: "Redondo"
       given-names: "José Manuel"
+      orcid: "https://orcid.org/0000-0002-0939-0186"
   journal: "Computers & Security"
   publisher:
     name: "Elsevier"
